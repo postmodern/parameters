@@ -6,9 +6,39 @@
 
 == DESCRIPTION:
 
+Parameters allows you to add annoted variables to your classes which may
+have configurable default values.
+
 == FEATURES:
 
-== REQUIREMENTS:
+* Give parameters default values.
+* Change default values of parameters.
+* Give descriptions to parameters.
+
+== EXAMPLES:
+
+  class Octagon
+  
+    include Parameters
+  
+    parameter :x, :value => 0
+  
+    parameter :y, :value => 0.5
+  
+    parameter :radius, :description => 'The radius of the Octagon'
+  
+  end
+  
+  oct = Octagon.new
+  oct.x # => 0
+  oct.y # => 0.5
+  
+  oct = Octagon.new(:radius => 10)
+  oct.radius # => 10
+  
+  Octagon.radius = 33
+  oct = Octagon.new
+  oct.radius # => 33
 
 == INSTALL:
 
