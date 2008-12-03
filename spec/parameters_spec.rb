@@ -55,6 +55,13 @@ describe Parameters do
     it "should provide descriptions for parameters" do
       TestParameters.describe_param(:var).should_not be_empty
     end
+
+    it "should be able to create an object with initial parameter values" do
+      obj = TestParameters.new(:var => 2, :var_with_default => 'stuff')
+
+      obj.var.should == 2
+      obj.var_with_default.should == 'stuff'
+    end
   end
 
   describe "in an Object" do
