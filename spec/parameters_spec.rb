@@ -42,10 +42,10 @@ describe Parameters do
     end
 
     it "should provide direct access to the parameter objects" do
-      @param = TestParameters.get_param(:var)
+      param = TestParameters.get_param(:var)
 
-      @param.should_not be_nil
-      @param.name.should == :var
+      param.should_not be_nil
+      param.name.should == :var
     end
 
     it "raise a ParamNotFound exception when directly accessing non-existent parameter objects" do
