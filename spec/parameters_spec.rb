@@ -70,6 +70,19 @@ describe Parameters do
       @test_inherited = InheritedParameters.new
     end
 
+    it "should provide direct access to all parameters" do
+      @test.params[:var].should_not be_nil
+      @test.params[:var_with_default].should_not be_nil
+    end
+
+    it "should allow for mass assignment of parameters" do
+      test2 = TestParameters.new
+      test2.params = {:var => 5, :var_with_default => 'hello'}
+
+      test2.var.should == 5
+      test2.var_with_default.should == 'hello'
+    end
+
     it "can have default values for parameters" do
       @test.param_value(:var_with_default).should == 'thing'
     end
