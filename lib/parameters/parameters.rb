@@ -119,7 +119,7 @@ module Parameters
   # _values_, which can override the default values of
   # parameters.
   #
-  def initialize(values={})
+  def initialize(values={},&block)
     self.class.each_param do |param|
       # do not override existing instance value if present
       unless instance_variable_get("@#{param.name}")
@@ -138,6 +138,8 @@ module Parameters
 
       params[param.name] = InstanceParam.new(self,param.name,param.description)
     end
+
+    super(values,&block)
   end
 
   #
