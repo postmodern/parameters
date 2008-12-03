@@ -119,24 +119,21 @@ module Parameters
   # _options_, which can override the default values of
   # parameters.
   #
-  def initialize(options={})
+  def initialize(values={})
     self.class.each_param do |param|
-      # set the instance variable if the param has a value
-      if (options[param.name] || param.value)
-        # do not override existing instance value if present
-        unless instance_variable_get("@#{param.name}")
-          if options[param.name]
-            value = options[param.name]
-          else
-            begin
-              value = param.value.clone
-            rescue TypeError
-              value = param.value
-            end
+      # do not override existing instance value if present
+      unless instance_variable_get("@#{param.name}")
+        if values[param.name]
+          value = values[param.name]
+        elsif param.value
+          begin
+            value = param.value.clone
+          rescue TypeError
+            value = param.value
           end
-
-          instance_variable_set("@#{param.name}",value)
         end
+
+        instance_variable_set("@#{param.name}",value)
       end
 
       params[param.name] = InstanceParam.new(self,param.name,param.description)
@@ -164,18 +161,16 @@ module Parameters
     # add the new parameter
     params[name] = InstanceParam.new(self,name,options[:description])
 
-    # define the reader method for the parameter
     instance_eval %{
-        def #{name}
-          instance_variable_get("@#{name}")
-        end
-    }
+      # define the reader method for the parameter
+      def #{name}
+        instance_variable_get("@#{name}")
+      end
 
-    # define the writer method for the parameter
-    instance_eval %{
-        def #{name}=(value)
-          instance_variable_set("@#{name}",value)
-        end
+      # define the writer method for the parameter
+      def #{name}=(value)
+        instance_variable_set("@#{name}",value)
+      end
     }
 
     return params[name]
