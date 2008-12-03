@@ -15,7 +15,7 @@ module Parameters
 
       #
       # Sets the values of the class parameters described in the
-      # _values_ Hash.
+      # _values_ +Hash+.
       #
       #   Test.params = {:x => 5, :y => 2}
       #   # => {:x=>5, :y=>2}
@@ -152,6 +152,11 @@ module Parameters
 
   end
 
+  #
+  # Initializes the parameters using initialize_parameters. If a +Hash+
+  # is passed in as the first argument, it will be used to set the values
+  # of parameters described within the Hash.
+  #
   def initialize(*args,&block)
     initialize_parameters
 
@@ -199,7 +204,7 @@ module Parameters
   end
 
   #
-  # Returns a Hash of the classes params.
+  # Returns a +Hash+ of the classes params.
   #
   def class_params
     self.class.params
@@ -213,7 +218,7 @@ module Parameters
   end
 
   #
-  # Sets the values of the parameters described in the _values_ Hash.
+  # Sets the values of the parameters described in the _values_ +Hash+.
   #
   #   obj.params = {:x => 5, :y => 2}
   #   # => {:x=>5, :y=>2}
