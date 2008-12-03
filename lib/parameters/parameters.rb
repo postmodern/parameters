@@ -14,6 +14,21 @@ module Parameters
       end
 
       #
+      # Sets the values of the class parameters described in the
+      # _values_ Hash.
+      #
+      #   Test.params = {:x => 5, :y => 2}
+      #   # => {:x=>5, :y=>2}
+      #
+      def params=(values)
+        values.each do |name,value|
+          if has_param?(name)
+            get_param(name).value = value
+          end
+        end
+      end
+
+      #
       # Adds a new parameters with the specified _name_ and the given
       # _options_ to the Class.
       #
