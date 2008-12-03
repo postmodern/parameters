@@ -230,7 +230,7 @@ module Parameters
   # Returns the value of the parameter with the specified _name_. If no
   # such parameter exists, a ParamNotFound exception will be raised.
   #
-  #   obj.value_param('rhost') # => 80
+  #   obj.param_value('rhost') # => 80
   #
   def param_value(name)
     get_param(name).value
