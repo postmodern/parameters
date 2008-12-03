@@ -123,14 +123,10 @@ module Parameters
     self.class.each_param do |param|
       # do not override existing instance value if present
       unless instance_variable_get("@#{param.name}")
-        if values[param.name]
-          value = values[param.name]
-        elsif param.value
-          begin
-            value = param.value.clone
-          rescue TypeError
-            value = param.value
-          end
+        begin
+          value = param.value.clone
+        rescue TypeError
+          value = param.value
         end
 
         instance_variable_set("@#{param.name}",value)
@@ -138,6 +134,8 @@ module Parameters
 
       params[param.name] = InstanceParam.new(self,param.name,param.description)
     end
+
+    self.param = values
   end
 
   alias initialize initialize_parameters
@@ -190,6 +188,20 @@ module Parameters
   #
   def params
     @params ||= {}
+  end
+
+  #
+  # Sets the values of the parameters described in the _values_ Hash.
+  #
+  #   obj.params = {:x => 5, :y => 2}
+  #   # => {:x=>5, :y=>2}
+  #
+  def params=(values)
+    values.each do |name,value|
+      if has_param?(name)
+        instance_variable_set("@#{name}",value)
+      end
+    end
   end
 
   #
