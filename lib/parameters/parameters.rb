@@ -116,7 +116,7 @@ module Parameters
 
   #
   # Initalizes the parameters of the object using the given
-  # _options_, which can override the default values of
+  # _values_, which can override the default values of
   # parameters.
   #
   def initialize(values={})
