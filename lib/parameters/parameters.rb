@@ -115,22 +115,32 @@ module Parameters
   end
 
   #
-  # Calls initialize_parameters and then proceeds to call the
-  # super-classes initialize.
+  # Initalizes the parameters of the object using the given
+  # _options_, which can override the default values of
+  # parameters.
   #
-  def initialize(*args,&block)
-    initialize_parameters()
+  def initialize(options={})
+    self.class.each_param do |param|
+      # set the instance variable if the param has a value
+      if (options[param.name] || param.value)
+        # do not override existing instance value if present
+        unless instance_variable_get("@#{param.name}")
+          if options[param.name]
+            value = options[param.name]
+          else
+            begin
+              value = param.value.clone
+            rescue TypeError
+              value = param.value
+            end
+          end
 
-    super(*args,&block)
-  end
+          instance_variable_set("@#{param.name}",value)
+        end
+      end
 
-  #
-  # Initializes all instance parameters based off the class parameter's
-  # descriptions and default values.
-  #
-  def initialize_parameters
-    # import the class parameters
-    self.class.each_param { |param| initialize_param(param) }
+      params[param.name] = InstanceParam.new(self,param.name,param.description)
+    end
   end
 
   #
@@ -241,29 +251,5 @@ module Parameters
     values.each do |name,value|
       get_param(name).value = value
     end
-  end
-
-  protected
-
-  #
-  # Initializes the specified class _param_.
-  #
-  def initialize_param(param)
-    # set the instance variable if the param has a value
-    if param.value
-      # do not override existing instance value if present
-      unless instance_variable_get("@#{param.name}")
-        begin
-          value = param.value.clone
-        rescue TypeError
-          value = param.value
-        end
-
-        instance_variable_set("@#{param.name}",value)
-      end
-    end
-
-    params[param.name] = InstanceParam.new(self,param.name,param.description)
-    return params[param.name]
   end
 end
