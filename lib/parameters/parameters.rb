@@ -149,7 +149,6 @@ module Parameters
 
       params[param.name] = InstanceParam.new(self,param.name,param.description)
     end
-
   end
 
   #
