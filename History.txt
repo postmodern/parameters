@@ -1,4 +1,7 @@
-=== 0.1.0 / 2008-12-01
+=== 0.1.0 / 2008-12-03
 
 * Initial release.
+* Added Parameters.params= and Parameters#params= methods.
+* Allow Parameters#initialize to accept a Hash of parameter values.
+* Added more specs.
 
