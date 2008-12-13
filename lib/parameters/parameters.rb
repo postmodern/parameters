@@ -225,7 +225,7 @@ module Parameters
   def params=(values)
     values.each do |name,value|
       if has_param?(name)
-        instance_variable_set("@#{name}",value)
+        @params[name.to_sym].value = value
       end
     end
   end
