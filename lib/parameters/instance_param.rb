@@ -8,7 +8,7 @@ module Parameters
     # Creates a new InstanceParam object with the specified _object_ and
     # _name_, and the given _description_.
     #
-    def initialize(object,name,description='')
+    def initialize(object,name,description=nil)
       super(name,description)
 
       @object = object
@@ -26,6 +26,18 @@ module Parameters
     #
     def value=(value)
       @object.instance_variable_set("@#{@name}",value)
+    end
+
+    #
+    # Returns a String representation of the instance param.
+    #
+    def to_s
+      text = "  #{@name}"
+
+      text << " [#{value}]" if value
+      text << "\t#{@description}" if @description
+
+      return text
     end
 
     #

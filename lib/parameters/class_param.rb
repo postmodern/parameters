@@ -16,5 +16,24 @@ module Parameters
       @value = value
     end
 
+    #
+    # Returns the String representation of the class param.
+    #
+    def to_s
+      text = "  #{@name}"
+
+      text << " [#{@value}]" if @value
+      text << "\t#{@description}" if @description
+
+      return text
+    end
+
+    #
+    # Inspects the class params value.
+    #
+    def inspect
+      @value.inspect
+    end
+
   end
 end
