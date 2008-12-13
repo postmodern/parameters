@@ -10,7 +10,7 @@ module Parameters
     # Creates a new ClassParam object with the specified _name_,
     # given _description_ and _value_.
     #
-    def initialize(name,description='',value=nil)
+    def initialize(name,description=nil,value=nil)
       super(name,description)
 
       @value = value
