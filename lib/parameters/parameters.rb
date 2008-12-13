@@ -235,7 +235,7 @@ module Parameters
   # _block_.
   #
   def each_param(&block)
-    @params.each(&block)
+    @params.each_value(&block)
   end
 
   #
