@@ -126,6 +126,15 @@ module Parameters
       def param_value(name)
         get_param(name).value
       end
+
+      #
+      # Print the class parameters to the given _output_ stream.
+      #
+      def print_params(output=STDOUT)
+        each_param do |param|
+          output.puts param
+        end
+      end
     end
   end
 
@@ -282,5 +291,14 @@ module Parameters
   #
   def param_value(name)
     get_param(name).value
+  end
+
+  #
+  # Print the instance parameters to the given _output_ stream.
+  #
+  def print_params(output=STDOUT)
+    each_param do |param|
+      output.puts param
+    end
   end
 end
