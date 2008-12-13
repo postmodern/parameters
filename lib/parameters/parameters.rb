@@ -231,6 +231,14 @@ module Parameters
   end
 
   #
+  # Iterates over each instance parameter, passing each one to the given
+  # _block_.
+  #
+  def each_param(&block)
+    @params.each(&block)
+  end
+
+  #
   # Returns +true+ if the a parameter with the specified _name_ exists,
   # returns +false+ otherwise.
   #
@@ -274,17 +282,5 @@ module Parameters
   #
   def param_value(name)
     get_param(name).value
-  end
-
-  #
-  # Sets the values of the parameters listed in the specified _values_.
-  #
-  #   obj.set_params(:rhost => 'www.example.com', :rport => 80)
-  #   # => {:rhost=>"www.example.com", :rport=>80}
-  #
-  def set_params(values={})
-    values.each do |name,value|
-      get_param(name).value = value
-    end
   end
 end
