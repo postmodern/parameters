@@ -116,7 +116,7 @@ describe Parameters do
     end
 
     it "should allow for setting parameters en-mass" do
-      @test.set_params(:var => 3, :var_with_default => 7)
+      @test.params = {:var => 3, :var_with_default => 7}
 
       @test.param_value(:var).should == 3
       @test.param_value(:var_with_default).should == 7
