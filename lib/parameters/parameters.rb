@@ -156,7 +156,7 @@ module Parameters
         instance_variable_set("@#{param.name}",value)
       end
 
-      params[param.name] = InstanceParam.new(self,param.name,param.description)
+      self.params[param.name] = InstanceParam.new(self,param.name,param.description)
     end
   end
 
@@ -194,7 +194,7 @@ module Parameters
     instance_variable_set("@#{name}",options[:default])
 
     # add the new parameter
-    params[name] = InstanceParam.new(self,name,options[:description])
+    self.params[name] = InstanceParam.new(self,name,options[:description])
 
     instance_eval %{
       # define the reader method for the parameter
@@ -234,7 +234,7 @@ module Parameters
   def params=(values)
     values.each do |name,value|
       if has_param?(name)
-        @params[name.to_sym].value = value
+        self.params[name.to_sym].value = value
       end
     end
   end
@@ -244,7 +244,7 @@ module Parameters
   # _block_.
   #
   def each_param(&block)
-    @params.each_value(&block)
+    self.params.each_value(&block)
   end
 
   #
@@ -254,7 +254,7 @@ module Parameters
   #   obj.has_param?('rhost') # => true
   #
   def has_param?(name)
-    params.has_key?(name.to_sym)
+    self.params.has_key?(name.to_sym)
   end
 
   #
@@ -270,7 +270,7 @@ module Parameters
       raise(ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}",caller)
     end
 
-    return params[name]
+    return self.params[name]
   end
 
   #
