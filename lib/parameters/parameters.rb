@@ -301,4 +301,23 @@ module Parameters
       output.puts param
     end
   end
+
+  protected
+
+  #
+  # Requires that the parameters with the specified _names_ have
+  # non +nil+ values. If a parameter with a +nil+ value is found
+  # a MissingParam exception will be raised.
+  #
+  def require_params(*names)
+    names.each do |name|
+      name = name.to_s
+
+      unless instance_variable_get("@#{name}")
+        raise(MissingParam,"parameter #{name.dump} has no value",caller)
+      end
+    end
+
+    return true
+  end
 end
