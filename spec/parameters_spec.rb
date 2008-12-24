@@ -13,6 +13,8 @@ describe Parameters do
                 :default => 'thing',
                 :description => 'This parameter has a default value'
 
+      parameter :var_without_default,
+                :description => 'This parameter does not have a default value'
     end
 
     class InheritedParameters < TestParameters
@@ -124,6 +126,12 @@ describe Parameters do
 
     it "should provide descriptions for parameters" do
       @test.describe_param(:var).should_not be_empty
+    end
+
+    it "should require that certain parameters have non nil values" do
+      lambda {
+        @test.instance_eval { require_params(:var_without_default) }
+      }.should raise_error(Parameters::MissingParam)
     end
   end
 end
