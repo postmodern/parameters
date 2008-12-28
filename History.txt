@@ -1,3 +1,9 @@
+=== 0.1.1 / 2008-12-27
+
+* Added the require_params helper method.
+* Added print_params methods for displaying parameters of a class or an
+  object.
+
 === 0.1.0 / 2008-12-03
 
 * Initial release.
