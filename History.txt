@@ -1,3 +1,7 @@
+=== 0.1.2 / 2009-01-05
+
+* When printing parameter values, print the inspected version of the value.
+
 === 0.1.1 / 2008-12-27
 
 * Added the require_params helper method.
