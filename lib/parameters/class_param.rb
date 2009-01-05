@@ -22,7 +22,7 @@ module Parameters
     def to_s
       text = "  #{@name}"
 
-      text << " [#{@value}]" if @value
+      text << " [#{@value.inspect}]" if @value
       text << "\t#{@description}" if @description
 
       return text
