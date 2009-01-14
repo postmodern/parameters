@@ -6,7 +6,7 @@
 
 == DESCRIPTION:
 
-Parameters allows you to add annoted variables to your classes which may
+Parameters allows you to add annotated variables to your classes which may
 have configurable default values.
 
 == FEATURES:
