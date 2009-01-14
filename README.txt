@@ -28,19 +28,28 @@ have configurable default values.
     parameter :y, :value => 0.5
   
     parameter :radius, :description => 'The radius of the Octagon'
+
+    parameter :opacity,
+              :value => lambda { 1.0 / rand(10).to_i },
+              :description => 'The opacity of the Octagon'
   
   end
   
   oct = Octagon.new
   oct.x # => 0
   oct.y # => 0.5
+  oct.opacity # => 0.2
   
   oct = Octagon.new(:radius => 10)
   oct.radius # => 10
+  oct.opacity # => 0.7
   
   Octagon.radius = 33
+  Octagon.opacity = 0.3
+  
   oct = Octagon.new
   oct.radius # => 33
+  oct.opacity # => 0.3
 
 == INSTALL:
 
