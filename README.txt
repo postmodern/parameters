@@ -12,6 +12,8 @@ have configurable default values.
 == FEATURES:
 
 * Give parameters default values.
+  * Default values maybe either objects or lambdas used to generate the
+    default value.
 * Change default values of parameters.
 * Give descriptions to parameters.
 
