@@ -1,3 +1,8 @@
+=== 0.1.3 / 2009-01-14
+
+* Allow the use of lambdas to generate the default values of parameters.
+* Fixed typos in the README.txt.
+
 === 0.1.2 / 2009-01-06
 
 * When printing parameter values, print the inspected version of the value.
