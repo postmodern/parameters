@@ -148,7 +148,11 @@ module Parameters
       # do not override existing instance value if present
       unless instance_variable_get("@#{param.name}")
         begin
-          value = param.value.clone
+          if param.value.kind_of?(Proc)
+            value = param.value.call()
+          else
+            value = param.value.clone
+          end
         rescue TypeError
           value = param.value
         end
