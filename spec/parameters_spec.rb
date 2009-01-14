@@ -15,6 +15,10 @@ describe Parameters do
 
       parameter :var_without_default,
                 :description => 'This parameter does not have a default value'
+
+      parameter :var_with_lambda,
+                :default => lambda { rand },
+                :description => 'This parameter uses a lambda instead of a default value'
     end
 
     class InheritedParameters < TestParameters
@@ -99,6 +103,13 @@ describe Parameters do
 
       @test.var = 3
       @test.instance_variable_get('@var').should == 3
+    end
+
+    it "should allow using lambdas for the default values of parameters" do
+      test1 = TestParameters.new
+      test2 = TestParameters.new
+
+      test1.var_with_lambda.should_not == test2.var_with_lambda
     end
 
     it "should contain the parameters from all ancestors" do
