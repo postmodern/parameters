@@ -23,14 +23,14 @@ have configurable default values.
   
     include Parameters
   
-    parameter :x, :value => 0
+    parameter :x, :default => 0
   
-    parameter :y, :value => 0.5
+    parameter :y, :default => 0.5
   
     parameter :radius, :description => 'The radius of the Octagon'
 
     parameter :opacity,
-              :value => lambda { 1.0 / rand(10).to_i },
+              :default => lambda { rand },
               :description => 'The opacity of the Octagon'
   
   end
@@ -38,7 +38,7 @@ have configurable default values.
   oct = Octagon.new
   oct.x # => 0
   oct.y # => 0.5
-  oct.opacity # => 0.2
+  oct.opacity # => 0.25
   
   oct = Octagon.new(:radius => 10)
   oct.radius # => 10
