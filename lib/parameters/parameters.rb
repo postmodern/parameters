@@ -1,3 +1,4 @@
+require 'parameters/exceptions'
 require 'parameters/class_param'
 require 'parameters/instance_param'
 require 'parameters/exceptions'
