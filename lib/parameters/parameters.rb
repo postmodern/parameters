@@ -77,7 +77,7 @@ module Parameters
           end
         end
 
-        raise(ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self.name.dump}",caller)
+        raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self.name.dump}",caller)
       end
 
       #
@@ -272,7 +272,7 @@ module Parameters
     name = name.to_sym
 
     unless has_param?(name)
-      raise(ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}",caller)
+      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}",caller)
     end
 
     return self.params[name]
@@ -319,7 +319,7 @@ module Parameters
       name = name.to_s
 
       unless instance_variable_get("@#{name}")
-        raise(MissingParam,"parameter #{name.dump} has no value",caller)
+        raise(Parameters::MissingParam,"parameter #{name.dump} has no value",caller)
       end
     end
 
