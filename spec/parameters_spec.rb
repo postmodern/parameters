@@ -1,33 +1,11 @@
-require 'parameters'
+require 'parameters/parameters'
 
 require 'spec_helper'
 
+require 'helpers/test_parameters'
+require 'helpers/inherited_parameters'
+
 describe Parameters do
-  before(:all) do
-    class TestParameters
-      include Parameters
-
-      parameter :var, :description => 'Test parameter'
-
-      parameter :var_with_default,
-                :default => 'thing',
-                :description => 'This parameter has a default value'
-
-      parameter :var_without_default,
-                :description => 'This parameter does not have a default value'
-
-      parameter :var_with_lambda,
-                :default => lambda { rand },
-                :description => 'This parameter uses a lambda instead of a default value'
-    end
-
-    class InheritedParameters < TestParameters
-
-      parameter :child_var, :description => 'Child parameter'
-
-    end
-  end
-
   describe "in a Class" do
     it "should provide parameters" do
       TestParameters.params.should_not be_empty
