@@ -147,7 +147,7 @@ module Parameters
   def initialize_parameters
     self.class.each_param do |param|
       # do not override existing instance value if present
-      unless instance_variable_get("@#{param.name}")
+      unless instance_variable_get("@#{param.name}".to_sym)
         begin
           if param.value.kind_of?(Proc)
             value = param.value.call()
@@ -158,7 +158,7 @@ module Parameters
           value = param.value
         end
 
-        instance_variable_set("@#{param.name}",value)
+        instance_variable_set("@#{param.name}".to_sym,value)
       end
 
       self.params[param.name] = InstanceParam.new(self,param.name,param.description)
@@ -196,7 +196,7 @@ module Parameters
     name = name.to_sym
 
     # set the instance variable
-    instance_variable_set("@#{name}",options[:default])
+    instance_variable_set("@#{name}".to_sym,options[:default])
 
     # add the new parameter
     self.params[name] = InstanceParam.new(self,name,options[:description])
@@ -204,12 +204,12 @@ module Parameters
     instance_eval %{
       # define the reader method for the parameter
       def #{name}
-        instance_variable_get("@#{name}")
+        instance_variable_get("@#{name}".to_sym)
       end
 
       # define the writer method for the parameter
       def #{name}=(value)
-        instance_variable_set("@#{name}",value)
+        instance_variable_set("@#{name}".to_sym,value)
       end
     }
 
@@ -318,7 +318,7 @@ module Parameters
     names.each do |name|
       name = name.to_s
 
-      unless instance_variable_get("@#{name}")
+      unless instance_variable_get("@#{name}".to_sym)
         raise(Parameters::MissingParam,"parameter #{name.dump} has no value",caller)
       end
     end

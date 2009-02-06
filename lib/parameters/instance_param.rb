@@ -18,14 +18,14 @@ module Parameters
     # Returns the value of the instance param.
     #
     def value
-      @object.instance_variable_get("@#{@name}")
+      @object.instance_variable_get("@#{@name}".to_sym)
     end
 
     #
     # Sets the value of the instance param.
     #
     def value=(value)
-      @object.instance_variable_set("@#{@name}",value)
+      @object.instance_variable_set("@#{@name}".to_sym,value)
     end
 
     #

@@ -77,10 +77,10 @@ describe Parameters do
     end
 
     it "should set instance variables for paramters" do
-      @test.instance_variable_get('@var_with_default').should == 'thing'
+      @test.instance_variable_get(:@var_with_default).should == 'thing'
 
       @test.var = 3
-      @test.instance_variable_get('@var').should == 3
+      @test.instance_variable_get(:@var).should == 3
     end
 
     it "should allow using lambdas for the default values of parameters" do
