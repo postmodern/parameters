@@ -1,7 +1,7 @@
 = Parameters
 
 * http://parameters.rubyforge.org/
-* https://github.com/postmodern/parameters
+* http://github.com/postmodern/parameters
 * Postmodern (postmodern.mod3 at gmail.com)
 
 == DESCRIPTION:
