@@ -9,6 +9,7 @@ lib/parameters/exceptions/param_not_found.rb
 lib/parameters/extensions.rb
 lib/parameters/extensions/meta.rb
 lib/parameters/extensions/meta/object.rb
+lib/parameters/parser.rb
 lib/parameters/class_param.rb
 lib/parameters/instance_param.rb
 lib/parameters/param.rb
