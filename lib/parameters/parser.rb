@@ -6,7 +6,7 @@ module Parameters
     # The Array of parameter patterns and their parsers.
     #
     def Parser.formats
-      @@ronin_param_formats ||= []
+      @@parameters_parser_formats ||= []
     end
 
     #
