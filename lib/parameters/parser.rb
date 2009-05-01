@@ -59,7 +59,9 @@ module Parameters
       return {name.to_sym => value}
     end
 
-    Parser.recognize(/^'(\\'|[^'])+'/) { |value| value[1...-1].gsub("\\'","'") }
+    Parser.recognize(/^'(\\'|[^'])+'/) { |value|
+      value[1...-1].gsub("\\'","'")
+    }
     Parser.recognize(/^[a-zA-Z][a-zA-Z0-9]*:\/\//) { |value| URI(value) }
     Parser.recognize('false') { |value| false }
     Parser.recognize('true') { |value| true }
