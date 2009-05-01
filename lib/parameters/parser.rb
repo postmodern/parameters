@@ -63,9 +63,9 @@ module Parameters
     Parser.recognize(/^[a-zA-Z][a-zA-Z0-9]*:\/\//) { |value| URI(value) }
     Parser.recognize('false') { |value| false }
     Parser.recognize('true') { |value| true }
-    Parser.recognize(/^0x[0-9a-fA-F]+$/) { |value| value.hex }
-    Parser.recognize(/^0[0-7]+$/) { |value| value.oct }
     Parser.recognize(/^[0-9]+$/) { |value| value.to_i }
+    Parser.recognize(/^0[0-7]+$/) { |value| value.oct }
+    Parser.recognize(/^0x[0-9a-fA-F]+$/) { |value| value.hex }
 
   end
 end
