@@ -2,9 +2,6 @@ require 'uri'
 
 module Parameters
   module Parser
-    # The params Hash
-    attr_reader :params
-
     #
     # The Array of parameter patterns and their parsers.
     #
@@ -33,7 +30,20 @@ module Parameters
       })
     end
 
-    protected
+    #
+    # Parses the specified _value_ string and returns the native Ruby value.
+    # If the _value_ matches one of the patterns within +FORMATS+,
+    # then the associated parser will be used to parse the _value_.
+    #
+    def Parser.parse_value(value)
+      Parser.each_format do |pattern,parser|
+        if value.match(pattern)
+          return parser.call(value)
+        end
+      end
+
+      return value
+    end
 
     #
     # Parses the specified _name_and_value_ string of the form
@@ -42,18 +52,10 @@ module Parameters
     # extracted _value_ matches one of the patterns within +FORMATS+,
     # then the associated parser will first parse the _value_.
     #
-    def parse_param(name_and_value)
+    def Parser.parse_param(name_and_value)
       name, value = name_and_value.split('=',2)
 
-      if value
-        Parser.each_format do |pattern,parser|
-          if value.match(pattern)
-            value = parser.call(value)
-            break
-          end
-        end
-      end
-
+      value = Parser.parse_value(value) if value
       return {name.to_sym => value}
     end
 
@@ -61,6 +63,7 @@ module Parameters
     Parser.recognize('false') { |value| false }
     Parser.recognize('true') { |value| true }
     Parser.recognize(/^0x[0-9a-fA-F]+$/) { |value| value.hex }
+    Parser.recognize(/^0[0-7]+$/) { |value| value.oct }
     Parser.recognize(/^[0-9]+$/) { |value| value.to_i }
 
   end
