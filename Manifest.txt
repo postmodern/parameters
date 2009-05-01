@@ -19,4 +19,5 @@ tasks/spec.rb
 spec/spec_helper.rb
 spec/helpers/test_parameters.rb
 spec/helpers/inherited_parameters.rb
+spec/parser_spec.rb
 spec/parameters_spec.rb
