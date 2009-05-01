@@ -1,4 +1,4 @@
 module Parameters
-  class MissingParam < RuntimeError
+  class MissingParam < StandardError
   end
 end

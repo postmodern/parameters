@@ -1,4 +1,4 @@
 module Parameters
-  class ParamNotFound < RuntimeError
+  class ParamNotFound < StandardError
   end
 end
