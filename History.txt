@@ -1,3 +1,11 @@
+=== 0.1.5 / 2009-05-06
+
+* Added Parameters::Parser for parsing parameter values passed in from
+  the command-line or the web.
+* Changed Parameters::MissingParam and Parameters::ParamNotFound to
+  inherit from StandardError.
+* All specs pass on Ruby 1.9.1-p0.
+
 === 0.1.4 / 2009-01-17
 
 * All specs now pass with RSpec 1.1.12.
