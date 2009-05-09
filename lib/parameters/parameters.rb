@@ -24,6 +24,10 @@ module Parameters
       def params=(values)
         values.each do |name,value|
           if has_param?(name)
+            if (value.kind_of?(Parameters::ClassParam) || value.kind_of?(Parameters::InstanceParam))
+              value = value.value
+            end
+
             get_param(name).value = value
           end
         end
@@ -238,8 +242,14 @@ module Parameters
   #
   def params=(values)
     values.each do |name,value|
+      name = name.to_sym
+
       if has_param?(name)
-        self.params[name.to_sym].value = value
+        if (value.kind_of?(Parameters::ClassParam) || value.kind_of?(Parameters::InstanceParam))
+          value = value.value
+        end
+
+        self.params[name].value = value
       end
     end
   end
