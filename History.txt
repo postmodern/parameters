@@ -1,3 +1,9 @@
+=== 0.1.6 / 2009-05-11
+
+* Fixed bug in Parameters.params= and Parameters#params=, where they
+  were not handling Parameters::ClassParam or Parameters::InstanceParam
+  objects properly.
+
 === 0.1.5 / 2009-05-06
 
 * Added Parameters::Parser for parsing parameter values passed in from
