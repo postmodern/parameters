@@ -77,10 +77,9 @@ describe Parameters do
     end
 
     it "should allow using lambdas for the default values of parameters" do
-      test1 = TestParameters.new
       test2 = TestParameters.new
 
-      test1.var_with_lambda.should_not == test2.var_with_lambda
+      @test.var_with_lambda.should_not == test2.var_with_lambda
     end
 
     it "should contain the parameters from all ancestors" do
