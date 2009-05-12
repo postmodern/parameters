@@ -1,6 +1,6 @@
 === 0.1.6 / 2009-05-11
 
-* Fixed bug in Parameters.params= and Parameters#params=, where they
+* Fixed a bug in Parameters.params= and Parameters#params=, where they
   were not handling Parameters::ClassParam or Parameters::InstanceParam
   objects properly.
 * Added more specs.
