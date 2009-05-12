@@ -1,4 +1,4 @@
-require 'helpers/test_parameters'
+require 'classes/test_parameters'
 
 class InheritedParameters < TestParameters
 
