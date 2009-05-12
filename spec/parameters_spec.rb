@@ -59,14 +59,6 @@ describe Parameters do
       @test.params[:var_with_default].should_not be_nil
     end
 
-    it "should allow for mass assignment of parameters" do
-      test2 = TestParameters.new
-      test2.params = {:var => 5, :var_with_default => 'hello'}
-
-      test2.var.should == 5
-      test2.var_with_default.should == 'hello'
-    end
-
     it "can have default values for parameters" do
       @test.param_value(:var_with_default).should == 'thing'
     end
@@ -111,6 +103,14 @@ describe Parameters do
 
       @test.param_value(:var).should == 3
       @test.param_value(:var_with_default).should == 7
+    end
+
+    it "should allow for setting parameters en-mass from another object" do
+      obj = TestParameters.new(:var => 5, :var_with_default => 'hello')
+      @test.params = obj.params
+
+      @test.var.should == 5
+      @test.var_with_default.should == 'hello'
     end
 
     it "should provide descriptions for parameters" do
