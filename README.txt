@@ -16,6 +16,7 @@ have configurable default values.
     default value.
 * Change default values of parameters.
 * Give descriptions to parameters.
+* Set parameters en-mass.
 
 == EXAMPLES:
 
