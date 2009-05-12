@@ -4,6 +4,7 @@ require 'spec_helper'
 
 require 'classes/test_parameters'
 require 'classes/inherited_parameters'
+require 'classes/other_parameters'
 
 describe Parameters do
   describe "in a Class" do
@@ -111,6 +112,13 @@ describe Parameters do
 
       @test.var.should == 5
       @test.var_with_default.should == 'hello'
+    end
+
+    it "should allow for setting parameters en-mass from another class" do
+      @test.params = OtherParameters.params
+
+      @test.var.should be_nil
+      @test.var_with_default.should == 'other'
     end
 
     it "should provide descriptions for parameters" do
