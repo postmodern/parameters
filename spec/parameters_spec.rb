@@ -2,8 +2,8 @@ require 'parameters/parameters'
 
 require 'spec_helper'
 
-require 'helpers/test_parameters'
-require 'helpers/inherited_parameters'
+require 'classes/test_parameters'
+require 'classes/inherited_parameters'
 
 describe Parameters do
   describe "in a Class" do
