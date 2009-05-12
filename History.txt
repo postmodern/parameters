@@ -3,6 +3,7 @@
 * Fixed bug in Parameters.params= and Parameters#params=, where they
   were not handling Parameters::ClassParam or Parameters::InstanceParam
   objects properly.
+* Added more specs.
 
 === 0.1.5 / 2009-05-06
 
