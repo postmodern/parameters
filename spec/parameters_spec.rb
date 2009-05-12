@@ -50,7 +50,7 @@ describe Parameters do
   end
 
   describe "in an Object" do
-    before(:all) do
+    before(:each) do
       @test = TestParameters.new
       @test_inherited = InheritedParameters.new
     end
