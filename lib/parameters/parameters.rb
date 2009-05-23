@@ -148,7 +148,7 @@ module Parameters
   # _values_, which can override the default values of
   # parameters.
   #
-  def initialize_parameters(values={})
+  def initialize_params(values={})
     self.class.each_param do |param|
       # do not override existing instance value if present
       unless instance_variable_get("@#{param.name}".to_sym)
@@ -177,7 +177,7 @@ module Parameters
   # of parameters described within the Hash.
   #
   def initialize(*args,&block)
-    initialize_parameters(args.first)
+    initialize_params(args.first)
   end
 
   #
