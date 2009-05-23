@@ -172,7 +172,7 @@ module Parameters
   end
 
   #
-  # Initializes the parameters using initialize_parameters. If a +Hash+
+  # Initializes the parameters using initialize_params. If a +Hash+
   # is passed in as the first argument, it will be used to set the values
   # of parameters described within the Hash.
   #
