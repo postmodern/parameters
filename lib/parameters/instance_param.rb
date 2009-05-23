@@ -35,7 +35,7 @@ module Parameters
       text = "  #{@name}"
 
       text << " [#{value.inspect}]" if value
-      text << "\t#{@description}" if @description
+      text << "\t\t#{@description}" if @description
 
       return text
     end
