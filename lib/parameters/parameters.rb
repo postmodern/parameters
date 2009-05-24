@@ -151,7 +151,7 @@ module Parameters
   def initialize_params(values={})
     self.class.each_param do |param|
       # do not override existing instance value if present
-      unless instance_variable_get("@#{param.name}".to_sym).nil?
+      if instance_variable_get("@#{param.name}".to_sym).nil?
         begin
           if param.value.kind_of?(Proc)
             value = param.value.call()
