@@ -61,6 +61,13 @@ describe Parameters do
       obj.var_with_default.should == 5
     end
 
+    it "should not override previous 'false' values of parameters" do
+      obj = CustomParameters.new(false,false)
+
+      obj.var.should == false
+      obj.var_with_default.should == false
+    end
+
     it "should be able to create an object with initial parameter values" do
       obj = TestParameters.new(:var => 2, :var_with_default => 'stuff')
 
