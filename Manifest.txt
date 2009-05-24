@@ -18,6 +18,7 @@ lib/parameters/version.rb
 tasks/spec.rb
 spec/spec_helper.rb
 spec/classes/test_parameters.rb
+spec/classes/custom_parameters.rb
 spec/classes/inherited_parameters.rb
 spec/classes/other_parameters.rb
 spec/parser_spec.rb

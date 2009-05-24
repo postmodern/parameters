@@ -3,6 +3,7 @@ require 'parameters/parameters'
 require 'spec_helper'
 
 require 'classes/test_parameters'
+require 'classes/custom_parameters'
 require 'classes/inherited_parameters'
 require 'classes/other_parameters'
 
@@ -45,6 +46,19 @@ describe Parameters do
       obj = TestParameters.new
 
       obj.params.should_not be_empty
+    end
+
+    it "should set initialize parameters with initial nil values" do
+      obj = CustomParameters.new
+
+      obj.var_with_default.should == 10
+    end
+
+    it "should not override previous parameter values" do
+      obj = CustomParameters.new(:test,5)
+
+      obj.var.should == :test
+      obj.var_with_default.should == 5
     end
 
     it "should be able to create an object with initial parameter values" do
