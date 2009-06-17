@@ -341,7 +341,7 @@ module Parameters
     names.each do |name|
       name = name.to_s
 
-      unless instance_variable_get("@#{name}".to_sym)
+      if instance_variable_get("@#{name}".to_sym).nil?
         raise(Parameters::MissingParam,"parameter #{name.dump} has no value",caller)
       end
     end
