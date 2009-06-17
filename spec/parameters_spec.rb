@@ -173,6 +173,12 @@ describe Parameters do
       @test.has_param?(:new_param).should == true
     end
 
+    it "should provide direct access to all parameters" do
+      @test.params[:new_param].should_not be_nil
+      @test.params[:new_param_with_default].should_not be_nil
+      @test.params[:new_param_with_lambda].should_not be_nil
+    end
+
     it "should add reader methods for parameters" do
       @test.new_param.should be_nil
     end
@@ -180,6 +186,13 @@ describe Parameters do
     it "should add writer methods for parameters" do
       @test.new_param = 10
       @test.new_param.should == 10
+    end
+
+    it "should set the instance variables of parameters" do
+      @test.instance_variable_get(:@new_param_with_default).should == 5
+
+      @test.new_param_with_default = 10
+      @test.instance_variable_get(:@new_param_with_default).should == 10
     end
 
     it "should initialize parameters with default values" do
