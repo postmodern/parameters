@@ -154,7 +154,7 @@ module Parameters
       if instance_variable_get("@#{param.name}".to_sym).nil?
         begin
           if param.value.kind_of?(Proc)
-            value = param.value.call()
+            value = param.value.call(self)
           else
             value = param.value.clone
           end
@@ -199,7 +199,7 @@ module Parameters
 
     # resolve the default value
     if default.kind_of?(Proc)
-      value = default.call()
+      value = default.call(self)
     else
       value = default
     end
