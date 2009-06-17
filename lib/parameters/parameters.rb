@@ -203,7 +203,7 @@ module Parameters
 
     # resolve the default value
     if default.kind_of?(Proc)
-      value = if default.block.arity > 0
+      value = if default.arity > 0
                 default.call(self)
               else
                 default.call()
