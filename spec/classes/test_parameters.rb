@@ -11,6 +11,6 @@ class TestParameters
             :description => 'This parameter does not have a default value'
 
   parameter :var_with_lambda,
-            :default => lambda { rand },
+            :default => lambda { |obj| rand },
             :description => 'This parameter uses a lambda instead of a default value'
 end
