@@ -157,4 +157,37 @@ describe Parameters do
       }.should raise_error(Parameters::MissingParam)
     end
   end
+
+  describe "runtime" do
+    before(:each) do
+      @test = TestParameters.new
+
+      @test.parameter :new_param
+      @test.parameter :new_param_with_default,
+                      :default => 5
+      @test.parameter :new_param_with_lambda,
+                      :default => lambda { |obj| obj.new_param_with_default + 2 }
+    end
+
+    it "should allow for the addition of parameters" do
+      @test.has_param?(:new_param).should == true
+    end
+
+    it "should add reader methods for parameters" do
+      @test.new_param.should be_nil
+    end
+
+    it "should add writer methods for parameters" do
+      @test.new_param = 10
+      @test.new_param.should == 10
+    end
+
+    it "should initialize parameters with default values" do
+      @test.new_param_with_default.should == 5
+    end
+
+    it "should initialize pamareters with default lambda values" do
+      @test.new_param_with_lambda.should == 7
+    end
+  end
 end
