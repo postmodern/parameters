@@ -5,7 +5,7 @@
 * Adjust spacing in the output of ClassParam#to_s
   and InstanceParam#to_s.
 * Specifically check if the instance variable is nil
-  before initializing it to the value of the parameter.
+  before initializing it to the default value of the parameter.
 * Handle default value callbacks in Parameters#parameter.
 * Check the arity of all default value callbacks, before
   passing self to them.
