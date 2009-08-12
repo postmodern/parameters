@@ -19,6 +19,8 @@ lib/parameters/yard.rb
 lib/parameters/yard/handlers.rb
 lib/parameters/yard/handlers/ruby.rb
 lib/parameters/yard/handlers/ruby/parameter_handler.rb
+lib/parameters/yard/handlers/ruby/legacy.rb
+lib/parameters/yard/handlers/ruby/legacy/parameter_handler.rb
 tasks/spec.rb
 spec/spec_helper.rb
 spec/classes/test_parameters.rb
