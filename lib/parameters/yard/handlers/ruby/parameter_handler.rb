@@ -12,11 +12,10 @@ module YARD
           nobj = namespace
           mscope = scope
           name = case obj.type
-                   when :symbol_literal
-                     obj.jump(:ident, :op, :kw, :const).source
-                   when :string_literal
-                     obj.jump(:string_content).source
-                   end
+                 when :symbol_literal
+                   obj.jump(:ident, :op, :kw, :const).source
+                 when :string_literal
+                   obj.jump(:string_content).source
                  end
 
           register MethodObject.new(nobj, name, mscope) do |o|
