@@ -11,7 +11,7 @@ Hoe.spec('parameters') do
   self.rubyforge_name = 'parameters'
   self.developer('Postmodern','postmodern.mod3@gmail.com')
   self.remote_rdoc_dir = '/'
-  self.extra_deps = [['yard', '>=0.2.3.4']]
+  self.extra_deps = [['yard', '>=0.2.3.5']]
 end
 
 # vim: syntax=Ruby
