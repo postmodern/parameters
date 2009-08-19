@@ -5,7 +5,6 @@ require 'hoe'
 require 'hoe/signing'
 require './tasks/spec.rb'
 require './tasks/yard.rb'
-require './lib/parameters/version.rb'
 
 Hoe.spec('parameters') do
   self.rubyforge_name = 'parameters'
