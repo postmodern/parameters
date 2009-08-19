@@ -1,3 +1,11 @@
+=== 0.1.8 / 2009-08-18
+
+* Require Hoe >= 2.0.0.
+* Require YARD >= 0.2.3.5.
+* Use 'hoe/signing' for signed RubyGems.
+* Moved to YARD based documentation.
+* Added YARD handlers for documenting parameter method calls.
+
 === 0.1.7 / 2009-07-19
 
 * Renamed Parameters#initialize_parameters to
