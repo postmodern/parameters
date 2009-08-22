@@ -15,7 +15,7 @@ module Parameters
     end
 
     #
-    # Returns the value of the instance param.
+    # @return The value of the instance param.
     #
     def value
       @object.instance_variable_get("@#{@name}".to_sym)
@@ -24,12 +24,15 @@ module Parameters
     #
     # Sets the value of the instance param.
     #
+    # @param [Object] The new value of the instance param.
+    # @return [Object] The new value of the instance param.
+    #
     def value=(value)
       @object.instance_variable_set("@#{@name}".to_sym,value)
     end
 
     #
-    # Returns a String representation of the instance param.
+    # @return [String] Representation of the instance param.
     #
     def to_s
       text = "  #{@name}"
@@ -41,7 +44,7 @@ module Parameters
     end
 
     #
-    # Inspects the instance params value.
+    # @return [String] Inspection of the instance params value.
     #
     def inspect
       value.inspect

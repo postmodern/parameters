@@ -8,16 +8,17 @@ module Parameters
   def self.included(base) # :nodoc:
     base.metaclass_eval do
       #
-      # Returns the +Hash+ of parameters for the class.
+      # @returns [Hash] Parameters for the class.
       #
       def params
         @params ||= {}
       end
 
       #
-      # Sets the values of the class parameters described in the
-      # _values_ +Hash+.
+      # Sets the values of the class parameters.
       #
+      # @param [Hash] The names and new values to set the class params to.
+      # @example
       #   Test.params = {:x => 5, :y => 2}
       #   # => {:x=>5, :y=>2}
       #
@@ -41,8 +42,10 @@ module Parameters
       # <tt>:description</tt>:: The description of the parameter.
       # <tt>:default</tt>:: The default value the parameter will have.
       #
+      # @example
       #   parameter 'var'
       #
+      # @example
       #   parameter 'var', :default => 3, :description => 'my variable' 
       #
       def parameter(name,options={})
@@ -66,9 +69,12 @@ module Parameters
       end
 
       #
-      # Returns the class parameter with the specified _name_. If no
-      # such class parameter exists, a ParamNotFound exception will be
-      # raised.
+      # Searches for the class parameter with the matching _name_.
+      #
+      # @param [String, Symbol] The class parameter name to search for.
+      # @return [ClassParam] The class parameter with the matching _name_.
+      # @raise [ParamNotFound] No class parameter with the specified _name_
+      #                        could be found.
       #
       def get_param(name)
         name = name.to_sym
@@ -85,8 +91,9 @@ module Parameters
       end
 
       #
-      # Returns +true+ if a class parameters with the specified _name_
-      # exists, returns +false+ otherwise.
+      # @return [true] There is a class parameter with the specified _name_.
+      # @return [false] No class parameter could be found with the specified
+      #                 _name_.
       #
       def has_param?(name)
         name = name.to_sym
@@ -104,6 +111,8 @@ module Parameters
       # Iterates over all class parameters, passing each one to the
       # specified _block_.
       #
+      # @yield [param] Block that will be passed each class parameter.
+      #
       def each_param(&block)
         ancestors.each do |ancestor|
           if ancestor.include?(Parameters)
@@ -116,8 +125,12 @@ module Parameters
 
       #
       # Returns the description of the class parameters with the
-      # specified _name_. If no such class parameter exists, a
-      # ParamNotFound exception will be raised.
+      # specified _name_.
+      #
+      # @return [String] Description of the class parameter with the
+      #                  specified _name_.
+      # @raise [ParamNotFound] No class parameter with the specified _name_
+      #                        could be found.
       #
       def describe_param(name)
         get_param(name).description
@@ -125,8 +138,12 @@ module Parameters
 
       #
       # Returns the value of the class parameters with the specified
-      # _name_. If no such class parameter exists, a ParamNotFound
-      # exception will be raised.
+      # _name_.
+      #
+      # @return [Object] Value of the class parameter with the specified
+      #                  _name_.
+      # @raise [ParamNotFound] No class parameter with the specified _name_
+      #                        could be found.
       #
       def param_value(name)
         get_param(name).value
@@ -134,6 +151,8 @@ module Parameters
 
       #
       # Print the class parameters to the given _output_ stream.
+      #
+      # @param [#puts] Output stream to print the class parameters to.
       #
       def print_params(output=STDOUT)
         each_param do |param|
@@ -147,6 +166,9 @@ module Parameters
   # Initalizes the parameters of the object using the given
   # _values_, which can override the default values of
   # parameters.
+  #
+  # @param [Hash] The names and values to initialize the instance
+  #               parameters to.
   #
   def initialize_params(values={})
     self.class.each_param do |param|
@@ -192,8 +214,12 @@ module Parameters
   # <tt>:description</tt>:: The description of the parameter.
   # <tt>:default</tt>:: The default value the parameter will have.
   #
+  # @return [InstanceParam] The newly created instance parameter.
+  #
+  # @example
   #   obj.parameter('var')
   #
+  # @example
   #   obj.parameter('var',:default => 3, :description => 'my variable')
   #
   def parameter(name,options={})
@@ -234,14 +260,14 @@ module Parameters
   end
 
   #
-  # Returns a +Hash+ of the classes params.
+  # @return [Hash] Classes parameteres.
   #
   def class_params
     self.class.params
   end
 
   #
-  # Returns a +Hash+ of the instance parameters.
+  # @return [Hash] Instance parameters.
   #
   def params
     @params ||= {}
@@ -250,6 +276,9 @@ module Parameters
   #
   # Sets the values of the parameters described in the _values_ +Hash+.
   #
+  # @param [Hash] The names and values to set the instance parameters to.
+  #
+  # @example
   #   obj.params = {:x => 5, :y => 2}
   #   # => {:x=>5, :y=>2}
   #
@@ -271,14 +300,18 @@ module Parameters
   # Iterates over each instance parameter, passing each one to the given
   # _block_.
   #
+  # @yield [param] The block that will be passed each instance parameter.
+  #
   def each_param(&block)
     self.params.each_value(&block)
   end
 
   #
-  # Returns +true+ if the a parameter with the specified _name_ exists,
-  # returns +false+ otherwise.
+  # @return [true] There is a instance parameter with the specified _name_.
+  # @return [false] There is not an instance parameter with the specified
+  #                 _name_.
   #
+  # @example
   #   obj.has_param?('rhost') # => true
   #
   def has_param?(name)
@@ -286,9 +319,16 @@ module Parameters
   end
 
   #
-  # Returns the parameter with the specified _name_. If no such parameter
-  # exists, a ParamNotFound exception will be raised.
+  # Searches for the instance parameter with the specified _name_.
   #
+  # @param [String, Symbol] The _name_ of the instance parameter to search
+  #                         for.
+  # @return [InstanceParam] The instance parameter with the specified
+  #                         _name_.
+  # @raise [ParamNotFound] Could not find the instance parameter with the
+  #                        specified _name_.
+  #
+  # @example
   #   obj.get_param('var') # => InstanceParam
   #
   def get_param(name)
@@ -303,8 +343,14 @@ module Parameters
 
   #
   # Returns the description of the parameter with the specified _name_.
-  # If no such parameter exists, a ParamNotFound exception will be raised.
   #
+  # @param [String, Symbol] The _name_ of the instance parameter to search
+  #                         for.
+  # @return [String] The description of the instance parameter.
+  # @raise [ParamNotFound] Could not find the instance parameter with the
+  #                        specified _name_.
+  #
+  # @example
   #   obj.describe_param('rhost') # => "remote host"
   #
   def describe_param(name)
@@ -312,9 +358,16 @@ module Parameters
   end
 
   #
-  # Returns the value of the parameter with the specified _name_. If no
-  # such parameter exists, a ParamNotFound exception will be raised.
+  # Returns the value of the parameter with the specified _name_.
   #
+  # @param [String, Symbol] The _name_ of the instance parameter to search
+  #                         for.
+  # @return [Object] The value of the instance parameter with the specified
+  #                  _name_.
+  # @raise [ParamNotFound] Could not find the instance parameter with the
+  #                        specified _name_.
+  #
+  # @example
   #   obj.param_value('rhost') # => 80
   #
   def param_value(name)
@@ -323,6 +376,8 @@ module Parameters
 
   #
   # Print the instance parameters to the given _output_ stream.
+  #
+  # @param [#puts] The output stream to print the instance parameters to.
   #
   def print_params(output=STDOUT)
     each_param do |param|
@@ -333,9 +388,13 @@ module Parameters
   protected
 
   #
-  # Requires that the parameters with the specified _names_ have
-  # non +nil+ values. If a parameter with a +nil+ value is found
-  # a MissingParam exception will be raised.
+  # Requires that the instance parameters with the specified _names_ have
+  # non +nil+ values.
+  #
+  # @return [true] All the instance parameters listed in _name_ have
+  #                 non +nil+ values.
+  # @raise [MissingParam] One of the instance parameters listed in _names_
+  #                       was not set.
   #
   def require_params(*names)
     names.each do |name|

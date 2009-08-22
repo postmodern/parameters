@@ -17,7 +17,7 @@ module Parameters
     end
 
     #
-    # Returns the String representation of the class param.
+    # @return [String] The representation of the class param.
     #
     def to_s
       text = "  #{@name}"
@@ -29,7 +29,7 @@ module Parameters
     end
 
     #
-    # Inspects the class params value.
+    # @return [String] Inspection of the class params value.
     #
     def inspect
       @value.inspect
