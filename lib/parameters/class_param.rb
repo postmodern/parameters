@@ -13,7 +13,7 @@ module Parameters
     # @param [Symbol, String] name the name of the class parameter.
     # @param [String, nil] description the description of the class
     #                      parameter.
-    # @value [Object, nil] value the default value of the class parameter.
+    # @param [Object, nil] value the default value of the class parameter.
     #
     def initialize(name,description=nil,value=nil)
       super(name,description)
