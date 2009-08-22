@@ -24,7 +24,7 @@ module Parameters
     #
     # Sets the value of the instance param.
     #
-    # @param [Object] The new value of the instance param.
+    # @param [Object] value the new value of the instance param.
     # @return [Object] The new value of the instance param.
     #
     def value=(value)
