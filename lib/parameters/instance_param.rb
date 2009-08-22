@@ -8,6 +8,12 @@ module Parameters
     # Creates a new InstanceParam object with the specified _object_ and
     # _name_, and the given _description_.
     #
+    # @param [Object] object The object containing the instance variable
+    #                 for the instance parameter.
+    # @param [Symbol, String] name The name of the instance parameter.
+    # @param [String, nil] description The description of the instance
+    #                      parameter.
+    #
     def initialize(object,name,description=nil)
       super(name,description)
 
