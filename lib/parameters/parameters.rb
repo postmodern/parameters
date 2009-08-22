@@ -17,8 +17,8 @@ module Parameters
       #
       # Sets the values of the class parameters.
       #
-      # @param [Hash] values the names and new values to set the class
-      #               params to.
+      # @param [Hash] values The names and new values to set the class
+      #                      params to.
       # @example
       #   Test.params = {:x => 5, :y => 2}
       #   # => {:x=>5, :y=>2}
@@ -72,7 +72,7 @@ module Parameters
       #
       # Searches for the class parameter with the matching _name_.
       #
-      # @param [String, Symbol] name the class parameter name to search for.
+      # @param [String, Symbol] name The class parameter name to search for.
       # @return [ClassParam] The class parameter with the matching _name_.
       # @raise [ParamNotFound] No class parameter with the specified _name_
       #                        could be found.
@@ -153,7 +153,7 @@ module Parameters
       #
       # Print the class parameters to the given _output_ stream.
       #
-      # @param [#puts] output the stream to print the class parameters to.
+      # @param [#puts] output The stream to print the class parameters to.
       #
       def print_params(output=STDOUT)
         each_param do |param|
@@ -168,8 +168,8 @@ module Parameters
   # _values_, which can override the default values of
   # parameters.
   #
-  # @param [Hash] values the names and values to initialize the instance
-  #               parameters to.
+  # @param [Hash] values The names and values to initialize the instance
+  #                      parameters to.
   #
   def initialize_params(values={})
     self.class.each_param do |param|
@@ -277,7 +277,8 @@ module Parameters
   #
   # Sets the values of the parameters described in the _values_ +Hash+.
   #
-  # @param [Hash] The names and values to set the instance parameters to.
+  # @param [Hash] values The names and values to set the instance
+  #                      parameters to.
   #
   # @example
   #   obj.params = {:x => 5, :y => 2}
@@ -322,8 +323,8 @@ module Parameters
   #
   # Searches for the instance parameter with the specified _name_.
   #
-  # @param [String, Symbol] The _name_ of the instance parameter to search
-  #                         for.
+  # @param [String, Symbol] name The name of the instance parameter to
+  #                              search for.
   # @return [InstanceParam] The instance parameter with the specified
   #                         _name_.
   # @raise [ParamNotFound] Could not find the instance parameter with the
@@ -345,8 +346,8 @@ module Parameters
   #
   # Returns the description of the parameter with the specified _name_.
   #
-  # @param [String, Symbol] The _name_ of the instance parameter to search
-  #                         for.
+  # @param [String, Symbol] name The name of the instance parameter to
+  #                              search for.
   # @return [String] The description of the instance parameter.
   # @raise [ParamNotFound] Could not find the instance parameter with the
   #                        specified _name_.
@@ -361,8 +362,8 @@ module Parameters
   #
   # Returns the value of the parameter with the specified _name_.
   #
-  # @param [String, Symbol] The _name_ of the instance parameter to search
-  #                         for.
+  # @param [Symbol, String] name The name of the instance parameter to
+  #                              search for.
   # @return [Object] The value of the instance parameter with the specified
   #                  _name_.
   # @raise [ParamNotFound] Could not find the instance parameter with the
@@ -378,7 +379,8 @@ module Parameters
   #
   # Print the instance parameters to the given _output_ stream.
   #
-  # @param [#puts] The output stream to print the instance parameters to.
+  # @param [#puts] output The output stream to print the instance
+  #                       parameters to.
   #
   def print_params(output=STDOUT)
     each_param do |param|
