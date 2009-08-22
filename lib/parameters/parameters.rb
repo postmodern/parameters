@@ -72,7 +72,7 @@ module Parameters
       #
       # Searches for the class parameter with the matching _name_.
       #
-      # @param [String, Symbol] name The class parameter name to search for.
+      # @param [Symbol, String] name The class parameter name to search for.
       # @return [ClassParam] The class parameter with the matching _name_.
       # @raise [ParamNotFound] No class parameter with the specified _name_
       #                        could be found.
@@ -323,7 +323,7 @@ module Parameters
   #
   # Searches for the instance parameter with the specified _name_.
   #
-  # @param [String, Symbol] name The name of the instance parameter to
+  # @param [Symbol, String] name The name of the instance parameter to
   #                              search for.
   # @return [InstanceParam] The instance parameter with the specified
   #                         _name_.
@@ -346,7 +346,7 @@ module Parameters
   #
   # Returns the description of the parameter with the specified _name_.
   #
-  # @param [String, Symbol] name The name of the instance parameter to
+  # @param [Symbol, String] name The name of the instance parameter to
   #                              search for.
   # @return [String] The description of the instance parameter.
   # @raise [ParamNotFound] Could not find the instance parameter with the
