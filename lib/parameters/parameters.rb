@@ -39,9 +39,12 @@ module Parameters
       # Adds a new parameters with the specified _name_ and the given
       # _options_ to the Class.
       #
-      # _options_ may contain the following keys:
-      # <tt>:description</tt>:: The description of the parameter.
-      # <tt>:default</tt>:: The default value the parameter will have.
+      # @param [Symbol, String] name The name of the new parameter.
+      # @param [Hash] options Additional options.
+      # @option options [String] :description The description for the new
+      #                                       parameter.
+      # @option options [Object] :default The default value for the new
+      #                                   parameter.
       #
       # @example
       #   parameter 'var'
@@ -210,10 +213,12 @@ module Parameters
   # Adds a new parameters with the specified _name_ and the given
   # _options_ to the object.
   #
-  # _options_ may contain the following keys:
-  # <tt>:description</tt>:: The description of the parameter.
-  # <tt>:default</tt>:: The default value the parameter will have.
-  #
+  # @param [Symbol, String] name The name for the new instance parameter.
+  # @param [Hash] options Additional options.
+  # @option options [String] :description The description for the new
+  #                                       parameter.
+  # @option options [Object] :default The default value for the new
+  #                                   parameter.
   # @return [InstanceParam] The newly created instance parameter.
   #
   # @example
