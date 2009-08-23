@@ -43,8 +43,8 @@ module Parameters
       # @param [Hash] options Additional options.
       # @option options [String] :description The description for the new
       #                                       parameter.
-      # @option options [Object] :default The default value for the new
-      #                                   parameter.
+      # @option options [Object, Proc] :default The default value for the
+      #                                         new parameter.
       #
       # @example
       #   parameter 'var'
@@ -217,8 +217,8 @@ module Parameters
   # @param [Hash] options Additional options.
   # @option options [String] :description The description for the new
   #                                       parameter.
-  # @option options [Object] :default The default value for the new
-  #                                   parameter.
+  # @option options [Object, Proc] :default The default value for the new
+  #                                         parameter.
   # @return [InstanceParam] The newly created instance parameter.
   #
   # @example
