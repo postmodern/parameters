@@ -92,9 +92,8 @@ module Parameters
       end
 
       #
-      # @return [true] There is a class parameter with the specified _name_.
-      # @return [false] No class parameter could be found with the specified
-      #                 _name_.
+      # @return [true, false] Specifies whether or not there is a class
+      #                       parameter with the specified _name_.
       #
       def has_param?(name)
         name = name.to_sym
@@ -309,9 +308,8 @@ module Parameters
   end
 
   #
-  # @return [true] There is a instance parameter with the specified _name_.
-  # @return [false] There is not an instance parameter with the specified
-  #                 _name_.
+  # @return [true, false] Specifies whether or not there is a instance
+  #                       parameter with the specified _name_.
   #
   # @example
   #   obj.has_param?('rhost') # => true
