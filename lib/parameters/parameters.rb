@@ -5,7 +5,7 @@ require 'parameters/exceptions'
 require 'parameters/extensions/meta'
 
 module Parameters
-  def self.included(base) # :nodoc:
+  def self.included(base)
     base.metaclass_eval do
       #
       # @return [Hash] Parameters for the class.
