@@ -8,7 +8,7 @@ module Parameters
   def self.included(base) # :nodoc:
     base.metaclass_eval do
       #
-      # @returns [Hash] Parameters for the class.
+      # @return [Hash] Parameters for the class.
       #
       def params
         @params ||= {}
