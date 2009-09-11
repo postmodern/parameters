@@ -8,7 +8,8 @@ module Parameters
   def self.included(base)
     base.metaclass_eval do
       #
-      # @return [Hash] Parameters for the class.
+      # @return [Hash]
+      #   Parameters for the class.
       #
       def params
         @params ||= {}
@@ -17,8 +18,9 @@ module Parameters
       #
       # Sets the values of the class parameters.
       #
-      # @param [Hash] values The names and new values to set the class
-      #                      params to.
+      # @param [Hash] values
+      #   The names and new values to set the class params to.
+      #
       # @example
       #   Test.params = {:x => 5, :y => 2}
       #   # => {:x=>5, :y=>2}
@@ -39,12 +41,17 @@ module Parameters
       # Adds a new parameters with the specified _name_ and the given
       # _options_ to the Class.
       #
-      # @param [Symbol, String] name The name of the new parameter.
-      # @param [Hash] options Additional options.
-      # @option options [String] :description The description for the new
-      #                                       parameter.
-      # @option options [Object, Proc] :default The default value for the
-      #                                         new parameter.
+      # @param [Symbol, String] name
+      #   The name of the new parameter.
+      #
+      # @param [Hash] options
+      #   Additional options.
+      #
+      # @option options [String] :description
+      #   The description for the new parameter.
+      #
+      # @option options [Object, Proc] :default
+      #   The default value for the new parameter.
       #
       # @example
       #   parameter 'var'
@@ -75,10 +82,14 @@ module Parameters
       #
       # Searches for the class parameter with the matching _name_.
       #
-      # @param [Symbol, String] name The class parameter name to search for.
-      # @return [ClassParam] The class parameter with the matching _name_.
-      # @raise [ParamNotFound] No class parameter with the specified _name_
-      #                        could be found.
+      # @param [Symbol, String] name
+      #   The class parameter name to search for.
+      #
+      # @return [ClassParam]
+      #   The class parameter with the matching _name_.
+      #
+      # @raise [ParamNotFound]
+      #   No class parameter with the specified _name_ could be found.
       #
       def get_param(name)
         name = name.to_sym
@@ -95,8 +106,9 @@ module Parameters
       end
 
       #
-      # @return [true, false] Specifies whether or not there is a class
-      #                       parameter with the specified _name_.
+      # @return [true, false]
+      #   Specifies whether or not there is a class parameter with the
+      #   specified _name_.
       #
       def has_param?(name)
         name = name.to_sym
@@ -114,7 +126,8 @@ module Parameters
       # Iterates over all class parameters, passing each one to the
       # specified _block_.
       #
-      # @yield [param] Block that will be passed each class parameter.
+      # @yield [param]
+      #   Block that will be passed each class parameter.
       #
       def each_param(&block)
         ancestors.each do |ancestor|
@@ -130,10 +143,11 @@ module Parameters
       # Returns the description of the class parameters with the
       # specified _name_.
       #
-      # @return [String] Description of the class parameter with the
-      #                  specified _name_.
-      # @raise [ParamNotFound] No class parameter with the specified _name_
-      #                        could be found.
+      # @return [String]
+      #   Description of the class parameter with the specified _name_.
+      #
+      # @raise [ParamNotFound]
+      #   No class parameter with the specified _name_ could be found.
       #
       def describe_param(name)
         get_param(name).description
@@ -143,10 +157,11 @@ module Parameters
       # Returns the value of the class parameters with the specified
       # _name_.
       #
-      # @return [Object] Value of the class parameter with the specified
-      #                  _name_.
-      # @raise [ParamNotFound] No class parameter with the specified _name_
-      #                        could be found.
+      # @return [Object]
+      #   Value of the class parameter with the specified _name_.
+      #
+      # @raise [ParamNotFound]
+      #   No class parameter with the specified _name_ could be found.
       #
       def param_value(name)
         get_param(name).value
@@ -155,7 +170,8 @@ module Parameters
       #
       # Print the class parameters to the given _output_ stream.
       #
-      # @param [#puts] output The stream to print the class parameters to.
+      # @param [#puts] output
+      #   The stream to print the class parameters to.
       #
       def print_params(output=STDOUT)
         each_param do |param|

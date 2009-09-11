@@ -10,10 +10,14 @@ module Parameters
     # Creates a new ClassParam object with the specified _name_,
     # given _description_ and _value_.
     #
-    # @param [Symbol, String] name the name of the class parameter.
-    # @param [String, nil] description the description of the class
-    #                      parameter.
-    # @param [Object, nil] value the default value of the class parameter.
+    # @param [Symbol, String] name
+    #   The name of the class parameter.
+    #
+    # @param [String, nil] description
+    #   The description of the class parameter.
+    #
+    # @param [Object, nil] value
+    #   The default value of the class parameter.
     #
     def initialize(name,description=nil,value=nil)
       super(name,description)
@@ -22,7 +26,8 @@ module Parameters
     end
 
     #
-    # @return [String] The representation of the class param.
+    # @return [String]
+    #   The representation of the class param.
     #
     def to_s
       text = "  #{@name}"
@@ -34,7 +39,8 @@ module Parameters
     end
 
     #
-    # @return [String] Inspection of the class params value.
+    # @return [String]
+    #   Inspection of the class params value.
     #
     def inspect
       @value.inspect
