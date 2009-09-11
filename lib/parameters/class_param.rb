@@ -7,8 +7,7 @@ module Parameters
     attr_accessor :value
 
     #
-    # Creates a new ClassParam object with the specified _name_,
-    # given _description_ and _value_.
+    # Creates a new ClassParam object.
     #
     # @param [Symbol, String] name
     #   The name of the class parameter.

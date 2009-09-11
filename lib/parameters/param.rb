@@ -8,8 +8,7 @@ module Parameters
     attr_reader :description
 
     #
-    # Creates a new Param object with the specified _name_ and the given
-    # _description_.
+    # Creates a new Param object.
     #
     # @param [Symbol, String] name
     #   The name of the parameter.

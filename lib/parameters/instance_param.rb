@@ -5,8 +5,7 @@ module Parameters
     attr_reader :object
 
     #
-    # Creates a new InstanceParam object with the specified _object_ and
-    # _name_, and the given _description_.
+    # Creates a new InstanceParam object.
     #
     # @param [Object] object
     #   The object containing the instance variable for the instance

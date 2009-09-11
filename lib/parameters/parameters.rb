@@ -38,8 +38,7 @@ module Parameters
       end
 
       #
-      # Adds a new parameters with the specified _name_ and the given
-      # _options_ to the Class.
+      # Adds a new parameters to the class.
       #
       # @param [Symbol, String] name
       #   The name of the new parameter.
@@ -80,7 +79,7 @@ module Parameters
       end
 
       #
-      # Searches for the class parameter with the matching _name_.
+      # Searches for the class parameter with the matching name.
       #
       # @param [Symbol, String] name
       #   The class parameter name to search for.
@@ -123,8 +122,7 @@ module Parameters
       end
 
       #
-      # Iterates over all class parameters, passing each one to the
-      # specified _block_.
+      # Iterates over the parameters of the class and it's ancestors.
       #
       # @yield [param]
       #   Block that will be passed each class parameter.
@@ -140,35 +138,33 @@ module Parameters
       end
 
       #
-      # Returns the description of the class parameters with the
-      # specified _name_.
+      # Returns the description of the class parameters with a given name.
       #
       # @return [String]
-      #   Description of the class parameter with the specified _name_.
+      #   Description of the class parameter with the specified name.
       #
       # @raise [ParamNotFound]
-      #   No class parameter with the specified _name_ could be found.
+      #   No class parameter with the specified name could be found.
       #
       def describe_param(name)
         get_param(name).description
       end
 
       #
-      # Returns the value of the class parameters with the specified
-      # _name_.
+      # Returns the value of the class parameters with a given name.
       #
       # @return [Object]
-      #   Value of the class parameter with the specified _name_.
+      #   Value of the class parameter with the specified name.
       #
       # @raise [ParamNotFound]
-      #   No class parameter with the specified _name_ could be found.
+      #   No class parameter with the specified name could be found.
       #
       def param_value(name)
         get_param(name).value
       end
 
       #
-      # Print the class parameters to the given _output_ stream.
+      # Print the parameters of the class and it's ancestors.
       #
       # @param [#puts] output
       #   The stream to print the class parameters to.
@@ -183,8 +179,7 @@ module Parameters
 
   #
   # Initalizes the parameters of the object using the given
-  # _values_, which can override the default values of
-  # parameters.
+  # values, which can override the default values of parameters.
   #
   # @param [Hash] values The names and values to initialize the instance
   #                      parameters to.
@@ -226,8 +221,7 @@ module Parameters
   end
 
   #
-  # Adds a new parameters with the specified _name_ and the given
-  # _options_ to the object.
+  # Adds a new parameter to the object.
   #
   # @param [Symbol, String] name The name for the new instance parameter.
   # @param [Hash] options Additional options.
@@ -295,7 +289,7 @@ module Parameters
   end
 
   #
-  # Sets the values of the parameters described in the _values_ +Hash+.
+  # Sets the values of existing parameters in the object.
   #
   # @param [Hash] values The names and values to set the instance
   #                      parameters to.
@@ -319,8 +313,7 @@ module Parameters
   end
 
   #
-  # Iterates over each instance parameter, passing each one to the given
-  # _block_.
+  # Iterates over each instance parameter in the object.
   #
   # @yield [param] The block that will be passed each instance parameter.
   #
@@ -330,7 +323,7 @@ module Parameters
 
   #
   # @return [true, false] Specifies whether or not there is a instance
-  #                       parameter with the specified _name_.
+  #                       parameter with the specified name.
   #
   # @example
   #   obj.has_param?('rhost') # => true
@@ -340,14 +333,14 @@ module Parameters
   end
 
   #
-  # Searches for the instance parameter with the specified _name_.
+  # Searches for the instance parameter with a specific name.
   #
   # @param [Symbol, String] name The name of the instance parameter to
   #                              search for.
   # @return [InstanceParam] The instance parameter with the specified
-  #                         _name_.
+  #                         name.
   # @raise [ParamNotFound] Could not find the instance parameter with the
-  #                        specified _name_.
+  #                        specified name.
   #
   # @example
   #   obj.get_param('var') # => InstanceParam
@@ -363,13 +356,13 @@ module Parameters
   end
 
   #
-  # Returns the description of the parameter with the specified _name_.
+  # Returns the description of the parameter with a specific name.
   #
   # @param [Symbol, String] name The name of the instance parameter to
   #                              search for.
   # @return [String] The description of the instance parameter.
   # @raise [ParamNotFound] Could not find the instance parameter with the
-  #                        specified _name_.
+  #                        specified name.
   #
   # @example
   #   obj.describe_param('rhost') # => "remote host"
@@ -379,14 +372,14 @@ module Parameters
   end
 
   #
-  # Returns the value of the parameter with the specified _name_.
+  # Returns the value of the parameter with a specific name.
   #
   # @param [Symbol, String] name The name of the instance parameter to
   #                              search for.
   # @return [Object] The value of the instance parameter with the specified
-  #                  _name_.
+  #                  name.
   # @raise [ParamNotFound] Could not find the instance parameter with the
-  #                        specified _name_.
+  #                        specified name.
   #
   # @example
   #   obj.param_value('rhost') # => 80
@@ -396,7 +389,7 @@ module Parameters
   end
 
   #
-  # Print the instance parameters to the given _output_ stream.
+  # Print the instance parameters.
   #
   # @param [#puts] output The output stream to print the instance
   #                       parameters to.
@@ -410,13 +403,11 @@ module Parameters
   protected
 
   #
-  # Requires that the instance parameters with the specified _names_ have
+  # Requires that the instance parameters with specific names have
   # non +nil+ values.
   #
-  # @return [true] All the instance parameters listed in _name_ have
-  #                 non +nil+ values.
-  # @raise [MissingParam] One of the instance parameters listed in _names_
-  #                       was not set.
+  # @return [true] All the instance parameters have non +nil+ values.
+  # @raise [MissingParam] One of the instance parameters was not set.
   #
   def require_params(*names)
     names.each do |name|
