@@ -3,15 +3,25 @@ require 'uri'
 module Parameters
   module Parser
     #
-    # The Array of parameter patterns and their parsers.
+    # @return [Array]
+    #   The parameter patterns and their parsers.
     #
     def Parser.formats
       @@parameters_parser_formats ||= []
     end
 
     #
-    # Itereates over each parameter pattern and parser, passing them to the
-    # specified _block_.
+    # Itereates over each parameter pattern and parser.
+    #
+    # @yield [pattern, parser]
+    #   The block will be passed each parameter pattern and the associated
+    #   parser.
+    #
+    # @yieldparam [Regexp, String] pattern
+    #   The pattern to match recognize parameter values with.
+    #
+    # @yieldparam [Proc] parser
+    #   The parser for the parameter value.
     #
     def Parser.each_format(&block)
       Parser.formats.each do |format|
@@ -20,8 +30,17 @@ module Parameters
     end
 
     #
-    # Adds a new parameter _pattern_ using the specified _block_ as the
-    # parser.
+    # Adds a new parameter parser.
+    #
+    # @param [Regexp, String] pattern
+    #   The pattern to recognize parameter values with.
+    #
+    # @yield [value]
+    #   The block will be used as the parser for the recognized parameter
+    #   values.
+    #
+    # @yieldparam [String] value
+    #   The parameter value to parser.
     #
     def Parser.recognize(pattern,&block)
       Parser.formats.unshift({
@@ -31,9 +50,13 @@ module Parameters
     end
 
     #
-    # Parses the specified _value_ string and returns the native Ruby value.
-    # If the _value_ matches one of the patterns within +FORMATS+,
-    # then the associated parser will be used to parse the _value_.
+    # Recognizes and parses the given parameter value.
+    #
+    # @param [String] value
+    #   The parameter value to parse.
+    #
+    # @return [Object]
+    #   The parsed parameter value.
     #
     def Parser.parse_value(value)
       Parser.each_format do |pattern,parser|
@@ -46,11 +69,13 @@ module Parameters
     end
 
     #
-    # Parses the specified _name_and_value_ string of the form
-    # "name=value" and extracts both the _name_ and the _value_, saving
-    # both the _name_ and _value_ within the +params+ Hash. If the
-    # extracted _value_ matches one of the patterns within +FORMATS+,
-    # then the associated parser will first parse the _value_.
+    # Parses the a parameter string of the form +name=value+.
+    #
+    # @param [String] name_and_value
+    #   The name and value parameter join with a +=+ character.
+    #
+    # @return [Hash{Symbol => Object}]
+    #   A singleton Hash containing the parameter name and it's value.
     #
     def Parser.parse_param(name_and_value)
       name, value = name_and_value.split('=',2)
