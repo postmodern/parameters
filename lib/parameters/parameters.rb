@@ -125,7 +125,7 @@ module Parameters
       # Iterates over the parameters of the class and it's ancestors.
       #
       # @yield [param]
-      #   Block that will be passed each class parameter.
+      #   The block that will be passed each class parameter.
       #
       def each_param(&block)
         ancestors.each do |ancestor|
