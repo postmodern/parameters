@@ -77,7 +77,9 @@ module Parameters
     # @return [Hash{Symbol => Object}]
     #   A singleton Hash containing the parameter name and it's value.
     #
-    def Parser.parse_param(name_and_value)
+    # @since 0.1.8
+    #
+    def Parser.parse(name_and_value)
       name, value = name_and_value.split('=',2)
 
       value = Parser.parse_value(value) if value
