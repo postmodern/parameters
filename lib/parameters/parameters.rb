@@ -105,7 +105,7 @@ module Parameters
       end
 
       #
-      # @return [true, false]
+      # @return [Boolean]
       #   Specifies whether or not there is a class parameter with the
       #   specified _name_.
       #
@@ -332,7 +332,7 @@ module Parameters
   end
 
   #
-  # @return [true, false]
+  # @return [Boolean]
   #   Specifies whether or not there is a instance parameter with the
   #   specified name.
   #
