@@ -181,8 +181,8 @@ module Parameters
   # Initalizes the parameters of the object using the given
   # values, which can override the default values of parameters.
   #
-  # @param [Hash] values The names and values to initialize the instance
-  #                      parameters to.
+  # @param [Hash] values
+  #   The names and values to initialize the instance parameters to.
   #
   def initialize_params(values={})
     self.class.each_param do |param|
@@ -223,13 +223,20 @@ module Parameters
   #
   # Adds a new parameter to the object.
   #
-  # @param [Symbol, String] name The name for the new instance parameter.
-  # @param [Hash] options Additional options.
-  # @option options [String] :description The description for the new
-  #                                       parameter.
-  # @option options [Object, Proc] :default The default value for the new
-  #                                         parameter.
-  # @return [InstanceParam] The newly created instance parameter.
+  # @param [Symbol, String] name
+  #   The name for the new instance parameter.
+  #
+  # @param [Hash] options
+  #   Additional options.
+  #
+  # @option options [String] :description
+  #   The description for the new parameter.
+  #
+  # @option options [Object, Proc] :default
+  #   The default value for the new parameter.
+  #
+  # @return [InstanceParam]
+  #   The newly created instance parameter.
   #
   # @example
   #   obj.parameter('var')
@@ -275,14 +282,16 @@ module Parameters
   end
 
   #
-  # @return [Hash] Classes parameteres.
+  # @return [Hash]
+  #   The parameteres of the class and it's ancestors.
   #
   def class_params
     self.class.params
   end
 
   #
-  # @return [Hash] Instance parameters.
+  # @return [Hash]
+  #   The instance parameters of the object.
   #
   def params
     @params ||= {}
@@ -291,8 +300,8 @@ module Parameters
   #
   # Sets the values of existing parameters in the object.
   #
-  # @param [Hash] values The names and values to set the instance
-  #                      parameters to.
+  # @param [Hash] values
+  #   The names and values to set the instance parameters to.
   #
   # @example
   #   obj.params = {:x => 5, :y => 2}
@@ -315,15 +324,17 @@ module Parameters
   #
   # Iterates over each instance parameter in the object.
   #
-  # @yield [param] The block that will be passed each instance parameter.
+  # @yield [param]
+  #   The block that will be passed each instance parameter.
   #
   def each_param(&block)
     self.params.each_value(&block)
   end
 
   #
-  # @return [true, false] Specifies whether or not there is a instance
-  #                       parameter with the specified name.
+  # @return [true, false]
+  #   Specifies whether or not there is a instance parameter with the
+  #   specified name.
   #
   # @example
   #   obj.has_param?('rhost') # => true
@@ -335,12 +346,14 @@ module Parameters
   #
   # Searches for the instance parameter with a specific name.
   #
-  # @param [Symbol, String] name The name of the instance parameter to
-  #                              search for.
-  # @return [InstanceParam] The instance parameter with the specified
-  #                         name.
-  # @raise [ParamNotFound] Could not find the instance parameter with the
-  #                        specified name.
+  # @param [Symbol, String] name
+  #   The name of the instance parameter to search for.
+  #
+  # @return [InstanceParam]
+  #   The instance parameter with the specified name.
+  #
+  # @raise [ParamNotFound]
+  #   Could not find the instance parameter with the specified name.
   #
   # @example
   #   obj.get_param('var') # => InstanceParam
@@ -358,11 +371,14 @@ module Parameters
   #
   # Returns the description of the parameter with a specific name.
   #
-  # @param [Symbol, String] name The name of the instance parameter to
-  #                              search for.
-  # @return [String] The description of the instance parameter.
-  # @raise [ParamNotFound] Could not find the instance parameter with the
-  #                        specified name.
+  # @param [Symbol, String] name
+  #   The name of the instance parameter to search for.
+  #
+  # @return [String]
+  #   The description of the instance parameter.
+  #
+  # @raise [ParamNotFound]
+  #   Could not find the instance parameter with the specified name.
   #
   # @example
   #   obj.describe_param('rhost') # => "remote host"
@@ -374,12 +390,14 @@ module Parameters
   #
   # Returns the value of the parameter with a specific name.
   #
-  # @param [Symbol, String] name The name of the instance parameter to
-  #                              search for.
-  # @return [Object] The value of the instance parameter with the specified
-  #                  name.
-  # @raise [ParamNotFound] Could not find the instance parameter with the
-  #                        specified name.
+  # @param [Symbol, String] name
+  #   The name of the instance parameter to search for.
+  #
+  # @return [Object]
+  #   The value of the instance parameter with the specified name.
+  #
+  # @raise [ParamNotFound]
+  #   Could not find the instance parameter with the specified name.
   #
   # @example
   #   obj.param_value('rhost') # => 80
@@ -391,8 +409,8 @@ module Parameters
   #
   # Print the instance parameters.
   #
-  # @param [#puts] output The output stream to print the instance
-  #                       parameters to.
+  # @param [#puts] output
+  #   The output stream to print the instance parameters to.
   #
   def print_params(output=STDOUT)
     each_param do |param|
@@ -406,8 +424,11 @@ module Parameters
   # Requires that the instance parameters with specific names have
   # non +nil+ values.
   #
-  # @return [true] All the instance parameters have non +nil+ values.
-  # @raise [MissingParam] One of the instance parameters was not set.
+  # @return [true]
+  #   All the instance parameters have non +nil+ values.
+  #
+  # @raise [MissingParam]
+  #   One of the instance parameters was not set.
   #
   def require_params(*names)
     names.each do |name|
