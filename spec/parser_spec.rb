@@ -37,4 +37,11 @@ describe Parameters::Parser do
   it "should parse params of the form 'name=value'" do
     Parameters::Parser.parse_param('var1=test').should == {:var1 => 'test'}
   end
+
+  it "should parse multiple params" do
+    Parameters::Parser.parse(['var', 'var1=test']).should == {
+      :var => nil,
+      :var1 => 'test'
+    }
+  end
 end
