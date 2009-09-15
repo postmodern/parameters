@@ -31,10 +31,10 @@ describe Parameters::Parser do
   end
 
   it "should parse params of the form 'name'" do
-    Parameters::Parser.parse('var').should == {:var => nil}
+    Parameters::Parser.parse_param('var').should == {:var => nil}
   end
 
   it "should parse params of the form 'name=value'" do
-    Parameters::Parser.parse('var1=test').should == {:var1 => 'test'}
+    Parameters::Parser.parse_param('var1=test').should == {:var1 => 'test'}
   end
 end

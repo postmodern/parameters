@@ -79,11 +79,31 @@ module Parameters
     #
     # @since 0.1.8
     #
-    def Parser.parse(name_and_value)
+    def Parser.parse_param(name_and_value)
       name, value = name_and_value.split('=',2)
 
       value = Parser.parse_value(value) if value
       return {name.to_sym => value}
+    end
+
+    #
+    # Parses one or more parameter strings of the form +name=value+.
+    #
+    # @param [Array<String>] names_and_values
+    #   The names and values of the parameters, joined by the +=+
+    #   character.
+    #
+    # @return [Hash]
+    #   The names and values of the parameters.
+    #
+    def Parser.parse(names_and_values)
+      params = {}
+
+      names_and_values.each do |name_and_value|
+        params.merge!(Parser.parse_param(name_and_value))
+      end
+
+      return params
     end
 
     Parser.recognize(/^'(\\'|[^'])+'/) { |value|
