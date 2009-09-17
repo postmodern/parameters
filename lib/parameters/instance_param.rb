@@ -49,10 +49,10 @@ module Parameters
     #   Representation of the instance param.
     #
     def to_s
-      text = "  #{@name}"
+      text = @name.to_s
 
       text << " [#{value.inspect}]" if value
-      text << "\t\t#{@description}" if @description
+      text << "\t#{@description}" if @description
 
       return text
     end

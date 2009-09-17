@@ -29,10 +29,10 @@ module Parameters
     #   The representation of the class param.
     #
     def to_s
-      text = "  #{@name}"
+      text = @name.to_s
 
       text << " [#{@value.inspect}]" if @value
-      text << "\t\t#{@description}" if @description
+      text << "\t#{@description}" if @description
 
       return text
     end
