@@ -162,18 +162,6 @@ module Parameters
       def param_value(name)
         get_param(name).value
       end
-
-      #
-      # Print the parameters of the class and it's ancestors.
-      #
-      # @param [#puts] output
-      #   The stream to print the class parameters to.
-      #
-      def print_params(output=STDOUT)
-        each_param do |param|
-          output.puts param
-        end
-      end
     end
   end
 
@@ -404,18 +392,6 @@ module Parameters
   #
   def param_value(name)
     get_param(name).value
-  end
-
-  #
-  # Print the instance parameters.
-  #
-  # @param [#puts] output
-  #   The output stream to print the instance parameters to.
-  #
-  def print_params(output=STDOUT)
-    each_param do |param|
-      output.puts param
-    end
   end
 
   protected
