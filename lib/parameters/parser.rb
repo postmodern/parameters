@@ -58,6 +58,14 @@ module Parameters
     # @return [Object]
     #   The parsed parameter value.
     #
+    # @example
+    #   Parser.parse_value("0x1")
+    #   # => 1
+    #
+    # @example
+    #   Parser.parse_value("'mesg'")
+    #   # => "mesg"
+    #
     def Parser.parse_value(value)
       Parser.each_format do |pattern,parser|
         if value.match(pattern)
@@ -77,6 +85,10 @@ module Parameters
     # @return [Hash{Symbol => Object}]
     #   A singleton Hash containing the parameter name and it's value.
     #
+    # @example
+    #   Parser.parse_param('var=2')
+    #   # => {:var=>2}
+    #
     # @since 0.1.8
     #
     def Parser.parse_param(name_and_value)
@@ -95,6 +107,10 @@ module Parameters
     #
     # @return [Hash]
     #   The names and values of the parameters.
+    #
+    # @example
+    #   Parser.parse(["x=2", "y=true"])
+    #   # => {:x=>2, :y=>true}
     #
     def Parser.parse(names_and_values)
       params = {}
