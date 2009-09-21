@@ -105,7 +105,7 @@ module Parameters
     #   The names and values of the parameters, joined by the +=+
     #   character.
     #
-    # @return [Hash]
+    # @return [Hash{Symbol => Object}]
     #   The names and values of the parameters.
     #
     # @example
