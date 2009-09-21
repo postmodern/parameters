@@ -53,6 +53,9 @@ have configurable default values.
   oct.radius # => 33
   oct.opacity # => 0.3
 
+  # Parse user given name=value parameter strings
+  oct.params = Parameters::Parser.parse(ARGV)
+
 == INSTALL:
 
   $ sudo gem install parameters
