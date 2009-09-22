@@ -8,10 +8,10 @@ require 'parameters/yard/handlers'
 YARD::Rake::YardocTask.new do |t|
   t.files   = ['lib/**/*.rb']
   t.options = [
-    '--quiet',
     '--protected',
     '--files', 'History.txt',
-    '--title', 'Parameters'
+    '--title', 'Parameters',
+    '--quiet'
   ]
 end
 
