@@ -61,6 +61,10 @@ have configurable default values.
   # Parse user given name=value parameter strings
   oct.params = Parameters::Parser.parse(ARGV)
 
+== REQUIREMENTS:
+
+* {YARD}[http://yard.soen.ca/] >= 0.2.3.5
+
 == INSTALL:
 
   $ sudo gem install parameters
