@@ -1,6 +1,6 @@
-History.txt
+History.rdoc
 Manifest.txt
-README.txt
+README.rdoc
 Rakefile
 lib/parameters.rb
 lib/parameters/exceptions.rb
