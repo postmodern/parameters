@@ -13,6 +13,7 @@ lib/parameters/parser.rb
 lib/parameters/class_param.rb
 lib/parameters/instance_param.rb
 lib/parameters/param.rb
+lib/parameters/class_methods.rb
 lib/parameters/parameters.rb
 lib/parameters/version.rb
 lib/parameters/yard.rb
