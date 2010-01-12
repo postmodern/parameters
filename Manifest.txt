@@ -26,7 +26,6 @@ lib/parameters/yard/handlers/ruby/legacy.rb
 lib/parameters/yard/handlers/ruby/legacy/eval_block_handler.rb
 lib/parameters/yard/handlers/ruby/legacy/metaclass_eval_handler.rb
 lib/parameters/yard/handlers/ruby/legacy/parameter_handler.rb
-tasks/spec.rb
 spec/spec_helper.rb
 spec/classes/test_parameters.rb
 spec/classes/custom_parameters.rb
