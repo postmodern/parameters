@@ -11,6 +11,7 @@ Hoe.spec('parameters') do
 
   self.rspec_options += ['--colour', '--format', 'specdoc']
 
+  self.yard_opts += ['--protected']
   self.remote_yard_dir = '/'
 
   self.extra_dev_deps += [
