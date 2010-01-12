@@ -7,7 +7,6 @@ require 'hoe/signing'
 Hoe.plugin :yard
 
 Hoe.spec('parameters') do
-  self.rubyforge_name = 'parameters'
   self.developer('Postmodern','postmodern.mod3@gmail.com')
 
   self.rspec_options += ['--colour', '--format', 'specdoc']
