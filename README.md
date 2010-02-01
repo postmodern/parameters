@@ -17,7 +17,7 @@ have configurable default values.
 * Change default values of parameters.
 * Give descriptions to parameters.
 * Set parameters en-mass.
-* Parse strings of the form <tt>name=value</tt> into a Hash of parameters.
+* Parse strings of the form `name=value` into a Hash of parameters.
 
 ## EXAMPLES:
 
