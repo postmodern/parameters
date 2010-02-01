@@ -45,9 +45,9 @@ module Parameters
   end
 
   #
-  # Initializes the parameters using initialize_params. If a +Hash+
+  # Initializes the parameters using initialize_params. If a `Hash`
   # is passed in as the first argument, it will be used to set the values
-  # of parameters described within the Hash.
+  # of parameters described within the `Hash`.
   #
   def initialize(*args,&block)
     initialize_params(args.first)
@@ -243,10 +243,10 @@ module Parameters
 
   #
   # Requires that the instance parameters with specific names have
-  # non +nil+ values.
+  # non `nil` values.
   #
   # @return [true]
-  #   All the instance parameters have non +nil+ values.
+  #   All the instance parameters have non `nil` values.
   #
   # @raise [MissingParam]
   #   One of the instance parameters was not set.

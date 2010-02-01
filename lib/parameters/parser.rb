@@ -77,10 +77,10 @@ module Parameters
     end
 
     #
-    # Parses the a parameter string of the form +name=value+.
+    # Parses the a parameter string of the form `name=value`.
     #
     # @param [String] name_and_value
-    #   The name and value parameter join with a +=+ character.
+    #   The name and value parameter join with a `=` character.
     #
     # @return [Hash{Symbol => Object}]
     #   A singleton Hash containing the parameter name and it's value.
@@ -99,10 +99,10 @@ module Parameters
     end
 
     #
-    # Parses one or more parameter strings of the form +name=value+.
+    # Parses one or more parameter strings of the form `name=value`.
     #
     # @param [Array<String>] names_and_values
-    #   The names and values of the parameters, joined by the +=+
+    #   The names and values of the parameters, joined by the `=`
     #   character.
     #
     # @return [Hash{Symbol => Object}]
