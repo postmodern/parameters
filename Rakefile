@@ -13,7 +13,7 @@ begin
     gem.homepage = 'http://github.com/postmodern/parameters'
     gem.authors = ['Postmodern']
     gem.add_development_dependency 'rspec', '>= 1.3.0'
-    gem.add_development_dependency 'yard', '>= 0.4.0'
+    gem.add_development_dependency 'yard', '>= 0.5.3'
     gem.has_rdoc = 'yard'
   end
 rescue LoadError
