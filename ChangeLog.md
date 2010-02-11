@@ -17,30 +17,30 @@
 ### 0.1.7 / 2009-07-19
 
 * Renamed Parameters#initialize_parameters to
-  Parameters#initialize_params.
-* Adjust spacing in the output of ClassParam#to_s
-  and InstanceParam#to_s.
+  {Parameters#initialize_params}.
+* Adjust spacing in the output of {Parameters::ClassParam#to_s}
+  and {Parameters::InstanceParam#to_s}.
 * Specifically check if the instance variable is nil
   before initializing it to the default value of the parameter.
-* Handle default value callbacks in Parameters#parameter.
+* Handle default value callbacks in {Parameters#parameter}.
 * Check the arity of all default value callbacks, before
   passing self to them.
-* Parameters#require_params now specifically tests if
+* {Parameters#require_params} now specifically tests if
   the instance variable of the parameter is nil.
 * Added more specs.
 
 ### 0.1.6 / 2009-05-11
 
-* Fixed a bug in Parameters.params= and Parameters#params=, where they
-  were not handling Parameters::ClassParam or Parameters::InstanceParam
-  objects properly.
+* Fixed a bug in {Parameters::ClassMethods#params=} and {Parameters#params=},
+  where they were not handling {Parameters::ClassParam} or
+  {Parameters::InstanceParam} objects properly.
 * Added more specs.
 
 ### 0.1.5 / 2009-05-06
 
 * Added Parameters::Parser for parsing parameter values passed in from
   the command-line or the web.
-* Changed Parameters::MissingParam and Parameters::ParamNotFound to
+* Changed {Parameters::MissingParam} and {Parameters::ParamNotFound} to
   inherit from StandardError.
 * All specs pass on Ruby 1.9.1-p0.
 
@@ -67,7 +67,7 @@
 ### 0.1.0 / 2008-12-03
 
 * Initial release.
-* Added Parameters.params= and Parameters#params= methods.
+* Added {Parameters::ClassMethods#params=} and {Parameters#params=} methods.
 * Allow Parameters#initialize to accept a Hash of parameter values.
 * Added more specs.
 
