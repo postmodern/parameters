@@ -4,12 +4,12 @@
 * http://github.com/postmodern/parameters/
 * Postmodern (postmodern.mod3 at gmail.com)
 
-## DESCRIPTION:
+## Description
 
 Parameters allows you to add annotated variables to your classes which may
 have configurable default values.
 
-## FEATURES:
+## Features
 
 * Give parameters default values.
   * Default values maybe either objects or lambdas used to generate the
@@ -19,7 +19,7 @@ have configurable default values.
 * Set parameters en-mass.
 * Parse strings of the form `name=value` into a Hash of parameters.
 
-## EXAMPLES:
+## Examples
 
     class Octagon
   
@@ -61,13 +61,13 @@ have configurable default values.
     # Parse user given name=value parameter strings
     oct.params = Parameters::Parser.parse(ARGV)
 
-## INSTALL:
+## Install
 
     $ sudo gem install parameters
 
-## LICENSE:
+## License
 
-The MIT License
+(The MIT License)
 
 Copyright (c) 2008-2010 Hal Brodigan
 
