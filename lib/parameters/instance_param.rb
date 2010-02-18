@@ -16,7 +16,7 @@ module Parameters
     # @param [Symbol, String] name
     #   The name of the instance parameter.
     #
-    # @param [Class] type
+    # @param [Class, Array[Class]] type
     #   The enforced type of the instance parameter.
     #
     # @param [String, nil] description

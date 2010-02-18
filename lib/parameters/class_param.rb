@@ -12,7 +12,7 @@ module Parameters
     # @param [Symbol, String] name
     #   The name of the class parameter.
     #
-    # @param [Class] type
+    # @param [Class, Array[Class]] type
     #   The enforced type of the class parameter.
     #
     # @param [String, nil] description
