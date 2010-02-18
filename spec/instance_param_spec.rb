@@ -67,6 +67,20 @@ describe Parameters::InstanceParam do
       param.value.should == /x*/
     end
 
+    it "should coerce Dates" do
+      param = Parameters::InstanceParam.new(@obj,:x,Date)
+
+      param.value = '2010-02-18'
+      param.value.should == Date.new(2010,2,18)
+    end
+
+    it "should coerce DateTimes" do
+      param = Parameters::InstanceParam.new(@obj,:x,DateTime)
+
+      param.value = '2010-02-18T00:36:31-08:00'
+      param.value.should == DateTime.new(2010,2,18,0,36,31,Rational(-1,3),2299161)
+    end
+
     it "should coerce Symbols" do
       param = Parameters::InstanceParam.new(@obj,:x,Symbol)
 
