@@ -191,7 +191,7 @@ module Parameters
     def coerce_integer(type,value)
       if value.kind_of?(type)
         value
-      if value.kind_of?(String)
+      elsif value.kind_of?(String)
         base = if value[0..1] == '0x'
                  16
                elsif value[0..0] == '0'
@@ -225,7 +225,7 @@ module Parameters
     def coerce_float(type,value)
       if value.kind_of?(type)
         value
-      if (value.kind_of?(String) || value.respond_to?(:to_f))
+      elsif (value.kind_of?(String) || value.respond_to?(:to_f))
         value.to_f
       else
         0.0
