@@ -1,3 +1,4 @@
+require 'set'
 require 'uri'
 require 'date'
 
@@ -35,6 +36,7 @@ module Parameters
 
     # Type classes and their coersion methods
     TYPE_COERSION = {
+      Set => :coerce_set,
       Array => :coerce_array,
       URI => :coerce_uri,
       DateTime => :coerce_date,
@@ -60,7 +62,11 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_type(type,value)
-      if type.kind_of?(Array)
+      if type.kind_of?(Set)
+        coerce_array(Array,value).map { |element|
+          coerce_type(type.first,element)
+        }.to_set
+      elsif type.kind_of?(Array)
         coerce_array(Array,value).map do |element|
           coerce_type(type.first,element)
         end
@@ -87,14 +93,37 @@ module Parameters
     end
 
     #
-    # Coerces a given value into an Array.
+    # Coerces a given value into a `Set`.
     #
-    # @param [Array] type
-    #   An optional Array containing the type to coerce the elements
+    # @param [Set[Class]] type
+    #   An optional `Set` containing the type to coerce the elements
     #   of the given value to.
     #
     # @param [Enumerable, Object] value
-    #   The value to coerce into an Array.
+    #   The value to coerce into a `Set`.
+    #
+    # @return [Set]
+    #   The coerced value.
+    #
+    # @since 0.2.0
+    #
+    def coerce_set(type,value)
+      if value.kind_of?(Enumerable)
+        value.to_set
+      else
+        Set[value]
+      end
+    end
+
+    #
+    # Coerces a given value into an `Array`.
+    #
+    # @param [Array[Class]] type
+    #   An optional `Array` containing the type to coerce the elements
+    #   of the given value to.
+    #
+    # @param [Enumerable, Object] value
+    #   The value to coerce into an `Array`.
     #
     # @return [Array]
     #   The coerced value.

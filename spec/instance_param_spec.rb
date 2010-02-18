@@ -25,6 +25,20 @@ describe Parameters::InstanceParam do
       @obj = Object.new
     end
 
+    it "should coerce Sets" do
+      param = Parameters::InstanceParam.new(@obj,:x,Set)
+
+      param.value = [1, 2, 3, 2]
+      param.value.should == Set[1, 2, 3]
+    end
+
+    it "should coerce Sets with types" do
+      param = Parameters::InstanceParam.new(@obj,:x,Set[Integer])
+
+      param.value = ['x', '0', '1', '2', '3']
+      param.value.should == Set[0, 1, 2, 3]
+    end
+
     it "should coerce Arrays" do
       param = Parameters::InstanceParam.new(@obj,:x,Array)
 
