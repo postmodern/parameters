@@ -19,8 +19,15 @@ module Parameters
   #
   def initialize_params(values={})
     self.class.each_param do |param|
+      new_param = InstanceParam.new(
+        self,
+        param.name,
+        param.type,
+        param.description
+      )
+
       # do not override existing instance value if present
-      if instance_variable_get("@#{param.name}".to_sym).nil?
+      if new_param.value.nil?
         begin
           if param.value.kind_of?(Proc)
             value = if param.value.arity > 0
@@ -35,15 +42,10 @@ module Parameters
           value = param.value
         end
 
-        instance_variable_set("@#{param.name}".to_sym,value)
+        new_param.value = value
       end
 
-      self.params[param.name] = InstanceParam.new(
-        self,
-        param.name,
-        param.type,
-        param.description
-      )
+      self.params[param.name] = new_param
     end
 
     self.params = values if values.kind_of?(Hash)
