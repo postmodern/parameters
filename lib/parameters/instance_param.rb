@@ -14,11 +14,14 @@ module Parameters
     # @param [Symbol, String] name
     #   The name of the instance parameter.
     #
+    # @param [Class] type
+    #   The enforced type of the instance parameter.
+    #
     # @param [String, nil] description
     #   The description of the instance parameter.
     #
-    def initialize(object,name,description=nil)
-      super(name,description)
+    def initialize(object,name,type=nil,description=nil)
+      super(name,type,description)
 
       @object = object
     end
@@ -41,7 +44,7 @@ module Parameters
     #   The new value of the instance param.
     #
     def value=(value)
-      @object.instance_variable_set("@#{@name}".to_sym,value)
+      @object.instance_variable_set("@#{@name}".to_sym,coerce(value))
     end
 
     #
