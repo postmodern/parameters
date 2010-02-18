@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'set'
 
 describe Parameters::ClassParam do
-  describe "type coersion" do
+  describe "type coercion" do
     it "should coerce Sets" do
       param = Parameters::ClassParam.new(:x,Set)
 

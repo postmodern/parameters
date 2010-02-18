@@ -34,7 +34,7 @@ module Parameters
 
     protected
 
-    # Type classes and their coersion methods
+    # Type classes and their coercion methods
     TYPE_COERSION = {
       Set => :coerce_set,
       Array => :coerce_array,

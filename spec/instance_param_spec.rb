@@ -20,7 +20,7 @@ describe Parameters::InstanceParam do
     obj.instance_variable_get(:"@x").should == 5
   end
 
-  describe "type coersion" do
+  describe "type coercion" do
     before(:each) do
       @obj = Object.new
     end
