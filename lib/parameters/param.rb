@@ -96,7 +96,7 @@ module Parameters
     #
     def coerce_array(type,value)
       value = if value.kind_of?(Enumerable)
-                value
+                value.to_a
               else
                 [value]
               end
@@ -104,7 +104,7 @@ module Parameters
       unless type.empty?
         value.map { |element| coerce_type(type.first,element) }
       else
-        value.to_a
+        value
       end
     end
 
