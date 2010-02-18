@@ -31,7 +31,7 @@ module Parameters
     #   The value of the instance param.
     #
     def value
-      @object.instance_variable_get("@#{@name}".to_sym)
+      @object.instance_variable_get(:"@#{@name}")
     end
 
     #
@@ -44,7 +44,7 @@ module Parameters
     #   The new value of the instance param.
     #
     def value=(value)
-      @object.instance_variable_set("@#{@name}".to_sym,coerce(value))
+      @object.instance_variable_set(:"@#{@name}",coerce(value))
     end
 
     #
