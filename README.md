@@ -29,7 +29,9 @@ have configurable default values.
   
       parameter :y, :default => 0.5
   
-      parameter :radius, :description => 'The radius of the Octagon'
+      parameter :radius,
+                :type => Float,
+		:description => 'The radius of the Octagon'
 
       parameter :opacity,
                 :default => lambda { rand },
@@ -58,8 +60,10 @@ have configurable default values.
     oct.radius # => 33
     oct.opacity # => 0.3
 
-    # Parse user given name=value parameter strings
-    oct.params = Parameters::Parser.parse(ARGV)
+    # Coerce data from the command-line into the given parameter type
+    oct.radius = ARGV[2]
+    oct.radius
+    # => 89.455
 
 ## Install
 
