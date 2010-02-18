@@ -1,3 +1,5 @@
+require 'parameters/param'
+
 module Parameters
   class InstanceParam < Param
 
