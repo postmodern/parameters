@@ -28,18 +28,18 @@ module Parameters
 
       # do not override existing instance value if present
       if new_param.value.nil?
-        begin
-          if param.value.kind_of?(Proc)
-            value = if param.value.arity > 0
-                      param.value.call(self)
-                    else
-                      param.value.call()
-                    end
-          else
+        if param.value.kind_of?(Proc)
+          value = if param.value.arity > 0
+                    param.value.call(self)
+                  else
+                    param.value.call()
+                  end
+        else
+          begin
             value = param.value.clone
+          rescue TypeError
+            value = param.value
           end
-        rescue TypeError
-          value = param.value
         end
 
         new_param.value = value
