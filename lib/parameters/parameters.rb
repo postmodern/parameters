@@ -86,7 +86,7 @@ module Parameters
   #   obj.parameter('var',:default => 3, :description => 'my variable')
   #
   def parameter(name,options={})
-    name = name.to_s
+    name = name.to_sym
     default = options[:default]
 
     # resolve the default value
@@ -117,12 +117,12 @@ module Parameters
     instance_eval %{
       # define the reader method for the parameter
       def #{name}
-        get_param(#{name.dump}).value
+        get_param(#{name.inspect}).value
       end
 
       # define the writer method for the parameter
       def #{name}=(new_value)
-        get_param(#{name.dump}).value = new_value
+        get_param(#{name.inspect}).value = new_value
       end
     }
 
