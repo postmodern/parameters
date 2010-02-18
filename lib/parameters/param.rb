@@ -58,7 +58,9 @@ module Parameters
     #
     def coerce_type(type,value)
       if type.kind_of?(Array)
-        coerce_array(type,value)
+        coerce_array(value).map do |element|
+          coerce_type(type.first,element)
+        end
       elsif (method_name = TYPE_COERSION[type])
         self.send(method_name,type,value)
       else
@@ -97,16 +99,10 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_array(type,value)
-      value = if value.kind_of?(Enumerable)
-                value.to_a
-              else
-                [value]
-              end
-
-      unless type.empty?
-        value.map { |element| coerce_type(type.first,element) }
+      if value.kind_of?(Enumerable)
+        value.to_a
       else
-        value
+        [value]
       end
     end
 
