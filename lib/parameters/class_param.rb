@@ -4,7 +4,7 @@ module Parameters
   class ClassParam < Param
 
     # Default value of the class parameter
-    attr_accessor :value
+    attr_reader :value
 
     #
     # Creates a new ClassParam object.
@@ -12,16 +12,34 @@ module Parameters
     # @param [Symbol, String] name
     #   The name of the class parameter.
     #
+    # @param [Class] type
+    #   The enforced type of the class parameter.
+    #
     # @param [String, nil] description
     #   The description of the class parameter.
     #
     # @param [Object, nil] value
     #   The default value of the class parameter.
     #
-    def initialize(name,description=nil,value=nil)
-      super(name,description)
+    def initialize(name,type=nil,description=nil,value=nil)
+      super(name,type,description)
 
       @value = value
+    end
+
+    #
+    # Sets the value of the class param.
+    #
+    # @param [Object] value
+    #   The new value of the class param.
+    #
+    # @return [Object]
+    #   The new value of the class param.
+    #
+    # @since 0.2.0
+    #
+    def value=(new_value)
+      @value = coerce(new_value)
     end
 
     #
