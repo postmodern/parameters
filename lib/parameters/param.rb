@@ -44,7 +44,8 @@ module Parameters
       Symbol => :coerce_symbol,
       String => :coerce_string,
       Integer => :coerce_integer,
-      Float => :coerce_float
+      Float => :coerce_float,
+      true => :coerce_boolean
     }
 
     #
@@ -285,6 +286,28 @@ module Parameters
         value
       else
         type.parse(value.to_s)
+      end
+    end
+
+    #
+    # Coerces a given value into either a `true` or `false` value.
+    #
+    # @param [true] type
+    #
+    # @param [TrueClass, FalseClass, String, Symbol] value
+    #   The value to coerce into either a `true` or `false` value.
+    #
+    # @return [TrueClass, FalseClass]
+    #   The coerced value.
+    #
+    # @since 0.2.0
+    #
+    def coerce_boolean(type,value)
+      case value
+      when FalseClass, NilClass, 'false', :false
+        false
+      else
+        true
       end
     end
 

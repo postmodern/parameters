@@ -82,6 +82,55 @@ describe Parameters::ClassParam do
       param.value.should == 8
     end
 
+    it "should coerce true boolean values" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = true
+      param.value.should == true
+    end
+
+    it "should coerce non-false boolean values as true" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = '1'
+      param.value.should == true
+    end
+
+    it "should coerce 'true' boolean values" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = 'true'
+      param.value.should == true
+    end
+
+    it "should coerce :true boolean values" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = :true
+      param.value.should == true
+    end
+
+    it "should coerce false values" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = false
+      param.value.should == false
+    end
+
+    it "should coerce 'false' boolean values" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = 'false'
+      param.value.should == false
+    end
+
+    it "should coerce :false boolean values" do
+      param = Parameters::ClassParam.new(:x,true)
+
+      param.value = :false
+      param.value.should == false
+    end
+
     it "should not coerce unknown types" do
       param = Parameters::ClassParam.new(:x)
       obj1 = Object.new
