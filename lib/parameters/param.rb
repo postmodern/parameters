@@ -57,7 +57,9 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_type(type,value)
-      if (method_name = TYPE_COERSION[type])
+      if type.kind_of?(Array)
+        coerce_array(type,value)
+      elsif (method_name = TYPE_COERSION[type])
         self.send(method_name,type,value)
       else
         value
