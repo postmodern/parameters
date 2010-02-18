@@ -36,6 +36,7 @@ module Parameters
 
     # Type classes and their coersion methods
     TYPE_COERSION = {
+      Hash => :coerce_hash,
       Set => :coerce_set,
       Array => :coerce_array,
       URI => :coerce_uri,
@@ -108,7 +109,9 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_set(type,value)
-      if value.kind_of?(Enumerable)
+      if value.kind_of?(Set)
+        value
+      elsif value.kind_of?(Enumerable)
         value.to_set
       else
         Set[value]
@@ -131,7 +134,9 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_array(type,value)
-      if value.kind_of?(Enumerable)
+      if value.kind_of?(Array)
+        value
+      elsif value.kind_of?(Enumerable)
         value.to_a
       else
         [value]
