@@ -25,98 +25,98 @@ describe Parameters::InstanceParam do
       @obj = Object.new
     end
 
-    it "should coerce Sets" do
+    it "should coerce values into Sets" do
       param = Parameters::InstanceParam.new(@obj,:x,Set)
 
       param.value = [1, 2, 3, 2]
       param.value.should == Set[1, 2, 3]
     end
 
-    it "should coerce Sets with types" do
+    it "should coerce values into Sets with types" do
       param = Parameters::InstanceParam.new(@obj,:x,Set[Integer])
 
       param.value = ['x', '0', '1', '2', '3']
       param.value.should == Set[0, 1, 2, 3]
     end
 
-    it "should coerce Arrays" do
+    it "should coerce values into Arrays" do
       param = Parameters::InstanceParam.new(@obj,:x,Array)
 
       param.value = Set[1, 2, 3]
       param.value.should == [1, 2, 3]
     end
 
-    it "should coerce Arrays with types" do
+    it "should coerce values into Arrays with types" do
       param = Parameters::InstanceParam.new(@obj,:x,Array[Integer])
 
       param.value = Set['1', '2', '3']
       param.value.should == [1, 2, 3]
     end
 
-    it "should coerce URIs" do
+    it "should coerce values into URIs" do
       param = Parameters::InstanceParam.new(@obj,:x,URI)
 
       param.value = 'http://bla.com/'
       param.value.should == URI::HTTP.build(:host => 'bla.com')
     end
 
-    it "should coerce Regexp" do
+    it "should coerce values into Regexp" do
       param = Parameters::InstanceParam.new(@obj,:x,Regexp)
 
       param.value = 'x*'
       param.value.should == /x*/
     end
 
-    it "should coerce Dates" do
+    it "should coerce values into Dates" do
       param = Parameters::InstanceParam.new(@obj,:x,Date)
 
       param.value = '2010-02-18'
       param.value.should == Date.new(2010,2,18)
     end
 
-    it "should coerce DateTimes" do
+    it "should coerce values into DateTimes" do
       param = Parameters::InstanceParam.new(@obj,:x,DateTime)
 
       param.value = '2010-02-18T00:36:31-08:00'
       param.value.should == DateTime.new(2010,2,18,0,36,31,Rational(-1,3),2299161)
     end
 
-    it "should coerce Symbols" do
+    it "should coerce values into Symbols" do
       param = Parameters::InstanceParam.new(@obj,:x,Symbol)
 
       param.value = 'str'
       param.value.should == :str
     end
 
-    it "should coerce Strings" do
+    it "should coerce values into Strings" do
       param = Parameters::InstanceParam.new(@obj,:x,String)
 
       param.value = :str
       param.value.should == 'str'
     end
 
-    it "should coerce Floats" do
+    it "should coerce values into Floats" do
       param = Parameters::InstanceParam.new(@obj,:x,Float)
 
       param.value = '0.5'
       param.value.should == 0.5
     end
 
-    it "should coerce Integers" do
+    it "should coerce values into Integers" do
       param = Parameters::InstanceParam.new(@obj,:x,Integer)
 
       param.value = '5'
       param.value.should == 5
     end
 
-    it "should coerce hex Integers" do
+    it "should coerce values into hex Integers" do
       param = Parameters::InstanceParam.new(@obj,:x,Integer)
 
       param.value = '0xa'
       param.value.should == 10
     end
 
-    it "should coerce octal Integers" do
+    it "should coerce values into octal Integers" do
       param = Parameters::InstanceParam.new(@obj,:x,Integer)
 
       param.value = '010'
@@ -130,21 +130,21 @@ describe Parameters::InstanceParam do
       param.value.should == true
     end
 
-    it "should coerce non-false boolean values as true" do
+    it "should coerce non-false boolean values into true" do
       param = Parameters::InstanceParam.new(@obj,:x,true)
 
       param.value = '1'
       param.value.should == true
     end
 
-    it "should coerce 'true' boolean values" do
+    it "should coerce 'true' boolean values into true" do
       param = Parameters::InstanceParam.new(@obj,:x,true)
 
       param.value = 'true'
       param.value.should == true
     end
 
-    it "should coerce :true boolean values" do
+    it "should coerce :true boolean values into true" do
       param = Parameters::InstanceParam.new(@obj,:x,true)
 
       param.value = :true
@@ -158,14 +158,14 @@ describe Parameters::InstanceParam do
       param.value.should == false
     end
 
-    it "should coerce 'false' boolean values" do
+    it "should coerce 'false' boolean values into false" do
       param = Parameters::InstanceParam.new(@obj,:x,true)
 
       param.value = 'false'
       param.value.should == false
     end
 
-    it "should coerce :false boolean values" do
+    it "should coerce :false boolean values into false" do
       param = Parameters::InstanceParam.new(@obj,:x,true)
 
       param.value = :false
