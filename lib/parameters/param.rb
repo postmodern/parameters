@@ -36,7 +36,6 @@ module Parameters
 
     # Type classes and their coersion methods
     TYPE_COERSION = {
-      Hash => :coerce_hash,
       Set => :coerce_set,
       Array => :coerce_array,
       URI => :coerce_uri,
