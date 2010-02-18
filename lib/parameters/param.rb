@@ -39,6 +39,7 @@ module Parameters
       Set => :coerce_set,
       Array => :coerce_array,
       URI => :coerce_uri,
+      Regexp => :coerce_regexp,
       DateTime => :coerce_date,
       Date => :coerce_date,
       Symbol => :coerce_symbol,
@@ -162,6 +163,28 @@ module Parameters
         value
       else
         URI.parse(value.to_s)
+      end
+    end
+
+    #
+    # Coerces a given value into a `Regexp`.
+    #
+    # @param [Class] type
+    #   The `Regexp` type to coerce to.
+    #
+    # @param [Regexp, #to_s] value
+    #   The value to coerce into a `Regexp`.
+    #
+    # @return [Regexp]
+    #   The coerced value.
+    #
+    # @since 0.2.0
+    #
+    def coerce_regexp(type,value)
+      if value.kind_of?(Regexp)
+        value
+      else
+        Regexp.new(value.to_s)
       end
     end
 

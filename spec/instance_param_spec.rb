@@ -60,6 +60,13 @@ describe Parameters::InstanceParam do
       param.value.should == URI::HTTP.build(:host => 'bla.com')
     end
 
+    it "should coerce Regexp" do
+      param = Parameters::InstanceParam.new(@obj,:x,Regexp)
+
+      param.value = 'x*'
+      param.value.should == /x*/
+    end
+
     it "should coerce Symbols" do
       param = Parameters::InstanceParam.new(@obj,:x,Symbol)
 

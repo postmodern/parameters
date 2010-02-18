@@ -40,6 +40,13 @@ describe Parameters::ClassParam do
       param.value.should == URI::HTTP.build(:host => 'bla.com')
     end
 
+    it "should coerce Regexp" do
+      param = Parameters::ClassParam.new(:x,Regexp)
+
+      param.value = 'x*'
+      param.value.should == /x*/
+    end
+
     it "should coerce Symbols" do
       param = Parameters::ClassParam.new(:x,Symbol)
 
