@@ -87,9 +87,7 @@ module Parameters
   #
   def parameter(name,options={})
     name = name.to_sym
-    type = options[:type]
     default = options[:default]
-    description = options[:description]
 
     # resolve the default value
     if default.kind_of?(Proc)
@@ -106,7 +104,12 @@ module Parameters
     instance_variable_set("@#{name}".to_sym,value)
 
     # add the new parameter
-    self.params[name] = InstanceParam.new(self,name,type,description)
+    self.params[name] = InstanceParam.new(
+      self,
+      name,
+      options[:type],
+      options[:description]
+    )
 
     instance_eval %{
       # define the reader method for the parameter
