@@ -1,3 +1,6 @@
+require 'uri'
+require 'date'
+
 module Parameters
   class Param
 
