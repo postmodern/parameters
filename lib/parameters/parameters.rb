@@ -100,16 +100,19 @@ module Parameters
       value = default
     end
 
-    # set the instance variable
-    instance_variable_set(:"@#{name}",value)
-
-    # add the new parameter
-    self.params[name] = InstanceParam.new(
+    # create the new parameter
+    new_param = InstanceParam.new(
       self,
       name,
       options[:type],
       options[:description]
     )
+
+    # set the instance variable
+    new_param.value = value
+
+    # add the new parameter
+    self.params[name] = new_param
 
     instance_eval %{
       # define the reader method for the parameter
@@ -123,7 +126,7 @@ module Parameters
       end
     }
 
-    return params[name]
+    return new_param
   end
 
   #
