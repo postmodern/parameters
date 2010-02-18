@@ -58,7 +58,7 @@ module Parameters
     #
     def coerce_type(type,value)
       if type.kind_of?(Array)
-        coerce_array(value).map do |element|
+        coerce_array(Array,value).map do |element|
           coerce_type(type.first,element)
         end
       elsif (method_name = TYPE_COERSION[type])
