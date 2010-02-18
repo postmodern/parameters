@@ -43,11 +43,14 @@ module Parameters
     # @param [Hash] options
     #   Additional options.
     #
-    # @option options [String] :description
-    #   The description for the new parameter.
+    # @option options [Class, Array[Class]] :type
+    #   The type to enforce the parameter values to.
     #
     # @option options [Object, Proc] :default
     #   The default value for the new parameter.
+    #
+    # @option options [String] :description
+    #   The description for the new parameter.
     #
     # @example
     #   parameter 'var'
@@ -59,7 +62,12 @@ module Parameters
       name = name.to_sym
 
       # add the parameter to the class params list
-      params[name] = Parameters::ClassParam.new(name,options[:description],options[:default])
+      params[name] = Parameters::ClassParam.new(
+        name,
+        options[:type],
+        options[:description],
+        options[:default]
+      )
 
       # define the reader class method for the parameter
       meta_def(name) do

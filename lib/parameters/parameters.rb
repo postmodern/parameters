@@ -38,7 +38,12 @@ module Parameters
         instance_variable_set("@#{param.name}".to_sym,value)
       end
 
-      self.params[param.name] = InstanceParam.new(self,param.name,param.description)
+      self.params[param.name] = InstanceParam.new(
+        self,
+        param.name,
+        param.type,
+        param.description
+      )
     end
 
     self.params = values if values.kind_of?(Hash)
@@ -62,11 +67,14 @@ module Parameters
   # @param [Hash] options
   #   Additional options.
   #
-  # @option options [String] :description
-  #   The description for the new parameter.
+  # @option options [Class, Array[Class]] :type
+  #   The type to enforce the new parameter values to.
   #
   # @option options [Object, Proc] :default
   #   The default value for the new parameter.
+  #
+  # @option options [String] :description
+  #   The description for the new parameter.
   #
   # @return [InstanceParam]
   #   The newly created instance parameter.
@@ -79,6 +87,7 @@ module Parameters
   #
   def parameter(name,options={})
     name = name.to_sym
+    type = options[:type]
     default = options[:default]
     description = options[:description]
 
@@ -97,7 +106,7 @@ module Parameters
     instance_variable_set("@#{name}".to_sym,value)
 
     # add the new parameter
-    self.params[name] = InstanceParam.new(self,name,description)
+    self.params[name] = InstanceParam.new(self,name,type,description)
 
     instance_eval %{
       # define the reader method for the parameter
