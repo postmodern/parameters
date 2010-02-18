@@ -111,7 +111,7 @@ module Parameters
     def coerce_set(type,value)
       if value.kind_of?(Set)
         value
-      elsif value.kind_of?(Enumerable)
+      elsif (value.kind_of?(Enumerable) || value.respond_to?(:to_set))
         value.to_set
       else
         Set[value]
@@ -136,7 +136,7 @@ module Parameters
     def coerce_array(type,value)
       if value.kind_of?(Array)
         value
-      elsif value.kind_of?(Enumerable)
+      elsif (value.kind_of?(Enumerable) || value.respond_to?(:to_a))
         value.to_a
       else
         [value]
