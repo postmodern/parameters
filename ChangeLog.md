@@ -1,3 +1,19 @@
+### 0.2.0 / 2010-02-18
+
+* Migrated to Jeweler for packaging rubygems:
+  * Removed the Hoe dependency.
+* Added type enforcement / coercion to parameters:
+
+        # Coerces the values of `name` into a `Symbol`
+        parameter :name, :type => Symbol
+
+        # Coerces the values of the `ids` into a `Set` of `Integers`
+        parameter :ids, :type => Set[Integer]
+
+* Switched to MarkDown formatted YARD documentation.
+* Moved the YARD parameter handlers into
+  [yard-parameters](http://github.com/postmodern/yard-parameters).
+
 ### 0.1.9 / 2009-01-30
 
 * Require RSpec >= 1.3.0.
