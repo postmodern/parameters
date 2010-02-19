@@ -1,7 +1,7 @@
 ### 0.2.0 / 2010-02-18
 
 * Migrated to [Jeweler](http://github.com/technicalpickles/jeweler)
-  for packaging rubygems:
+  for packaging rubygems.
 * Added type enforcement / coercion to parameters:
   * Added the `:type` option to the `parameter` method.
   * Available types:
