@@ -152,6 +152,14 @@ describe Parameters::ClassParam do
       param.value.should == false
     end
 
+    it "should not coerce nil into a type" do
+      param = Parameters::ClassParam.new(:x,String)
+      obj1 = Object.new
+
+      param.value = nil
+      param.value.should be_nil
+    end
+
     it "should not coerce unknown types" do
       param = Parameters::ClassParam.new(:x)
       obj1 = Object.new

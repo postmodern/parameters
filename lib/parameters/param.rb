@@ -64,7 +64,9 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_type(type,value)
-      if type.kind_of?(Set)
+      if value.nil?
+        nil
+      elsif type.kind_of?(Set)
         coerce_array(Array,value).map { |element|
           coerce_type(type.first,element)
         }.to_set
