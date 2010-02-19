@@ -1,19 +1,27 @@
 ### 0.2.0 / 2010-02-18
 
-* Migrated to Jeweler for packaging rubygems:
-  * Removed the Hoe dependency.
+* Migrated to [Jeweler](http://github.com/technicalpickles/jeweler)
+  for packaging rubygems:
 * Added type enforcement / coercion to parameters:
-
-        # Coerces the values of `name` into a `Symbol`
-        parameter :name, :type => Symbol
-
-        # Coerces the values of the `ids` into a `Set` of `Integers`
-        parameter :ids, :type => Set[Integer]
-
-* Removed `Parameters::Parser` in favor of type enforcement / coercion.
+  * Added the `:type` option to the `parameter` method.
+  * Available types:
+    * Array[Class]
+    * Array
+    * Set[Class]
+    * Set
+    * URI
+    * Regexp
+    * DateTime
+    * Date
+    * Symbol
+    * String
+    * Integer
+    * Float
+    * true (for boolean types).
+  * Removed `Parameters::Parser` in favor of type enforcement / coercion.
 * Switched to MarkDown formatted YARD documentation.
 * Moved the YARD parameter handlers into
-  [yard-parameters](http://github.com/postmodern/yard-parameters).
+  [yard-parameters](http://github.com/postmodern/yard-parameters) library.
 
 ### 0.1.9 / 2009-01-30
 
