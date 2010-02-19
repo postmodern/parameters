@@ -25,14 +25,30 @@ have configurable default values.
   
       include Parameters
   
+      #
+      # A parameter with a default value
+      #
       parameter :x, :default => 0
   
+      #
+      # Another parameter with a default value
+      #
       parameter :y, :default => 0.5
   
+      #
+      # A parameter with an enforced type and description.
+      #
+      # Availble types are: Array[Class], Array, Set[Class], Set,
+      # URI, Regexp, DateTime, Date, Symbol, String, Integer, Float
+      # and true (for boolean types).
+      #
       parameter :radius,
                 :type => Float,
 		:description => 'The radius of the Octagon'
 
+      #
+      # A parameter with a lambda for a default value
+      #
       parameter :opacity,
                 :default => lambda { rand },
                 :description => 'The opacity of the Octagon'
