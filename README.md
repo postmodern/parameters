@@ -78,8 +78,7 @@ have configurable default values.
 
     # Coerce data from the command-line into the given parameter type
     oct.radius = ARGV[2]
-    oct.radius
-    # => 89.455
+    oct.radius # => 89.455
 
 ## Install
 
