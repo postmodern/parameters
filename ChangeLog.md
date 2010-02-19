@@ -10,6 +10,7 @@
         # Coerces the values of the `ids` into a `Set` of `Integers`
         parameter :ids, :type => Set[Integer]
 
+* Removed `Parameters::Parser` in favor of type enforcement / coercion.
 * Switched to MarkDown formatted YARD documentation.
 * Moved the YARD parameter handlers into
   [yard-parameters](http://github.com/postmodern/yard-parameters).
