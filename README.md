@@ -15,9 +15,9 @@ have configurable default values.
   * Default values maybe either objects or lambdas used to generate the
     default value.
 * Change default values of parameters.
+* Enforce types on the values of parameters.
 * Give descriptions to parameters.
 * Set parameters en-mass.
-* Parse strings of the form `name=value` into a Hash of parameters.
 
 ## Examples
 
