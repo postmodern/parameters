@@ -44,7 +44,7 @@ have configurable default values.
       #
       parameter :radius,
                 :type => Float,
-		:description => 'The radius of the Octagon'
+                :description => 'The radius of the Octagon'
 
       #
       # A parameter with a lambda for a default value
