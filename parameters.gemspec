@@ -38,12 +38,6 @@ Gem::Specification.new do |s|
     "lib/parameters/param.rb",
     "lib/parameters/parameters.rb",
     "lib/parameters/version.rb",
-    "lib/parameters/yard.rb",
-    "lib/parameters/yard/handlers.rb",
-    "lib/parameters/yard/handlers/ruby.rb",
-    "lib/parameters/yard/handlers/ruby/legacy.rb",
-    "lib/parameters/yard/handlers/ruby/legacy/parameter_handler.rb",
-    "lib/parameters/yard/handlers/ruby/parameter_handler.rb",
     "parameters.gemspec",
     "spec/class_param_spec.rb",
     "spec/classes/custom_parameters.rb",
@@ -63,12 +57,12 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/parameters_spec.rb",
     "spec/spec_helper.rb",
+    "spec/class_param_spec.rb",
     "spec/instance_param_spec.rb",
     "spec/classes/inherited_parameters.rb",
     "spec/classes/test_parameters.rb",
     "spec/classes/custom_parameters.rb",
-    "spec/classes/other_parameters.rb",
-    "spec/class_param_spec.rb"
+    "spec/classes/other_parameters.rb"
   ]
 
   if s.respond_to? :specification_version then
