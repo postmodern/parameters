@@ -36,6 +36,7 @@ module Parameters
 
     # Type classes and their coercion methods
     TYPE_COERSION = {
+      Hash => :coerce_hash,
       Set => :coerce_set,
       Array => :coerce_array,
       URI => :coerce_uri,
@@ -66,6 +67,18 @@ module Parameters
     def coerce_type(type,value)
       if value.nil?
         nil
+      elsif type.kind_of?(Hash)
+        key_type, value_type = type.first
+        new_hash = {}
+
+        coerce_hash(Hash,value).each do |key,value|
+          key = coerce_type(key_type,key)
+          value = coerce_type(value_type,value)
+
+          new_hash[key] = value
+        end
+
+        return new_hash
       elsif type.kind_of?(Set)
         coerce_array(Array,value).map { |element|
           coerce_type(type.first,element)
@@ -94,6 +107,31 @@ module Parameters
     #
     def coerce(value)
       coerce_type(@type,value)
+    end
+
+    #
+    # Coerces a given value into a `Hash`.
+    #
+    # @param [Hash{Class => Class}] type
+    #   An optional `Set` containing the type to coerce the keys and values
+    #   of the given value to.
+    #
+    # @param [Hash, #to_hash, Object] value
+    #   The value to coerce into a `Hash`.
+    #
+    # @return [Hash]
+    #   The coerced value.
+    #
+    # @since 0.2.1
+    #
+    def coerce_hash(type,value)
+      if value.kind_of?(Hash)
+        value
+      elsif value.respond_to?(:to_hash)
+        value.to_hash
+      else
+        {value => true}
+      end
     end
 
     #

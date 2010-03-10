@@ -5,6 +5,20 @@ require 'set'
 
 describe Parameters::ClassParam do
   describe "type coercion" do
+    it "should coerce values into Hashes" do
+      param = Parameters::ClassParam.new(:x,Hash)
+
+      param.value = 2
+      param.value.should == {2 => true}
+    end
+
+    it "should coerce keys and values within Hashes" do
+      param = Parameters::ClassParam.new(:x,Hash[Symbol => Object])
+
+      param.value = {'a' => true}
+      param.value.should == {:a => true}
+    end
+
     it "should coerce values into Sets" do
       param = Parameters::ClassParam.new(:x,Set)
 
