@@ -127,6 +127,8 @@ module Parameters
     def coerce_hash(type,value)
       if value.kind_of?(Hash)
         value
+      elsif value.kind_of?(Array)
+        Hash[*value]
       elsif value.respond_to?(:to_hash)
         value.to_hash
       else
