@@ -166,6 +166,14 @@ describe Parameters::ClassParam do
       param.value.should == false
     end
 
+    it "should coerce values using a Proc for the type" do
+      coercion_logic = lambda { |x| x.to_i.floor }
+      param = Parameters::ClassParam.new(:x,coercion_logic)
+
+      param.value = 2.5
+      param.value.should == 2
+    end
+
     it "should not coerce nil into a type" do
       param = Parameters::ClassParam.new(:x,String)
       obj1 = Object.new

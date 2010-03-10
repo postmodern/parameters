@@ -186,6 +186,14 @@ describe Parameters::InstanceParam do
       param.value.should == false
     end
 
+    it "should coerce values using a Proc for the type" do
+      coercion_logic = lambda { |x| x.to_i.floor }
+      param = Parameters::InstanceParam.new(@obj,:x,coercion_logic)
+
+      param.value = 2.5
+      param.value.should == 2
+    end
+
     it "should not coerce nil into a type" do
       param = Parameters::InstanceParam.new(@obj,:x,String)
 

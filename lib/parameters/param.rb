@@ -53,8 +53,9 @@ module Parameters
     #
     # Coerces a given value into a specific type.
     #
-    # @param [Class] type
-    #   The type to coerce the value into.
+    # @param [Class, Proc] type
+    #   The type to coerce the value into. If a Proc is given, it will be
+    #   called with the value to coerce.
     #
     # @param [Object] value
     #   The value to coerce.
@@ -87,6 +88,8 @@ module Parameters
         coerce_array(Array,value).map do |element|
           coerce_type(type.first,element)
         end
+      elsif type.kind_of?(Proc)
+        type.call(value)
       elsif (method_name = TYPE_COERSION[type])
         self.send(method_name,type,value)
       else
