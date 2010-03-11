@@ -92,8 +92,10 @@ module Parameters
         type.call(value)
       elsif (method_name = TYPE_COERSION[type])
         self.send(method_name,type,value)
-      else
+      elsif (type.nil? || type == Object)
         value
+      else
+        type.new(value)
       end
     end
 

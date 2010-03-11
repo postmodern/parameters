@@ -1,6 +1,7 @@
 require 'parameters/instance_param'
 
 require 'spec_helper'
+require 'classes/custom_type'
 require 'set'
 
 describe Parameters::InstanceParam do
@@ -192,6 +193,15 @@ describe Parameters::InstanceParam do
 
       param.value = 2.5
       param.value.should == 2
+    end
+
+    it "should coerce values using custom Classes" do
+      original_value = Object.new
+      param = Parameters::InstanceParam.new(@obj,:x,CustomType)
+
+      param.value = original_value
+      param.value.class.should == CustomType
+      param.value.value.should == original_value
     end
 
     it "should not coerce nil into a type" do
