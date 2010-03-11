@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{parameters}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Postmodern"]
-  s.date = %q{2010-02-18}
+  s.date = %q{2010-03-10}
   s.description = %q{Parameters allows you to add annotated variables to your classes which may have configurable default values.}
   s.email = %q{postmodern.mod3@gmail.com}
   s.extra_rdoc_files = [
@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "parameters.gemspec",
     "spec/class_param_spec.rb",
     "spec/classes/custom_parameters.rb",
+    "spec/classes/custom_type.rb",
     "spec/classes/inherited_parameters.rb",
     "spec/classes/other_parameters.rb",
     "spec/classes/test_parameters.rb",
@@ -52,7 +53,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/postmodern/parameters}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Allows you to add annotated variables to your classes}
   s.test_files = [
     "spec/parameters_spec.rb",
@@ -62,7 +63,8 @@ Gem::Specification.new do |s|
     "spec/classes/inherited_parameters.rb",
     "spec/classes/test_parameters.rb",
     "spec/classes/custom_parameters.rb",
-    "spec/classes/other_parameters.rb"
+    "spec/classes/other_parameters.rb",
+    "spec/classes/custom_type.rb"
   ]
 
   if s.respond_to? :specification_version then
