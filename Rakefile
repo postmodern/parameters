@@ -7,6 +7,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = 'parameters'
     gem.version = Parameters::VERSION
+    gem.license = 'MIT'
     gem.summary = %Q{Allows you to add annotated variables to your classes}
     gem.description = %Q{Parameters allows you to add annotated variables to your classes which may have configurable default values.}
     gem.email = 'postmodern.mod3@gmail.com'
