@@ -69,7 +69,7 @@ module Parameters
       if value.nil?
         nil
       elsif type.kind_of?(Hash)
-        key_type, value_type = type.first
+        key_type, value_type = type.entries.first
         new_hash = {}
 
         coerce_hash(Hash,value).each do |key,value|
@@ -82,11 +82,11 @@ module Parameters
         return new_hash
       elsif type.kind_of?(Set)
         coerce_array(Array,value).map { |element|
-          coerce_type(type.first,element)
+          coerce_type(type.entries.first,element)
         }.to_set
       elsif type.kind_of?(Array)
         coerce_array(Array,value).map do |element|
-          coerce_type(type.first,element)
+          coerce_type(type.entries.first,element)
         end
       elsif type.kind_of?(Proc)
         type.call(value)
