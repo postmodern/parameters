@@ -2,12 +2,27 @@ require 'parameters/parameters'
 
 require 'spec_helper'
 
+require 'classes/module_parameters'
 require 'classes/test_parameters'
 require 'classes/custom_parameters'
 require 'classes/inherited_parameters'
 require 'classes/other_parameters'
 
 describe Parameters do
+  context "in a Module" do
+    it "should provide parameters" do
+      ModuleParameters.should have_param(:mixin_var)
+    end
+
+    it "should re-extend ClassMethods when including the module" do
+      new_class = Class.new do
+        include ModuleParameters
+      end
+
+      new_class.should have_param(:mixin_var)
+    end
+  end
+
   context "in a Class" do
     it "should provide parameters" do
       TestParameters.params.should_not be_empty
