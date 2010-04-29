@@ -8,7 +8,7 @@ require 'classes/inherited_parameters'
 require 'classes/other_parameters'
 
 describe Parameters do
-  describe "in a Class" do
+  context "in a Class" do
     it "should provide parameters" do
       TestParameters.params.should_not be_empty
     end
@@ -76,7 +76,7 @@ describe Parameters do
     end
   end
 
-  describe "in an Object" do
+  context "in an Object" do
     before(:each) do
       @test = TestParameters.new
       @test_inherited = InheritedParameters.new
