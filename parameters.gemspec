@@ -9,45 +9,46 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Postmodern"]
-  s.date = %q{2010-04-02}
+  s.date = %q{2010-05-05}
   s.description = %q{Parameters allows you to add annotated variables to your classes which may have configurable default values.}
   s.email = %q{postmodern.mod3@gmail.com}
   s.extra_rdoc_files = [
     "ChangeLog.md",
-    "LICENSE.txt",
-    "README.md"
+     "LICENSE.txt",
+     "README.md"
   ]
   s.files = [
     ".gitignore",
-    ".specopts",
-    ".yardopts",
-    "ChangeLog.md",
-    "LICENSE.txt",
-    "README.md",
-    "Rakefile",
-    "lib/parameters.rb",
-    "lib/parameters/class_methods.rb",
-    "lib/parameters/class_param.rb",
-    "lib/parameters/exceptions.rb",
-    "lib/parameters/exceptions/missing_param.rb",
-    "lib/parameters/exceptions/param_not_found.rb",
-    "lib/parameters/extensions.rb",
-    "lib/parameters/extensions/meta.rb",
-    "lib/parameters/extensions/meta/object.rb",
-    "lib/parameters/instance_param.rb",
-    "lib/parameters/param.rb",
-    "lib/parameters/parameters.rb",
-    "lib/parameters/version.rb",
-    "parameters.gemspec",
-    "spec/class_param_spec.rb",
-    "spec/classes/custom_parameters.rb",
-    "spec/classes/custom_type.rb",
-    "spec/classes/inherited_parameters.rb",
-    "spec/classes/other_parameters.rb",
-    "spec/classes/test_parameters.rb",
-    "spec/instance_param_spec.rb",
-    "spec/parameters_spec.rb",
-    "spec/spec_helper.rb"
+     ".specopts",
+     ".yardopts",
+     "ChangeLog.md",
+     "LICENSE.txt",
+     "README.md",
+     "Rakefile",
+     "lib/parameters.rb",
+     "lib/parameters/class_methods.rb",
+     "lib/parameters/class_param.rb",
+     "lib/parameters/exceptions.rb",
+     "lib/parameters/exceptions/missing_param.rb",
+     "lib/parameters/exceptions/param_not_found.rb",
+     "lib/parameters/extensions.rb",
+     "lib/parameters/extensions/meta.rb",
+     "lib/parameters/extensions/meta/object.rb",
+     "lib/parameters/instance_param.rb",
+     "lib/parameters/param.rb",
+     "lib/parameters/parameters.rb",
+     "lib/parameters/version.rb",
+     "parameters.gemspec",
+     "spec/class_param_spec.rb",
+     "spec/classes/custom_parameters.rb",
+     "spec/classes/custom_type.rb",
+     "spec/classes/inherited_parameters.rb",
+     "spec/classes/module_parameters.rb",
+     "spec/classes/other_parameters.rb",
+     "spec/classes/test_parameters.rb",
+     "spec/instance_param_spec.rb",
+     "spec/parameters_spec.rb",
+     "spec/spec_helper.rb"
   ]
   s.has_rdoc = %q{yard}
   s.homepage = %q{http://github.com/postmodern/parameters}
@@ -57,15 +58,16 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.6}
   s.summary = %q{Allows you to add annotated variables to your classes}
   s.test_files = [
-    "spec/parameters_spec.rb",
     "spec/spec_helper.rb",
-    "spec/class_param_spec.rb",
-    "spec/instance_param_spec.rb",
-    "spec/classes/inherited_parameters.rb",
-    "spec/classes/test_parameters.rb",
-    "spec/classes/custom_parameters.rb",
-    "spec/classes/other_parameters.rb",
-    "spec/classes/custom_type.rb"
+     "spec/class_param_spec.rb",
+     "spec/parameters_spec.rb",
+     "spec/instance_param_spec.rb",
+     "spec/classes/inherited_parameters.rb",
+     "spec/classes/custom_type.rb",
+     "spec/classes/test_parameters.rb",
+     "spec/classes/module_parameters.rb",
+     "spec/classes/custom_parameters.rb",
+     "spec/classes/other_parameters.rb"
   ]
 
   if s.respond_to? :specification_version then
