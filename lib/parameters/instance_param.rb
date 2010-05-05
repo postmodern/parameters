@@ -63,11 +63,13 @@ module Parameters
     end
 
     #
+    # Inspects the instance parameter.
+    #
     # @return [String]
     #   Inspection of the instance params value.
     #
     def inspect
-      value.inspect
+      "#<#{self.class}: #{value.inspect}>"
     end
 
   end
