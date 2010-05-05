@@ -56,11 +56,13 @@ module Parameters
     end
 
     #
+    # Inspects the class parameter.
+    #
     # @return [String]
     #   Inspection of the class params value.
     #
     def inspect
-      @value.inspect
+      "#<#{self.class}: #{@value.inspect}>"
     end
 
   end
