@@ -1,3 +1,14 @@
+### 0.2.1 / 2010-05-05
+
+* Added {Parameters::ClassMethods#included}, so that
+  {Parameters::ClassMethods} can be re-extended by mixin modules which
+  include {Parameters}.
+* Added {Parameters::Param#coerce_hash}.
+* Allow a `Proc` to be given as the coercion type for
+  {Parameters::Param#coerce_type}.
+* Allow custom classes to be used for coercion types.
+* Ruby 1.8.6 bug fixes for {Parameters::Param#coerce_type}.
+
 ### 0.2.0 / 2010-02-18
 
 * Migrated to [Jeweler](http://github.com/technicalpickles/jeweler)
