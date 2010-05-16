@@ -65,7 +65,7 @@ describe Parameters::InstanceParam do
       param = Parameters::InstanceParam.new(@obj,:x,Array[Integer])
 
       param.value = Set['1', '2', '3']
-      param.value.should == [1, 2, 3]
+      param.value.should =~ [1, 2, 3]
     end
 
     it "should coerce values into URIs" do

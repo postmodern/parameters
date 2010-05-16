@@ -45,7 +45,7 @@ describe Parameters::ClassParam do
       param = Parameters::ClassParam.new(:x,Array[Integer])
 
       param.value = Set['1', '2', '3']
-      param.value.should == [1, 2, 3]
+      param.value.should =~ [1, 2, 3]
     end
 
     it "should coerce values into URIs" do
