@@ -103,7 +103,7 @@ module Parameters
       name = name.to_sym
 
       ancestors.each do |ancestor|
-        if ancestor.include?(Parameters)
+        if ancestor.included_modules.include?(Parameters)
           if ancestor.params.has_key?(name)
             return ancestor.params[name]
           end
@@ -122,7 +122,7 @@ module Parameters
       name = name.to_sym
 
       ancestors.each do |ancestor|
-        if ancestor.include?(Parameters)
+        if ancestor.included_modules.include?(Parameters)
           return true if ancestor.params.has_key?(name)
         end
       end
@@ -138,7 +138,7 @@ module Parameters
     #
     def each_param(&block)
       ancestors.each do |ancestor|
-        if ancestor.include?(Parameters)
+        if ancestor.included_modules.include?(Parameters)
           ancestor.params.each_value(&block)
         end
       end
