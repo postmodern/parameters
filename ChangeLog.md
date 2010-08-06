@@ -1,3 +1,12 @@
+### 0.2.2 / 2010-08-06
+
+* Require Bundler ~> 1.0.0.
+* Updated {Parameters::InstanceParam#inspect} and
+  {Parameters::ClassParam#inspect} to also include the class-name.
+* Use `included_modules.include?` when testing whether {Parameters}
+  was included.
+* Fix failing specs for Rubinius.
+
 ### 0.2.1 / 2010-05-05
 
 * Added {Parameters::ClassMethods#included}, so that
