@@ -28,7 +28,7 @@ describe Parameters do
       TestParameters.params.should_not be_empty
     end
 
-    it "can have default values for parameters" do
+    it "should have default values for parameters" do
       TestParameters.param_value(:var_with_default).should == 'thing'
     end
 
@@ -49,7 +49,7 @@ describe Parameters do
       param.name.should == :var
     end
 
-    it "raise a ParamNotFound exception when directly accessing non-existent parameter objects" do
+    it "should raise a ParamNotFound exception when directly accessing non-existent parameter objects" do
       lambda { TestParameters.get_param(:unknown) }.should raise_error(Parameters::ParamNotFound)
     end
 
@@ -102,7 +102,7 @@ describe Parameters do
       @test.params[:var_with_default].should_not be_nil
     end
 
-    it "can have default values for parameters" do
+    it "should have default values for parameters" do
       @test.param_value(:var_with_default).should == 'thing'
     end
 
