@@ -75,12 +75,12 @@ module Parameters
 
       # define the reader class method for the parameter
       meta_def(name) do
-        params[name].value
+        get_param(name).value
       end
 
       # define the writer class method for the parameter
       meta_def("#{name}=") do |value|
-        params[name].value = value
+        get_param(name).value = value
       end
 
       # define the getter/setter instance methods for the parameter
