@@ -1,3 +1,8 @@
+### 0.2.3 / 2010-10-27
+
+* Have parameter reader/writer class-methods search down the ancestory
+  tree for a given class parameter.
+
 ### 0.2.2 / 2010-08-06
 
 * Require Bundler ~> 1.0.0.
