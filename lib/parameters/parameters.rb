@@ -212,7 +212,7 @@ module Parameters
     name = name.to_sym
 
     unless has_param?(name)
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}",caller)
+      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}")
     end
 
     return self.params[name]
@@ -273,7 +273,7 @@ module Parameters
       name = name.to_s
 
       if instance_variable_get("@#{name}".to_sym).nil?
-        raise(Parameters::MissingParam,"parameter #{name.dump} has no value",caller)
+        raise(Parameters::MissingParam,"parameter #{name.dump} has no value")
       end
     end
 
