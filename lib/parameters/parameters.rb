@@ -218,6 +218,34 @@ module Parameters
   end
 
   #
+  # Sets an instance parameter.
+  #
+  # @param [Symbol, String] name
+  #   The name of the instance parameter.
+  #
+  # @param [Object] value
+  #   The new value for the instance parameter.
+  #
+  # @return [Object]
+  #   The new value of the instance parameter.
+  #
+  # @example
+  #   obj.set_param('var',2)
+  #   # => 2
+  #
+  # @since 0.3.0
+  #
+  def set_param(name,value)
+    name = name.to_sym
+
+    unless has_param?(name)
+      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}",caller)
+    end
+
+    return self.params[name].value = value
+  end
+
+  #
   # Returns the description of the parameter with a specific name.
   #
   # @param [Symbol, String] name
