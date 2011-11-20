@@ -148,13 +148,15 @@ describe Parameters do
     end
 
     it "should allow setting arbitrary parameters" do
-      @test.set_param(:var,2)
+      subject.set_param(:var,2)
 
-      @test.get_param(:var).value.should == 2
+      subject.get_param(:var).value.should == 2
     end
 
     it "should raise a ParamNotFound exception when setting non-existent parameters" do
-      lambda { @test.set_param(:unknown,2) }.should raise_error(Parameters::ParamNotFound)
+      lambda {
+        subject.set_param(:unknown,2)
+      }.should raise_error(Parameters::ParamNotFound)
     end
 
     it "should allow for setting parameters en-mass" do
