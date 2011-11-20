@@ -112,7 +112,7 @@ module Parameters
         end
       end
 
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self.name.dump}")
+      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self}")
     end
 
     #

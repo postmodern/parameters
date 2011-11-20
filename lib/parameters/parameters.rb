@@ -211,7 +211,7 @@ module Parameters
     name = name.to_sym
 
     unless has_param?(name)
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}")
+      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.inspect}")
     end
 
     return self.params[name]
