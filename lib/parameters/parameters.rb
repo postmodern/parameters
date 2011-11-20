@@ -28,21 +28,20 @@ module Parameters
 
       # do not override existing instance value if present
       if new_param.value.nil?
-        if param.value.kind_of?(Proc)
-          value = if param.value.arity > 0
-                    param.value.call(self)
-                  else
-                    param.value.call()
-                  end
-        else
-          begin
-            value = param.value.clone
-          rescue TypeError
-            value = param.value
-          end
-        end
-
-        new_param.value = value
+        new_param.value = case param.value
+                          when Proc
+                            if param.value.arity > 0
+                              param.value.call(self)
+                            else
+                              param.value.call()
+                            end
+                          else
+                            begin
+                              param.value.clone
+                            rescue TypeError
+                              param.value
+                            end
+                          end
       end
 
       self.params[param.name] = new_param
@@ -88,19 +87,8 @@ module Parameters
   #   obj.parameter('var',:default => 3, :description => 'my variable')
   #
   def parameter(name,options={})
-    name = name.to_sym
+    name    = name.to_sym
     default = options[:default]
-
-    # resolve the default value
-    if default.kind_of?(Proc)
-      value = if default.arity > 0
-                default.call(self)
-              else
-                default.call()
-              end
-    else
-      value = default
-    end
 
     # create the new parameter
     new_param = InstanceParam.new(
@@ -111,7 +99,16 @@ module Parameters
     )
 
     # set the instance variable
-    new_param.value = value
+    new_param.value = case default
+                      when Proc
+                        if default.arity > 0
+                          default.call(self)
+                        else
+                          default.call()
+                        end
+                      else
+                        default
+                      end
 
     # add the new parameter
     self.params[name] = new_param
@@ -162,11 +159,13 @@ module Parameters
       name = name.to_sym
 
       if has_param?(name)
-        if (value.kind_of?(Parameters::ClassParam) || value.kind_of?(Parameters::InstanceParam))
-          value = value.value
-        end
-
-        self.params[name].value = value
+        self.params[name].value = case value
+                                  when Parameters::ClassParam,
+                                       Parameters::InstanceParam
+                                    value.value
+                                  else
+                                    value
+                                  end
       end
     end
   end
@@ -272,7 +271,7 @@ module Parameters
     names.each do |name|
       name = name.to_s
 
-      if instance_variable_get("@#{name}".to_sym).nil?
+      if instance_variable_get(:"@#{name}").nil?
         raise(Parameters::MissingParam,"parameter #{name.dump} has no value")
       end
     end

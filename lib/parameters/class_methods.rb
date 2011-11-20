@@ -29,11 +29,13 @@ module Parameters
     def params=(values)
       values.each do |name,value|
         if has_param?(name)
-          if (value.kind_of?(Parameters::ClassParam) || value.kind_of?(Parameters::InstanceParam))
-            value = value.value
-          end
-
-          get_param(name).value = value
+          get_param(name).value = case value
+                                  when Parameters::ClassParam,
+                                    Parameters::InstanceParam
+                                    value.value
+                                  else
+                                    value
+                                  end
         end
       end
     end
