@@ -82,6 +82,13 @@ describe Parameters::InstanceParam do
       param.value.should == /x*/
     end
 
+    it "should coerce values into Times" do
+      param = described_class.new(@obj,:x,Time)
+
+      param.value = '2011-12-03 19:39:09 -0800'
+      param.value.should == Time.at(1322969949)
+    end
+
     it "should coerce values into Dates" do
       param = described_class.new(@obj,:x,Date)
 

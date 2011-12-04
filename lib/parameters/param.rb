@@ -1,6 +1,7 @@
 require 'set'
 require 'uri'
 require 'date'
+require 'time'
 
 module Parameters
   class Param
@@ -41,6 +42,7 @@ module Parameters
       Array => :coerce_array,
       URI => :coerce_uri,
       Regexp => :coerce_regexp,
+      Time => :coerce_time,
       DateTime => :coerce_date,
       Date => :coerce_date,
       Symbol => :coerce_symbol,
@@ -355,6 +357,35 @@ module Parameters
           value.to_f
         else
           0.0
+        end
+      end
+    end
+
+    #
+    # Coerces a given value into a `Time` object.
+    #
+    # @param [Class] type
+    #   The `Time` class.
+    #
+    # @param [Time, Integer, #to_time] value
+    #   The value to coerce into a `Time` object.
+    #
+    # @return [Time]
+    #   The coerced value.
+    #
+    # @since 0.3.0
+    #
+    def coerce_time(type,value)
+      case value
+      when Time
+        value
+      when Integer
+        type.at(value)
+      else
+        if value.respond_to?(:to_time)
+          value.to_time
+        else
+          type.parse(value.to_s)
         end
       end
     end
