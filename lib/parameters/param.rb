@@ -37,19 +37,19 @@ module Parameters
 
     # Type classes and their coercion methods
     TYPE_COERSION = {
-      Hash => :coerce_hash,
-      Set => :coerce_set,
-      Array => :coerce_array,
-      URI => :coerce_uri,
-      Regexp => :coerce_regexp,
-      Time => :coerce_time,
+      Hash     => :coerce_hash,
+      Set      => :coerce_set,
+      Array    => :coerce_array,
+      URI      => :coerce_uri,
+      Regexp   => :coerce_regexp,
+      Time     => :coerce_time,
       DateTime => :coerce_date,
-      Date => :coerce_date,
-      Symbol => :coerce_symbol,
-      String => :coerce_string,
-      Integer => :coerce_integer,
-      Float => :coerce_float,
-      true => :coerce_boolean
+      Date     => :coerce_date,
+      Symbol   => :coerce_symbol,
+      String   => :coerce_string,
+      Integer  => :coerce_integer,
+      Float    => :coerce_float,
+      true     => :coerce_boolean
     }
 
     #
@@ -225,7 +225,7 @@ module Parameters
     #
     def coerce_uri(type,value)
       case value
-      when type
+      when URI::Generic
         value
       else
         URI.parse(value.to_s)
