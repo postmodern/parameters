@@ -76,7 +76,7 @@ module Parameters
         new_hash = {}
 
         coerce_hash(Hash,value).each do |key,value|
-          key = coerce_type(key_type,key)
+          key   = coerce_type(key_type,key)
           value = coerce_type(value_type,value)
 
           new_hash[key] = value
@@ -84,12 +84,16 @@ module Parameters
 
         return new_hash
       when Set
+        element_type = type.entries.first
+
         coerce_array(Array,value).map { |element|
-          coerce_type(type.entries.first,element)
+          coerce_type(element_type,element)
         }.to_set
       when Array
+        element_type = type.entries.first
+
         coerce_array(Array,value).map do |element|
-          coerce_type(type.entries.first,element)
+          coerce_type(element_type,element)
         end
       when Proc
         type.call(value)
