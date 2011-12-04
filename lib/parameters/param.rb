@@ -320,15 +320,7 @@ module Parameters
       when Integer
         value
       when String
-        base = if value[0..1] == '0x'
-                 16
-               elsif value[0..0] == '0'
-                 8
-               else
-                 10
-               end
-
-        value.to_i(base)
+        value.to_i(0)
       else
         if value.respond_to?(:to_i)
           value.to_i
