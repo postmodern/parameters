@@ -66,9 +66,10 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_type(type,value)
-      if value.nil?
-        nil
-      elsif type.kind_of?(Hash)
+      return value if value.nil?
+
+      case type
+      when Hash
         key_type, value_type = type.entries.first
         new_hash = {}
 
@@ -80,22 +81,24 @@ module Parameters
         end
 
         return new_hash
-      elsif type.kind_of?(Set)
+      when Set
         coerce_array(Array,value).map { |element|
           coerce_type(type.entries.first,element)
         }.to_set
-      elsif type.kind_of?(Array)
+      when Array
         coerce_array(Array,value).map do |element|
           coerce_type(type.entries.first,element)
         end
-      elsif type.kind_of?(Proc)
+      when Proc
         type.call(value)
-      elsif (method_name = TYPE_COERSION[type])
-        self.send(method_name,type,value)
-      elsif (type.nil? || type == Object)
-        value
       else
-        type.new(value)
+        if (method_name = TYPE_COERSION[type])
+          send(method_name,type,value)
+        elsif (type.nil? || type == Object)
+          value
+        else
+          type.new(value)
+        end
       end
     end
 
@@ -130,14 +133,17 @@ module Parameters
     # @since 0.2.1
     #
     def coerce_hash(type,value)
-      if value.kind_of?(Hash)
+      case value
+      when Hash
         value
-      elsif value.kind_of?(Array)
+      when Array
         Hash[*value]
-      elsif value.respond_to?(:to_hash)
-        value.to_hash
       else
-        {value => true}
+        if value.respond_to?(:to_hash)
+          value.to_hash
+        else
+          {value => true}
+        end
       end
     end
 
@@ -157,12 +163,17 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_set(type,value)
-      if value.kind_of?(Set)
+      case value
+      when Set
         value
-      elsif (value.kind_of?(Enumerable) || value.respond_to?(:to_set))
+      when Enumerable
         value.to_set
       else
-        Set[value]
+        if value.respond_to?(:to_set)
+          value.to_set
+        else
+          Set[value]
+        end
       end
     end
 
@@ -182,12 +193,17 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_array(type,value)
-      if value.kind_of?(Array)
+      case value
+      when Array
         value
-      elsif (value.kind_of?(Enumerable) || value.respond_to?(:to_a))
+      when Enumerable
         value.to_a
       else
-        [value]
+        if value.respond_to?(:to_a)
+          value.to_a
+        else
+          [value]
+        end
       end
     end
 
@@ -206,7 +222,8 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_uri(type,value)
-      if value.kind_of?(type)
+      case value
+      when type
         value
       else
         URI.parse(value.to_s)
@@ -228,7 +245,8 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_regexp(type,value)
-      if value.kind_of?(Regexp)
+      case value
+      when Regexp
         value
       else
         Regexp.new(value.to_s)
@@ -250,8 +268,11 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_symbol(type,value)
-      if value.kind_of?(type)
+      case value
+      when Symbol
         value
+      when String
+        value.to_sym
       else
         value.to_s.to_sym
       end
@@ -272,7 +293,8 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_string(type,value)
-      if value.kind_of?(type)
+      case value
+      when String
         value
       else
         value.to_s
@@ -294,9 +316,10 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_integer(type,value)
-      if value.kind_of?(type)
+      case value
+      when Integer
         value
-      elsif value.kind_of?(String)
+      when String
         base = if value[0..1] == '0x'
                  16
                elsif value[0..0] == '0'
@@ -306,10 +329,12 @@ module Parameters
                end
 
         value.to_i(base)
-      elsif value.respond_to?(:to_i)
-        value.to_i
       else
-        0
+        if value.respond_to?(:to_i)
+          value.to_i
+        else
+          0
+        end
       end
     end
 
@@ -328,12 +353,17 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_float(type,value)
-      if value.kind_of?(type)
+      case value
+      when Float
         value
-      elsif (value.kind_of?(String) || value.respond_to?(:to_f))
+      when String
         value.to_f
       else
-        0.0
+        if value.respond_to?(:to_f)
+          value.to_f
+        else
+          0.0
+        end
       end
     end
 
@@ -352,7 +382,8 @@ module Parameters
     # @since 0.2.0
     #
     def coerce_date(type,value)
-      if value.kind_of?(type)
+      case value
+      when type
         value
       else
         type.parse(value.to_s)
