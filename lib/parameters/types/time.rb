@@ -18,7 +18,7 @@ module Parameters
       def coerce(value)
         case value
         when Integer
-          Time.at(value)
+          ::Time.at(value)
         else
           if value.respond_to?(:to_time)
             value.to_time

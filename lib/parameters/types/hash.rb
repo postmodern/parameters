@@ -15,16 +15,9 @@ module Parameters
       #
       # @param [Type] value_type
       #
-      def initialize(key_type=nil,value_type=nil)
+      def initialize(key_type,value_type)
         @key_type   = key_type
         @value_type = value_type
-      end
-
-      def ===(value)
-        super(value) && value.entries.all? do |k,v|
-          (@key_type.nil? || @key_type === k) &&
-          (@value_type.nil? || @value_type === v)
-        end
       end
 
       #
@@ -36,20 +29,39 @@ module Parameters
       # @return [::Hash]
       #   The coerced Hash.
       #
-      def coerce(value)
-        hash = case value
-               when ::Hash
-                 value
-               when ::Array
-                 ::Hash[*value]
-               else
-                 if value.respond_to?(:to_hash)
-                   value.to_hash
-                 else
-                   raise(TypeError,"cannot coerce #{value.inspect} into a Hash")
-                 end
-               end
+      def self.coerce(value)
+        case value
+        when ::Hash
+          value
+        when ::Array
+          ::Hash[*value]
+        else
+          if value.respond_to?(:to_hash)
+            value.to_hash
+          else
+            raise(TypeError,"cannot coerce #{value.inspect} into a Hash")
+          end
+        end
+      end
 
+      def ===(value)
+        (self.class === value) && value.entries.all? do |k,v|
+          (@key_type.nil? || @key_type === k) &&
+          (@value_type.nil? || @value_type === v)
+        end
+      end
+
+      #
+      # Coerces a value into a Hash, and coerces the keys/values of the Hash.
+      #
+      # @param [::Array, #to_hash, ::Object] value
+      #   The value to coerce.
+      #
+      # @return [::Hash]
+      #   The coerced Hash.
+      #
+      def coerce(value)
+        hash         = self.class.coerce(value)
         coerced_hash = {}
 
         hash.each do |k,v|

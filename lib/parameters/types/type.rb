@@ -3,16 +3,6 @@ module Parameters
     class Type
 
       #
-      # The Ruby Class the Type represents.
-      #
-      # @return [Class]
-      #   The Ruby Class that matches the Types name.
-      #
-      def self.type
-        @type ||= ::Object.const_get(self.name.split('::').last)
-      end
-
-      #
       # Determines if the value is an instance of the Type.
       #
       # @return [Boolean]
@@ -20,7 +10,7 @@ module Parameters
       #
       # @abstract
       #
-      def ===(value)
+      def self.===(value)
         false
       end
 
@@ -35,7 +25,21 @@ module Parameters
       #
       # @abstract
       #
+      def self.coerce(value)
+      end
+
+      #
+      # @see ===
+      #
+      def ===(value)
+        self.class === value
+      end
+
+      #
+      # @see coerce
+      #
       def coerce(value)
+        self.class.coerce(value)
       end
 
     end

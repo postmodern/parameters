@@ -7,7 +7,9 @@ describe Parameters::Types::Hash do
   let(:array) { [:a, 1, :b, 2]     }
   let(:hash)  { {:a => 1, :b => 2} }
 
-  describe "#coerce" do
+  describe "coerce" do
+    subject { described_class }
+
     it "should accept Arrays" do
       subject.coerce(array).should == hash
     end
@@ -15,7 +17,9 @@ describe Parameters::Types::Hash do
     it "should call #to_hash" do
       subject.coerce(hash).should == hash
     end
+  end
 
+  describe "#coerce" do
     context "with key-type" do
       let(:string_keys) { {'a' => 1, 'b' => 2} }
 

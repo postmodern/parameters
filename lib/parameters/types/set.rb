@@ -15,18 +15,12 @@ module Parameters
       # @return [::Set]
       #   The coerced Set.
       #
-      def coerce(value)
-        set = if value.respond_to?(:to_set)
-                value.to_set
-              else
-                ::Set[value]
-              end
-
-        if @element_type
-          set.map! { |element| @element_type.coerce(element) }
+      def self.coerce(value)
+        if value.respond_to?(:to_set)
+          value.to_set
+        else
+          ::Set[value]
         end
-
-        return set
       end
 
     end

@@ -26,8 +26,15 @@ module Parameters
     #
     def initialize(name,type=nil,description=nil)
       @name = name.to_sym
-      @type = if type.kind_of?(Types::Type)
+      @type = case type
+              when Types::Type
                 type
+              when Class
+                if type < Types::Type
+                  type
+                else
+                  Types[type]
+                end
               else
                 Types[type]
               end

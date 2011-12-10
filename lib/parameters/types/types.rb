@@ -77,18 +77,18 @@ module Parameters
       when ::Proc
         Proc.new(type)
       when true
-        Boolean.new
+        Boolean
       when nil
-        Object.new
+        Object
       when ::Class
         if type_defined?(type.name)
-          type_get(type.name).new
+          type_get(type.name)
         else
           Class.new(type)
         end
       when ::Module
         if type_defined?(type.name)
-          type_get(type.name).new
+          type_get(type.name)
         else
           raise(TypeError,"unknown parameter type: #{type.inspect}")
         end

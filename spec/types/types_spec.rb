@@ -27,29 +27,29 @@ describe Parameters::Types do
 
   describe "[]" do
     it "should map known Classes to Types" do
-      subject[Array].class.should == Parameters::Types::Array
+      subject[Array].should == Parameters::Types::Array
     end
 
     it "should map Arrays to the Array type" do
       type = subject[Array[Integer]]
 
       type.class.should == Parameters::Types::Array
-      type.element_type.class.should == Parameters::Types::Integer
+      type.element_type.should == Parameters::Types::Integer
     end
 
     it "should map Sets to the Set type" do
       type = subject[Set[Symbol]]
 
       type.class.should == Parameters::Types::Set
-      type.element_type.class.should == Parameters::Types::Symbol
+      type.element_type.should == Parameters::Types::Symbol
     end
 
     it "should map Hashes to the Hash type" do
       type = subject[Hash[Symbol => Integer]]
 
       type.class.should == Parameters::Types::Hash
-      type.key_type.class.should == Parameters::Types::Symbol
-      type.value_type.class.should == Parameters::Types::Integer
+      type.key_type.should == Parameters::Types::Symbol
+      type.value_type.should == Parameters::Types::Integer
     end
 
     it "should map unknown Classes to the Class type" do
@@ -66,11 +66,11 @@ describe Parameters::Types do
     end
 
     it "should map true to the Boolean type" do
-      subject[true].class.should == Parameters::Types::Boolean
+      subject[true].should == Parameters::Types::Boolean
     end
 
     it "should map nil to the Object type" do
-      subject[nil].class.should == Parameters::Types::Object
+      subject[nil].should == Parameters::Types::Object
     end
 
     it "should raise a TypeError for unmappable Objects" do
