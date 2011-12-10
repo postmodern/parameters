@@ -4,6 +4,7 @@ module Parameters
   module Types
     class Array < Object
 
+      # The type to coerce all Array elements with
       attr_reader :element_type
 
       #
@@ -44,7 +45,7 @@ module Parameters
       # @return [::Boolean]
       #
       def ===(value)
-        (self.class === value) && value.all? { |element|
+        super(value) && value.all? { |element|
           @element_type === element
         }
       end
@@ -61,7 +62,7 @@ module Parameters
       # @see coerce
       #
       def coerce(value)
-        array = self.class.coerce(value)
+        array = super(value)
         array.map! { |element| @element_type.coerce(element) }
 
         return array

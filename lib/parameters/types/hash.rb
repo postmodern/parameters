@@ -45,7 +45,7 @@ module Parameters
       end
 
       def ===(value)
-        (self.class === value) && value.entries.all? do |k,v|
+        super(value) && value.entries.all? do |k,v|
           (@key_type.nil? || @key_type === k) &&
           (@value_type.nil? || @value_type === v)
         end
@@ -61,7 +61,7 @@ module Parameters
       #   The coerced Hash.
       #
       def coerce(value)
-        hash         = self.class.coerce(value)
+        hash         = super(value)
         coerced_hash = {}
 
         hash.each do |k,v|
