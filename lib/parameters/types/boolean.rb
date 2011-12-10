@@ -4,6 +4,15 @@ module Parameters
   module Types
     class Boolean < Type
 
+      #
+      # Determine if the value is a Boolean.
+      #
+      # @param [true, false] value
+      #   The value to inspect.
+      #
+      # @return [::Boolean]
+      #   Specifies whether the value was a Boolean.
+      #
       def self.===(value)
         (value == true) || (value == false)
       end
