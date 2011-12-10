@@ -7,10 +7,22 @@ module Parameters
       # The base-class of the Class Type
       attr_reader :base_class
 
+      #
+      # Initializes the Class Type.
+      #
+      # @param [Class] base_class
+      #   The base-class to wrap all values within.
+      #
       def initialize(base_class)
         @base_class = base_class
       end
 
+      #
+      # Determines if the value inherites from the base-class.
+      #
+      # @return [Boolean]
+      #   Specifies whether the value inherits from the base-class.
+      #
       def ===(value)
         value.kind_of?(@base_class)
       end

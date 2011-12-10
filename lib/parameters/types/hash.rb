@@ -44,6 +44,15 @@ module Parameters
         end
       end
 
+      #
+      # Determines if the Hash, and all keys/values, are related to the Type.
+      #
+      # @param [Object, Hash] value
+      #   The value to inspect.
+      #
+      # @return [Boolean]
+      #   Specifies whether the Hash, and all keys/values, match the Type.
+      #
       def ===(value)
         super(value) && value.entries.all? do |k,v|
           (@key_type.nil? || @key_type === k) &&
