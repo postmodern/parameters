@@ -45,6 +45,16 @@ module Parameters
       end
 
       #
+      # The Ruby Type that the Hash Type instance represents.
+      #
+      # @return [Hash{Class => Class}]
+      #   A singleton Hash containing the key and value types.
+      #
+      def type
+        ::Hash[@key_type.type => @value_type.type]
+      end
+
+      #
       # Determines if the Hash, and all keys/values, are related to the Type.
       #
       # @param [Object, Hash] value

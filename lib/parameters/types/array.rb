@@ -37,6 +37,16 @@ module Parameters
       end
 
       #
+      # The Ruby Type for the Array Type instance.
+      #
+      # @return [Array<Class>]
+      #   A singleton Array containing the element-type.
+      #
+      def type
+        self.class.type[@element_type.type]
+      end
+
+      #
       # Determines if the value is an Array.
       #
       # @param [::Object] value
