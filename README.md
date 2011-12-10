@@ -85,7 +85,7 @@ have configurable default values.
 
 ## Install
 
-    $ sudo gem install parameters
+    $ gem install parameters
 
 ## License
 
