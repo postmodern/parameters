@@ -13,7 +13,7 @@ module Parameters
       # @return [::Symbol]
       #   The coerced Symbol.
       #
-      def coerce(value)
+      def self.coerce(value)
         if value.respond_to?(:to_sym)
           value.to_sym
         else

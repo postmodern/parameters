@@ -23,7 +23,11 @@ describe Parameters::Types::Hash do
     context "with key-type" do
       let(:string_keys) { {'a' => 1, 'b' => 2} }
 
-      subject { described_class.new(Parameters::Types::Symbol.new,nil) }
+      subject { described_class.new(Parameters::Types::Symbol,Parameters::Types::Object) }
+
+      it "should have an instance type" do
+        subject.type.should == Hash[Symbol => Object]
+      end
 
       describe "#===" do
         it "should check the type of each key" do
@@ -43,7 +47,11 @@ describe Parameters::Types::Hash do
     context "with value-type" do
       let(:string_values) { {:a => '1', :b => '2'} }
 
-      subject { described_class.new(nil,Parameters::Types::Integer.new) }
+      subject { described_class.new(Parameters::Types::Object,Parameters::Types::Integer) }
+
+      it "should have an instance type" do
+        subject.type.should == Hash[Object => Integer]
+      end
 
       describe "#===" do
         it "should check the type of each value" do
@@ -53,7 +61,7 @@ describe Parameters::Types::Hash do
         end
       end
 
-    describe "#coerce" do
+      describe "#coerce" do
         it "should coerce each value" do
           subject.coerce(string_values).should == hash
         end

@@ -2,7 +2,9 @@ require 'spec_helper'
 require 'parameters/types/integer'
 
 describe Parameters::Types::Integer do
-  describe "#coerce" do
+  subject { described_class }
+
+  describe "coerce" do
     it "should call #to_i" do
       subject.coerce(10.0).should == 10
     end

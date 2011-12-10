@@ -18,6 +18,10 @@ describe Parameters::Types::Array do
 
     subject { described_class.new(Parameters::Types::Integer.new) }
 
+    it "should have an instance type" do
+      subject.type.should == Array[Integer]
+    end
+
     describe "#===" do
       it "should check the type of each element" do
         subject.should_not === numbers

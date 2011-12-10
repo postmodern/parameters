@@ -13,7 +13,7 @@ module Parameters
       # @return [::Integer]
       #   The coerced Integer.
       #
-      def coerce(value)
+      def self.coerce(value)
         case value
         when ::String
           value.to_i(0)

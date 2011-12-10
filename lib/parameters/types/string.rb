@@ -13,7 +13,7 @@ module Parameters
       # @return [::String]
       #   The coerced String.
       #
-      def coerce(value)
+      def self.coerce(value)
         value.to_s
       end
 

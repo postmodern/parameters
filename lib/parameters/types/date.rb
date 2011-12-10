@@ -15,7 +15,7 @@ module Parameters
       # @return [::Date]
       #   The coerced Date.
       #
-      def coerce(value)
+      def self.coerce(value)
         if value.respond_to?(:to_date)
           value.to_date
         else

@@ -15,7 +15,7 @@ module Parameters
       # @return [Boolean]
       #   Specifies whether the value inherits `URI::Generic`.
       #
-      def ===(value)
+      def self.===(value)
         value.kind_of?(::URI::Generic)
       end
 
@@ -28,7 +28,7 @@ module Parameters
       # @return [URI::Generic]
       #   The coerced URI.
       #
-      def coerce(value)
+      def self.coerce(value)
         if value.respond_to?(:to_uri)
           value.to_uri
         else

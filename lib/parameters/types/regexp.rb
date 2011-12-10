@@ -13,7 +13,7 @@ module Parameters
       # @return [::Regexp]
       #   The coerced Regular Expression.
       #
-      def coerce(value)
+      def self.coerce(value)
         if value.respond_to?(:to_regexp)
           value.to_regexp
         else

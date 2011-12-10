@@ -2,7 +2,9 @@ require 'spec_helper'
 require 'parameters/types/time'
 
 describe Parameters::Types::Time do
-  describe "#coerce" do
+  subject { described_class }
+
+  describe "coerce" do
     let(:string)    { '2011-12-03 19:39:09 -0800' }
     let(:timestamp) { 1322969949                  }
     let(:time)      { Time.at(1322969949)         }

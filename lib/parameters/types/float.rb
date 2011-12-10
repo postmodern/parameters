@@ -13,7 +13,7 @@ module Parameters
       # @return [::Float]
       #   The coerced Float.
       #
-      def coerce(value)
+      def self.coerce(value)
         if value.respond_to?(:to_f)
           value.to_f
         else
