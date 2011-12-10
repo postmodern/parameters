@@ -22,6 +22,8 @@ have configurable default values.
 
 ## Examples
 
+    require 'parameters'
+
     class Octagon
   
       include Parameters
