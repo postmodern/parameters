@@ -36,6 +36,15 @@ module Parameters
         value
       end
 
+      #
+      # Determines if the value is an Object.
+      #
+      # @return [true]
+      #
+      def ===(value)
+        value.kind_of?(type)
+      end
+
     end
   end
 end

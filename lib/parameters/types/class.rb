@@ -28,16 +28,6 @@ module Parameters
       end
 
       #
-      # Determines if the value inherites from the base-class.
-      #
-      # @return [Boolean]
-      #   Specifies whether the value inherits from the base-class.
-      #
-      def ===(value)
-        value.kind_of?(@base_class)
-      end
-
-      #
       # Coerces a value into an instance of the Class.
       #
       # @param [Object] value
