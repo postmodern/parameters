@@ -5,6 +5,13 @@ module Parameters
     class Boolean < Type
 
       #
+      # @return [true]
+      #
+      def self.type
+        true
+      end
+
+      #
       # Determine if the value is a Boolean.
       #
       # @param [true, false] value

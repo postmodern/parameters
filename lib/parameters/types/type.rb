@@ -3,6 +3,24 @@ module Parameters
     class Type
 
       #
+      # The Ruby Class the type represents.
+      #
+      # @return [Class]
+      #   A Ruby Class the Type represents.
+      #
+      # @abstract
+      #
+      def self.type
+      end
+
+      #
+      # @see type
+      #
+      def type
+        self.class.type
+      end
+
+      #
       # Determines if the value is an instance of the Type.
       #
       # @return [Boolean]
