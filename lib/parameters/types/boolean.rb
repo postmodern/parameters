@@ -2,9 +2,9 @@ require 'parameters/types/object'
 
 module Parameters
   module Types
-    class Boolean < Object
+    class Boolean < Type
 
-      def ===(value)
+      def self.===(value)
         (value == true) || (value == false)
       end
 
@@ -17,7 +17,7 @@ module Parameters
       # @return [true, false]
       #   The Boolean value.
       #
-      def coerce(value)
+      def self.coerce(value)
         case value
         when FalseClass, NilClass, 'false', :false
           false
