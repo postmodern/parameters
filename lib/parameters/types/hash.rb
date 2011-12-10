@@ -64,7 +64,7 @@ module Parameters
       #   Specifies whether the Hash, and all keys/values, match the Type.
       #
       def ===(value)
-        super(value) && value.entries.all? do |k,v|
+        (self.class === value) && value.entries.all? do |k,v|
           (@key_type.nil? || @key_type === k) &&
           (@value_type.nil? || @value_type === v)
         end

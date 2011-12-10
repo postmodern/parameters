@@ -55,7 +55,7 @@ module Parameters
       # @return [::Boolean]
       #
       def ===(value)
-        super(value) && value.all? { |element|
+        (self.class === value) && value.all? { |element|
           @element_type === element
         }
       end
