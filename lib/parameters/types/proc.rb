@@ -4,6 +4,9 @@ module Parameters
   module Types
     class Proc < Type
 
+      # The callback that will coerce values
+      attr_reader :callback
+
       #
       # Creates a new Proc type.
       #
