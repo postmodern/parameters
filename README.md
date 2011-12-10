@@ -1,8 +1,9 @@
 # Parameters
 
-* [parameters.rubyforge.org](http://parameters.rubyforge.org/)
-* [github.com/postmodern/parameters](http://github.com/postmodern/parameters/)
-* Postmodern (postmodern.mod3 at gmail.com)
+* [Source](http://github.com/postmodern/parameters)
+* [Issues](http://github.com/postmodern/parameters/issues)
+* [Documentation](http://rubydoc.info/gems/parameters/frames)
+* [Email](mailto:postmodern.mod3 at gmail.com)
 
 ## Description
 
