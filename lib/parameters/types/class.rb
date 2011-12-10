@@ -1,8 +1,8 @@
-require 'parameters/types/type'
+require 'parameters/types/object'
 
 module Parameters
   module Types
-    class Class < Type
+    class Class < Object
 
       # The base-class of the Class Type
       attr_reader :base_class
@@ -15,6 +15,16 @@ module Parameters
       #
       def initialize(base_class)
         @base_class = base_class
+      end
+
+      #
+      # The Ruby Class the type represents.
+      #
+      # @return [Class]
+      #   The base-class of the Class Type.
+      #
+      def type
+        @base_class
       end
 
       #
