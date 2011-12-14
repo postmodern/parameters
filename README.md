@@ -45,28 +45,26 @@ have configurable default values.
       # URI, Regexp, DateTime, Date, Symbol, String, Integer, Float
       # and true (for boolean types).
       #
-      parameter :radius,
-                :type => Float,
-                :description => 'The radius of the Octagon'
+      parameter :radius, :type        => Float,
+                         :description => 'The radius of the Octagon'
 
       #
       # A parameter with a lambda for a default value
       #
-      parameter :opacity,
-                :default => lambda { rand },
-                :description => 'The opacity of the Octagon'
+      parameter :opacity, :default     => lambda { rand },
+                          :description => 'The opacity of the Octagon'
   
     end
   
     # Create an object with default values for all parameters
     oct = Octagon.new
-    oct.x # => 0
-    oct.y # => 0.5
+    oct.x       # => 0
+    oct.y       # => 0.5
     oct.opacity # => 0.25
   
     # Create an object with the given parameter values.
     oct = Octagon.new(:radius => 10)
-    oct.radius # => 10
+    oct.radius  # => 10
     oct.opacity # => 0.7
   
     # Set parameter values of a class
@@ -76,7 +74,7 @@ have configurable default values.
     # Create an object with parameter defaulte values inherited from the
     # class parameters
     oct = Octagon.new
-    oct.radius # => 33
+    oct.radius  # => 33
     oct.opacity # => 0.3
 
     # Coerce data from the command-line into the given parameter type
