@@ -31,10 +31,6 @@ describe Parameters::Types::Boolean do
       subject.coerce(:false).should == false
     end
 
-    it "should map nil to false" do
-      subject.coerce(nil).should == false
-    end
-
     it "should map everything else to true" do
       subject.coerce(:foo).should == true
     end

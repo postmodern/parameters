@@ -54,7 +54,7 @@ module Parameters
     #   The coerced value.
     #
     def coerce(value)
-      if @type === value 
+      if (value.nil? || (@type === value))
         value
       else
         @type.coerce(value)

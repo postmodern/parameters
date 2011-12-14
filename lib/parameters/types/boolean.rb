@@ -35,7 +35,7 @@ module Parameters
       #
       def self.coerce(value)
         case value
-        when FalseClass, NilClass, 'false', :false
+        when FalseClass, 'false', :false
           false
         else
           true
