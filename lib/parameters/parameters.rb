@@ -19,32 +19,7 @@ module Parameters
   #
   def initialize_params(values={})
     self.class.each_param do |param|
-      new_param = InstanceParam.new(
-        self,
-        param.name,
-        param.type,
-        param.description
-      )
-
-      # do not override existing instance value if present
-      if new_param.value.nil?
-        new_param.value = case param.value
-                          when Proc
-                            if param.value.arity > 0
-                              param.value.call(self)
-                            else
-                              param.value.call()
-                            end
-                          else
-                            begin
-                              param.value.clone
-                            rescue TypeError
-                              param.value
-                            end
-                          end
-      end
-
-      self.params[param.name] = new_param
+      self.params[param.name] = param.to_instance(self)
     end
 
     self.params = values if values.kind_of?(Hash)
@@ -88,30 +63,6 @@ module Parameters
   #
   def parameter(name,options={})
     name    = name.to_sym
-    default = options[:default]
-
-    # create the new parameter
-    new_param = InstanceParam.new(
-      self,
-      name,
-      options[:type],
-      options[:description]
-    )
-
-    # set the instance variable
-    new_param.value = case default
-                      when Proc
-                        if default.arity > 0
-                          default.call(self)
-                        else
-                          default.call()
-                        end
-                      else
-                        default
-                      end
-
-    # add the new parameter
-    self.params[name] = new_param
 
     instance_eval %{
       # define the reader method for the parameter
@@ -125,6 +76,17 @@ module Parameters
       end
     }
 
+    # create the new parameter
+    new_param = InstanceParam.new(
+      self,
+      name,
+      options[:type],
+      options[:description],
+      options[:default]
+    )
+
+    # add the new parameter
+    self.params[name] = new_param
     return new_param
   end
 

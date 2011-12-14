@@ -22,10 +22,30 @@ module Parameters
     # @param [String, nil] description
     #   The description of the instance parameter.
     #
-    def initialize(object,name,type=nil,description=nil)
+    # @param [Object] value
+    #   The initial value for the instance parameter.
+    #
+    def initialize(object,name,type=nil,description=nil,value=nil)
       super(name,type,description)
 
       @object = object
+
+      if (self.value.nil? && value)
+        self.value = case value
+                     when Proc
+                       if value.arity > 0
+                         value.call(@object)
+                       else
+                         value.call()
+                       end
+                     else
+                       begin
+                         value.clone
+                       rescue TypeError
+                         value
+                       end
+                     end
+      end
     end
 
     #

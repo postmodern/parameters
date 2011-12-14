@@ -43,6 +43,29 @@ module Parameters
     end
 
     #
+    # Creates an instance parameter from the class param.
+    #
+    # @param [Object] object
+    #   The object the instance parameter should be connected to.
+    #
+    # @return [InstanceParam]
+    #   The new instance parameter.
+    #
+    # @since 0.3.0
+    #
+    # @api semipublic
+    #
+    def to_instance(object)
+      InstanceParam.new(
+        object,
+        @name,
+        @type,
+        @description,
+        @value
+      )
+    end
+
+    #
     # @return [String]
     #   The representation of the class param.
     #

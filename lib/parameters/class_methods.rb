@@ -67,14 +67,6 @@ module Parameters
     def parameter(name,options={})
       name = name.to_sym
 
-      # add the parameter to the class params list
-      params[name] = Parameters::ClassParam.new(
-        name,
-        options[:type],
-        options[:description],
-        options[:default]
-      )
-
       # define the reader class method for the parameter
       meta_def(name) do
         get_param(name).value
@@ -87,6 +79,18 @@ module Parameters
 
       # define the getter/setter instance methods for the parameter
       attr_accessor(name)
+
+      # create the new parameter
+      new_param = Parameters::ClassParam.new(
+        name,
+        options[:type],
+        options[:description],
+        options[:default]
+      )
+
+      # add the parameter to the class params list
+      params[name] = new_param
+      return new_param
     end
 
     #
