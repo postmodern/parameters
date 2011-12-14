@@ -7,9 +7,9 @@ describe Parameters::Types::Date do
   describe "coerce" do
     let(:string) { '2010-02-18'        }
     let(:date)   { Date.new(2010,2,18) }
-    let(:time)   { date.to_time        }
+    let(:time)   { Time.parse(string)  }
 
-    it "should call #to_time when possible" do
+    it "should call #to_date when possible" do
       subject.coerce(time).should == date
     end
 

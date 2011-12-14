@@ -8,7 +8,7 @@ describe Parameters::Types::Time do
     let(:string)    { '2011-12-03 19:39:09 -0800' }
     let(:timestamp) { 1322969949                  }
     let(:time)      { Time.at(1322969949)         }
-    let(:date)      { time.to_datetime            }
+    let(:date)      { DateTime.parse(string)      }
 
     it "should accept Integers" do
       subject.coerce(timestamp).should == time
