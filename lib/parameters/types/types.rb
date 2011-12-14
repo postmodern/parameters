@@ -23,7 +23,7 @@ module Parameters
     #   Specifies whether the type was defined within {Types}.
     #
     def self.type_defined?(name)
-      const_defined?(name,false)
+      const_defined?(name) && (const_get(name) < Type)
     end
 
     #
@@ -39,17 +39,13 @@ module Parameters
     #   The type could not be found.
     #
     def self.type_get(name)
-      const_get(name,false)
-    end
+      type = const_get(name)
 
-    if RUBY_VERSION < '1.9'
-      def self.type_defined?(name)
-        const_defined?(name)
+      unless type < Type
+        raise(NameError,"unknown Parameter Type: #{name}")
       end
 
-      def self.type_get(name)
-        const_get(name)
-      end
+      return type
     end
 
     #
