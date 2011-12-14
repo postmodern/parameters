@@ -31,7 +31,7 @@ module Parameters
         if has_param?(name)
           get_param(name).value = case value
                                   when Parameters::ClassParam,
-                                    Parameters::InstanceParam
+                                       Parameters::InstanceParam
                                     value.value
                                   else
                                     value
