@@ -148,6 +148,9 @@ module Parameters
     # @return [Object]
     #   The new value of the class parameter.
     #
+    # @raise [ParamNotfound]
+    #   No class parameter with the specified name could be found.
+    #
     # @since 0.3.0
     #
     def set_param(name,value)

@@ -191,6 +191,9 @@ module Parameters
   # @return [Object]
   #   The new value of the instance parameter.
   #
+  # @raise [ParamNotfound]
+  #   No instance parameter with the specified name could be found.
+  #
   # @example
   #   obj.set_param('var',2)
   #   # => 2
