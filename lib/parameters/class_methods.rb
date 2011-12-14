@@ -159,9 +159,7 @@ module Parameters
       ancestors.each do |ancestor|
         if ancestor.included_modules.include?(Parameters)
           if ancestor.params.has_key?(name)
-            param = ancestor.params[name]
-
-            return param.set(value)
+            return ancestor.params[name].set(value)
           end
         end
       end
