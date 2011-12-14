@@ -94,9 +94,11 @@ module Parameters
     end
 
     #
+    # Determines if a class parameter exists with the given name.
+    #
     # @return [Boolean]
     #   Specifies whether or not there is a class parameter with the
-    #   specified _name_.
+    #   specified name.
     #
     def has_param?(name)
       name = name.to_sym
@@ -117,10 +119,10 @@ module Parameters
     #   The class parameter name to search for.
     #
     # @return [ClassParam]
-    #   The class parameter with the matching _name_.
+    #   The class parameter with the matching name.
     #
     # @raise [ParamNotFound]
-    #   No class parameter with the specified _name_ could be found.
+    #   No class parameter with the specified name could be found.
     #
     def get_param(name)
       name = name.to_sym
