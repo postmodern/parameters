@@ -25,7 +25,7 @@ describe Parameters::Types::Hash do
 
       subject { described_class.new(Parameters::Types::Symbol,Parameters::Types::Object) }
 
-      it "should have an instance type" do
+      it "should have a Ruby type" do
         subject.to_ruby.should == Hash[Symbol => Object]
       end
 
@@ -49,7 +49,7 @@ describe Parameters::Types::Hash do
 
       subject { described_class.new(Parameters::Types::Object,Parameters::Types::Integer) }
 
-      it "should have an instance type" do
+      it "should have a Ruby type" do
         subject.to_ruby.should == Hash[Object => Integer]
       end
 

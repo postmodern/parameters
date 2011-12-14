@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'parameters/types/object'
 
 describe Parameters::Types::Object do
-  describe "type" do
+  describe "to_ruby" do
     it "should lookup the Ruby Class that the Type is named after" do
       described_class.to_ruby.should == ::Object
     end
