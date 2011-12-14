@@ -4,7 +4,7 @@ require 'parameters/types/object'
 describe Parameters::Types::Object do
   describe "type" do
     it "should lookup the Ruby Class that the Type is named after" do
-      described_class.type.should == ::Object
+      described_class.to_ruby.should == ::Object
     end
   end
 

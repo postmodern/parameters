@@ -23,7 +23,7 @@ module Parameters
       # @return [Class]
       #   The base-class of the Class Type.
       #
-      def type
+      def to_ruby
         @base_class
       end
 

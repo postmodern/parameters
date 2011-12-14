@@ -10,8 +10,8 @@ module Parameters
       # @return [Class]
       #   The Ruby Class that matches the Types name.
       #
-      def self.type
-        @type ||= ::Object.const_get(self.name.split('::').last)
+      def self.to_ruby
+        @ruby_class ||= ::Object.const_get(self.name.split('::').last)
       end
 
       #
@@ -20,7 +20,7 @@ module Parameters
       # @return [true]
       #
       def self.===(value)
-        value.kind_of?(type)
+        value.kind_of?(to_ruby)
       end
 
       #
@@ -42,7 +42,7 @@ module Parameters
       # @return [true]
       #
       def ===(value)
-        value.kind_of?(type)
+        value.kind_of?(to_ruby)
       end
 
     end

@@ -20,7 +20,7 @@ describe Parameters::Types::Set do
     subject { described_class.new(Parameters::Types::Integer.new) }
 
     it "should have an instance type" do
-      subject.type.should == Set[Integer]
+      subject.to_ruby.should == Set[Integer]
     end
 
     describe "#===" do

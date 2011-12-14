@@ -10,14 +10,14 @@ module Parameters
       #
       # @abstract
       #
-      def self.type
+      def self.to_ruby
       end
 
       #
-      # @see type
+      # @see to_ruby
       #
-      def type
-        self.class.type
+      def to_ruby
+        self.class.to_ruby
       end
 
       #

@@ -42,8 +42,8 @@ module Parameters
       # @return [Array<Class>]
       #   A singleton Array containing the element-type.
       #
-      def type
-        self.class.type[@element_type.type]
+      def to_ruby
+        self.class.to_ruby[@element_type.to_ruby]
       end
 
       #

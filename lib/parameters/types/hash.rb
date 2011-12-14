@@ -50,8 +50,8 @@ module Parameters
       # @return [Hash{Class => Class}]
       #   A singleton Hash containing the key and value types.
       #
-      def type
-        ::Hash[@key_type.type => @value_type.type]
+      def to_ruby
+        ::Hash[@key_type.to_ruby => @value_type.to_ruby]
       end
 
       #
