@@ -94,6 +94,23 @@ module Parameters
     end
 
     #
+    # @return [Boolean]
+    #   Specifies whether or not there is a class parameter with the
+    #   specified _name_.
+    #
+    def has_param?(name)
+      name = name.to_sym
+
+      ancestors.each do |ancestor|
+        if ancestor.included_modules.include?(Parameters)
+          return true if ancestor.params.has_key?(name)
+        end
+      end
+
+      return false
+    end
+
+    #
     # Searches for the class parameter with the matching name.
     #
     # @param [Symbol, String] name
@@ -120,20 +137,33 @@ module Parameters
     end
 
     #
-    # @return [Boolean]
-    #   Specifies whether or not there is a class parameter with the
-    #   specified _name_.
+    # Sets a class parameter.
     #
-    def has_param?(name)
+    # @param [Symbol, String] name
+    #   The name of the class parameter.
+    #
+    # @param [Object] value
+    #   The new value for the class parameter.
+    #
+    # @return [Object]
+    #   The new value of the class parameter.
+    #
+    # @since 0.3.0
+    #
+    def set_param(name,value)
       name = name.to_sym
 
       ancestors.each do |ancestor|
         if ancestor.included_modules.include?(Parameters)
-          return true if ancestor.params.has_key?(name)
+          if ancestor.params.has_key?(name)
+            param = ancestor.params[name]
+
+            return param.set(value)
+          end
         end
       end
 
-      return false
+      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self}")
     end
 
     #
