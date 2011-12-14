@@ -1,3 +1,10 @@
+### 0.3.0 / 2011-12-13
+
+* Added {Parameters::ClassMethods#set_param}.
+* Added {Parameters#set_param}.
+* Added {Parameters::Types}.
+* Improved the type coercion logic (via {Parameters::Types}).
+
 ### 0.2.3 / 2010-10-27
 
 * Have parameter reader/writer class-methods search down the ancestory
