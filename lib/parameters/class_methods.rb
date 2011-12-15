@@ -13,7 +13,7 @@ module Parameters
     #   Parameters for the class.
     #
     def params
-      @params ||= {}
+      @_params ||= {}
     end
 
     #
