@@ -126,7 +126,7 @@ module Parameters
     #   The USAGE String for the option.
     #   
     def self.define(opts,param,options={})
-      usage = options.fetch(:usage,self.usage(param))
+      usage = (options[:usage] || self.usage(param))
       args  = []
 
       args << options[:flag] if options[:flag]
