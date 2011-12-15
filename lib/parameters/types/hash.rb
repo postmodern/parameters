@@ -15,7 +15,7 @@ module Parameters
       #
       # @param [Type] value_type
       #
-      def initialize(key_type,value_type)
+      def initialize(key_type=Object,value_type=Object)
         @key_type   = key_type
         @value_type = value_type
       end
