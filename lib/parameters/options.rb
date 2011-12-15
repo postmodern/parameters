@@ -10,7 +10,6 @@ module Parameters
   module Options
     # The usage messages for various Parameter {Types}.
     USAGES = {
-      Types::Boolean  => 'yes|no',
       Types::Integer  => 'NUM',
       Types::Float    => 'DEC',
       Types::Symbol   => 'NAME',
@@ -126,11 +125,18 @@ module Parameters
     #   The USAGE String for the option.
     #   
     def self.define(opts,param,options={})
-      usage = (options[:usage] || self.usage(param))
+      short_flag = options[:flag]
+      long_flag  = flag(param)
+      usage      = (options[:usage] || self.usage(param))
+
       args  = []
 
-      args << options[:flag] if options[:flag]
-      args << "#{flag(param)} [#{usage}]"
+      args << short_flag if short_flag
+      args << if usage
+                "#{long_flag} [#{usage}]"
+              else
+                long_flag
+              end
 
       args << accepts(param)
 
