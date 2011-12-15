@@ -79,6 +79,25 @@ module Parameters
       end
 
       #
+      # Compares the instance type with another type.
+      #
+      # @param [Hash, Type] other
+      #   The other type to compare against.
+      #
+      # @return [::Boolean]
+      #   Specificies whether the instance type has the same key/value
+      #   types as the other Hash instance type.
+      #
+      # @since 0.3.1
+      #
+      def ==(other)
+        super(other) && (
+          (@key_type   == other.key_type) &&
+          (@value_type == other.value_type)
+        )
+      end
+
+      #
       # Determines if the Hash, and all keys/values, are related to the Type.
       #
       # @param [Object, Hash] value

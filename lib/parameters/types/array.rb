@@ -59,6 +59,22 @@ module Parameters
       end
 
       #
+      # Compares the instance type with another type.
+      #
+      # @param [Array, Type] other
+      #   The other type to compare against.
+      #
+      # @return [::Boolean]
+      #   Specificies whether the instance type has the same element type
+      #   as the other Array instance type.
+      #
+      # @since 0.3.1
+      #
+      def ==(other)
+        super(other) && (@element_type == other.element_type)
+      end
+
+      #
       # Determines if the value is an Array.
       #
       # @param [::Object] value

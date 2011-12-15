@@ -15,12 +15,17 @@ describe Parameters::Types::Set do
   end
 
   context "instance" do
-    let(:numbers) { %w[1 2 3] }
+    let(:element_type) { Parameters::Types::Integer }
+    let(:numbers)      { %w[1 2 3]                  }
 
-    subject { described_class.new(Parameters::Types::Integer.new) }
+    subject { described_class.new(element_type) }
 
     it "should have a Ruby type" do
       subject.to_ruby.should == Set[Integer]
+    end
+
+    it "should be equal to another Set type with the same element-type" do
+      subject.should == described_class.new(element_type)
     end
 
     it "should be related to the Array type" do
