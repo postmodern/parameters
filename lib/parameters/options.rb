@@ -151,8 +151,7 @@ module Parameters
             param.value.merge!(param.coerce(value))
           end
         end
-      elsif (param.type <= Types::Array) ||
-            (param.type <= Types::Set)
+      elsif param.type <= Types::Array
         opts.on(*args) do |value|
           if param.value.nil?
             param.value = value
