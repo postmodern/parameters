@@ -21,6 +21,30 @@ module Parameters
       end
 
       #
+      # The key type of the Hash type.
+      #
+      # @return [Object]
+      #   The default key type.
+      #
+      # @since 0.3.1
+      #
+      def self.key_type
+        Object
+      end
+
+      #
+      # The value type of the Hash type.
+      #
+      # @return [Object]
+      #   The default value type.
+      #
+      # @since 0.3.1
+      #
+      def self.value_type
+        Object
+      end
+
+      #
       # Coerces a value into a Hash.
       #
       # @param [::Array, #to_hash, ::Object] value

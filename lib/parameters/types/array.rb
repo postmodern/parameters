@@ -18,6 +18,18 @@ module Parameters
       end
 
       #
+      # The element type of the Array type.
+      #
+      # @return [Object]
+      #   The default element type.
+      #
+      # @since 0.3.1
+      #
+      def self.element_type
+        Object
+      end
+
+      #
       # Coerces a value into an Array.
       #
       # @param [#to_a, ::Object] value
