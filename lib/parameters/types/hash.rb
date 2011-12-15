@@ -26,7 +26,7 @@ module Parameters
       # @return [Object]
       #   The default key type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def self.key_type
         Object
@@ -38,7 +38,7 @@ module Parameters
       # @return [Object]
       #   The default value type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def self.value_type
         Object
@@ -88,7 +88,7 @@ module Parameters
       #   Specificies whether the instance type has the same key/value
       #   types as the other Hash instance type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def ==(other)
         super(other) && (

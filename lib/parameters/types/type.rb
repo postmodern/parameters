@@ -56,7 +56,7 @@ module Parameters
       #   Specifies that the type has the same class as the other instance
       #   type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def ==(other)
         self.class == other.class
@@ -72,7 +72,7 @@ module Parameters
       #   Specifies whether the instance of the type inherites from another
       #   type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def <(other)
         if other.kind_of?(Type)
@@ -92,7 +92,7 @@ module Parameters
       #   Specifies whether the instance type inherits from the other
       #   class type, or shares the same class as the other instance type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def <=(other)
         (self < other) || (self == other)

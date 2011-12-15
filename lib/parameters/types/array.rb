@@ -23,7 +23,7 @@ module Parameters
       # @return [Object]
       #   The default element type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def self.element_type
         Object
@@ -68,7 +68,7 @@ module Parameters
       #   Specificies whether the instance type has the same element type
       #   as the other Array instance type.
       #
-      # @since 0.3.1
+      # @since 0.4.0
       #
       def ==(other)
         super(other) && (@element_type == other.element_type)
