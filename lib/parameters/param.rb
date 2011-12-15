@@ -36,8 +36,6 @@ module Parameters
       @description = description
     end
 
-    protected
-
     #
     # Coerces the value into the param type.
     #
