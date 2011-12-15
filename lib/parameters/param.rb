@@ -18,7 +18,7 @@ module Parameters
     # @param [Symbol, String] name
     #   The name of the parameter.
     #
-    # @param [Class] type
+    # @param [Class, nil] type
     #   The enforced type of the parameter.
     #
     # @param [String, nil] description
@@ -26,15 +26,9 @@ module Parameters
     #
     def initialize(name,type=nil,description=nil)
       @name = name.to_sym
-      @type = case type
-              when Types::Type
+      @type = if (type.kind_of?(Types::Type)) ||
+                 (type.kind_of?(Class) && (type < Types::Type))
                 type
-              when Class
-                if type < Types::Type
-                  type
-                else
-                  Types[type]
-                end
               else
                 Types[type]
               end
