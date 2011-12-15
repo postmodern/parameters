@@ -20,6 +20,10 @@ describe Parameters::Types::Hash do
   end
 
   context "instance" do
+    it "should be related to the Array type" do
+      subject.should < described_class
+    end
+
     context "with key-type" do
       let(:string_keys) { {'a' => 1, 'b' => 2} }
 

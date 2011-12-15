@@ -22,6 +22,10 @@ describe Parameters::Types::Array do
       subject.to_ruby.should == Array[Integer]
     end
 
+    it "should be related to the Array type" do
+      subject.should < described_class
+    end
+
     describe "#===" do
       it "should check the type of each element" do
         subject.should_not === numbers

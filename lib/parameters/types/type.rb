@@ -47,6 +47,22 @@ module Parameters
       end
 
       #
+      # Determines if the instance of the type is related to another Type.
+      #
+      # @param [Type] type
+      #   The other type class.
+      #
+      # @return [::Boolean]
+      #   Specifies whether the instance of the type inherites from another
+      #   type.
+      #
+      # @since 0.3.1
+      #
+      def <(other)
+        kind_of?(other) || (self.class <= other)
+      end
+
+      #
       # @see ===
       #
       def ===(value)
