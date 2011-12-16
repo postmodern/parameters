@@ -74,6 +74,10 @@ module Parameters
       def #{name}=(new_value)
         get_param(#{name.inspect}).value = new_value
       end
+
+      def #{name}?
+        !!get_param(#{name.inspect}).value
+      end
     }
 
     # create the new parameter

@@ -77,6 +77,11 @@ module Parameters
         get_param(name).value = value
       end
 
+      # define the ? method, to determine if the parameter is set
+      meta_def("#{name}?") do
+        !!get_param(name).value
+      end
+
       # define the reader instance methods for the parameter
       define_method(name) do
         get_param(name).value
@@ -85,6 +90,11 @@ module Parameters
       # define the writter instance methods for the parameter
       define_method("#{name}=") do |value|
         get_param(name).value = value
+      end
+
+      # define the ? method, to determine if the parameter is set
+      define_method("#{name}?") do
+        !!get_param(name).value
       end
 
       # create the new parameter

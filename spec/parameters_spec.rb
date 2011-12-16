@@ -36,9 +36,17 @@ describe Parameters do
       subject.param_value(:var_with_default).should == 'thing'
     end
 
-    it "should provide class methods for paremters" do
+    it "should provide class reader/writter methods for paremters" do
       subject.var = 1
       subject.var.should == 1
+    end
+
+    it "should provide class ? method to check if the parameter is set" do
+      subject.var = nil
+      subject.var?.should == false
+
+      subject.var = 2
+      subject.var?.should == true
     end
 
     it "should inherite the super-classes parameters" do
@@ -111,9 +119,17 @@ describe Parameters do
       subject.param_value(:var_with_default).should == 'thing'
     end
 
-    it "should provide instance methods for parameters" do
+    it "should provide instance reader/writter methods for parameters" do
       subject.var = 2
       subject.var.should == 2
+    end
+
+    it "should provide instance ? methods to check if the parameter was set" do
+      subject.var = nil
+      subject.var?.should == false
+
+      subject.var = 2
+      subject.var?.should == true
     end
 
     it "should set instance variables for paramters" do
@@ -224,6 +240,14 @@ describe Parameters do
     it "should add writer methods for parameters" do
       subject.new_param = 10
       subject.new_param.should == 10
+    end
+
+    it "should define ? method to determine if the parameter is set" do
+      subject.new_param = nil
+      subject.new_param?.should == false
+
+      subject.new_param = 10
+      subject.new_param?.should == true
     end
 
     it "should set the instance variables of parameters" do
