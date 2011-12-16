@@ -1,3 +1,11 @@
+### 0.3.1 / 2011-12-16
+
+* Do not coerce `nil` values.
+* Instance reader/writer methods for parameters now use
+  {Parameters::InstanceParam#value} and {Parameters::InstanceParam#value=}.
+* Renamed the internal `@params` instance variables to `@_params` to avoid
+  collisions.
+
 ### 0.3.0 / 2011-12-13
 
 * Added {Parameters::ClassMethods#set_param}.
