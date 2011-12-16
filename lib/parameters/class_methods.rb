@@ -77,8 +77,15 @@ module Parameters
         get_param(name).value = value
       end
 
-      # define the getter/setter instance methods for the parameter
-      attr_accessor(name)
+      # define the reader instance methods for the parameter
+      define_method(name) do
+        get_param(name).value
+      end
+
+      # define the writter instance methods for the parameter
+      define_method("#{name}=") do |value|
+        get_param(name).value = value
+      end
 
       # create the new parameter
       new_param = Parameters::ClassParam.new(
