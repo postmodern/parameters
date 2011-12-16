@@ -194,22 +194,6 @@ module Parameters
       end
     end
 
-    #
-    # Parses options into the parameters.
-    #
-    # @param [Parameters] object
-    #   The Class or Object that included Parameters.
-    #
-    # @param [Array<String>] argv
-    #   The arguments to parse.
-    #
-    # @return [Array<String>]
-    #   Additional arguments.
-    #
-    def self.parse(object,argv=ARGV)
-      parser(object).parse(argv)
-    end
-
     protected
 
     # accept pattern for Symbols
