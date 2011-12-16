@@ -175,6 +175,12 @@ module Parameters
     # @param [OptionParser] opts
     #   The option parser to define the parameter options within.
     #
+    # @yield [opts]
+    #   If a block is given, it will be passed the newly created OptionParser.
+    #
+    # @yieldparam [OptionParser] opts
+    #   The newly created OptionParser.
+    #
     # @return [OptionParser]
     #   The defined OptionParser.
     #
@@ -183,6 +189,8 @@ module Parameters
         object.each_param do |param|
           define(opts,param)
         end
+
+        yield opts if block_given?
       end
     end
 
