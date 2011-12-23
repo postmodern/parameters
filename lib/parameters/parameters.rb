@@ -25,7 +25,7 @@ module Parameters
         #
         def self.extended(object)
           each_param do |param|
-            object.params[param.name] = param.to_instance(self)
+            object.params[param.name] = param.to_instance(object)
           end
         end
       end
