@@ -18,6 +18,16 @@ module Parameters
         def self.included(base)
           base.extend Parameters::ClassMethods
         end
+
+        #
+        # Ensures that the module will initialize parameters, when extended
+        # into an Object.
+        #
+        def self.extended(object)
+          each_param do |param|
+            object.params[param.name] = param.to_instance(self)
+          end
+        end
       end
     end
   end
