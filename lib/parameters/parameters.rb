@@ -129,7 +129,7 @@ module Parameters
   #   The instance parameters of the object.
   #
   def params
-    @_params ||= {}
+    @parameters ||= {}
   end
 
   #
