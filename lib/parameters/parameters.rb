@@ -24,8 +24,10 @@ module Parameters
   #   The names and values to initialize the instance parameters to.
   #
   def initialize_params(values={})
-    self.class.each_param do |param|
-      self.params[param.name] = param.to_instance(self)
+    if self.class.included_modules.include?(Parameters)
+      self.class.each_param do |param|
+        self.params[param.name] = param.to_instance(self)
+      end
     end
 
     self.params = values if values.kind_of?(Hash)
