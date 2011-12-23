@@ -8,6 +8,18 @@ require 'parameters/extensions/meta'
 module Parameters
   def self.included(base)
     base.extend ClassMethods
+
+    if base.kind_of?(Module)
+      base.module_eval do
+        #
+        # Ensures that the module will re-extend Parameters::ClassMethods,
+        # when included.
+        #
+        def self.included(base)
+          base.extend Parameters::ClassMethods
+        end
+      end
+    end
   end
 
   #
