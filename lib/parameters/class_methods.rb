@@ -4,10 +4,6 @@ require 'parameters/extensions/meta'
 
 module Parameters
   module ClassMethods
-    def included(base)
-      base.extend ClassMethods
-    end
-
     #
     # @return [Hash]
     #   Parameters for the class.

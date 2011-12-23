@@ -1,5 +1,6 @@
 require 'parameters/exceptions'
 require 'parameters/class_methods'
+require 'parameters/module_methods'
 require 'parameters/class_param'
 require 'parameters/instance_param'
 require 'parameters/exceptions'
@@ -10,25 +11,8 @@ module Parameters
     base.extend ClassMethods
 
     if base.kind_of?(Module)
-      base.module_eval do
-        #
-        # Ensures that the module will re-extend Parameters::ClassMethods,
-        # when included.
-        #
-        def self.included(base)
-          base.extend Parameters::ClassMethods
-        end
-
-        #
-        # Ensures that the module will initialize parameters, when extended
-        # into an Object.
-        #
-        def self.extended(object)
-          each_param do |param|
-            object.params[param.name] = param.to_instance(object)
-          end
-        end
-      end
+      # add Module specific methods
+      base.extend Parameters::ModuleMethods
     end
   end
 
