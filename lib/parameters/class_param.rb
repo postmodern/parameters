@@ -73,7 +73,7 @@ module Parameters
       text = @name.to_s
 
       text << " [#{@value.inspect}]" if @value
-      text << "\t#{@description}" if @description
+      text << "\t#{@description}"    if @description
 
       return text
     end
