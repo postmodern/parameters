@@ -244,7 +244,9 @@ module Parameters
     #   The inspected parameter set.
     #
     def inspect
-      "#<#{self.class}: #{@set.inspect}>"
+      "#<#{self.class}: " + @set.each_value.map { |param|
+        "#{param.name}: #{param.value.inspect}"
+      }.join(', ') + '>'
     end
 
   end
