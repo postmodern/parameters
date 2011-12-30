@@ -76,6 +76,18 @@ module Parameters
     end
 
     #
+    # Determines if the parameter has a value.
+    #
+    # @return [Boolean]
+    #   Specifies if the parameter has a value yet.
+    #
+    # @since 0.5.0
+    #
+    def value?
+      !!value
+    end
+
+    #
     # Sets the value of the param.
     #
     # @param [Object] value
