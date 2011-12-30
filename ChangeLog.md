@@ -1,3 +1,8 @@
+### 0.4.0 / 2011-12-29
+
+* Added {Parameters::Options}.
+* Added {Parameters::Types} which handles type coercion for Parameters.
+
 ### 0.3.1 / 2011-12-16
 
 * Do not coerce `nil` values.
