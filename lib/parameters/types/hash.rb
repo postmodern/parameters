@@ -15,9 +15,33 @@ module Parameters
       #
       # @param [Type] value_type
       #
-      def initialize(key_type,value_type)
+      def initialize(key_type=Object,value_type=Object)
         @key_type   = key_type
         @value_type = value_type
+      end
+
+      #
+      # The key type of the Hash type.
+      #
+      # @return [Object]
+      #   The default key type.
+      #
+      # @since 0.4.0
+      #
+      def self.key_type
+        Object
+      end
+
+      #
+      # The value type of the Hash type.
+      #
+      # @return [Object]
+      #   The default value type.
+      #
+      # @since 0.4.0
+      #
+      def self.value_type
+        Object
       end
 
       #
@@ -52,6 +76,25 @@ module Parameters
       #
       def to_ruby
         ::Hash[@key_type.to_ruby => @value_type.to_ruby]
+      end
+
+      #
+      # Compares the instance type with another type.
+      #
+      # @param [Hash, Type] other
+      #   The other type to compare against.
+      #
+      # @return [::Boolean]
+      #   Specificies whether the instance type has the same key/value
+      #   types as the other Hash instance type.
+      #
+      # @since 0.4.0
+      #
+      def ==(other)
+        super(other) && (
+          (@key_type   == other.key_type) &&
+          (@value_type == other.value_type)
+        )
       end
 
       #

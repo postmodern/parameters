@@ -4,16 +4,14 @@ require 'parameters/extensions/meta'
 
 module Parameters
   module ClassMethods
-    def included(base)
-      base.extend ClassMethods
-    end
-
     #
     # @return [Hash]
     #   Parameters for the class.
     #
+    # @api semipublic
+    #
     def params
-      @_params ||= {}
+      @parameters ||= {}
     end
 
     #
@@ -25,6 +23,8 @@ module Parameters
     # @example
     #   Test.params = {:x => 5, :y => 2}
     #   # => {:x=>5, :y=>2}
+    #
+    # @api semipublic
     #
     def params=(values)
       values.each do |name,value|
@@ -64,6 +64,8 @@ module Parameters
     # @example
     #   parameter 'var', :default => 3, :description => 'my variable' 
     #
+    # @api public
+    #
     def parameter(name,options={})
       name = name.to_sym
 
@@ -77,6 +79,11 @@ module Parameters
         get_param(name).value = value
       end
 
+      # define the ? method, to determine if the parameter is set
+      meta_def("#{name}?") do
+        !!get_param(name).value
+      end
+
       # define the reader instance methods for the parameter
       define_method(name) do
         get_param(name).value
@@ -85,6 +92,11 @@ module Parameters
       # define the writter instance methods for the parameter
       define_method("#{name}=") do |value|
         get_param(name).value = value
+      end
+
+      # define the ? method, to determine if the parameter is set
+      define_method("#{name}?") do
+        !!get_param(name).value
       end
 
       # create the new parameter
@@ -106,6 +118,8 @@ module Parameters
     # @return [Boolean]
     #   Specifies whether or not there is a class parameter with the
     #   specified name.
+    #
+    # @api semipublic
     #
     def has_param?(name)
       name = name.to_sym
@@ -130,6 +144,8 @@ module Parameters
     #
     # @raise [ParamNotFound]
     #   No class parameter with the specified name could be found.
+    #
+    # @api semipublic
     #
     def get_param(name)
       name = name.to_sym
@@ -162,6 +178,8 @@ module Parameters
     #
     # @since 0.3.0
     #
+    # @api semipublic
+    #
     def set_param(name,value)
       name = name.to_sym
 
@@ -182,8 +200,10 @@ module Parameters
     # @yield [param]
     #   The block that will be passed each class parameter.
     #
+    # @api semipublic
+    #
     def each_param(&block)
-      ancestors.each do |ancestor|
+      ancestors.reverse_each do |ancestor|
         if ancestor.included_modules.include?(Parameters)
           ancestor.params.each_value(&block)
         end
@@ -201,6 +221,8 @@ module Parameters
     # @raise [ParamNotFound]
     #   No class parameter with the specified name could be found.
     #
+    # @api semipublic
+    #
     def describe_param(name)
       get_param(name).description
     end
@@ -213,6 +235,8 @@ module Parameters
     #
     # @raise [ParamNotFound]
     #   No class parameter with the specified name could be found.
+    #
+    # @api semipublic
     #
     def param_value(name)
       get_param(name).value

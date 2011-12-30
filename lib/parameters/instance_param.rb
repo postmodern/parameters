@@ -25,6 +25,8 @@ module Parameters
     # @param [Object] value
     #   The initial value for the instance parameter.
     #
+    # @api semipublic
+    #
     def initialize(object,name,type=nil,description=nil,value=nil)
       super(name,type,description)
 
@@ -76,8 +78,8 @@ module Parameters
     def to_s
       text = @name.to_s
 
-      text << " [#{value.inspect}]" if value
-      text << "\t#{@description}" if @description
+      text << "\t[#{value.inspect}]" if value
+      text << "\t#{@description}"    if @description
 
       return text
     end

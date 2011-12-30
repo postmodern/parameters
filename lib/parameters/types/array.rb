@@ -18,6 +18,18 @@ module Parameters
       end
 
       #
+      # The element type of the Array type.
+      #
+      # @return [Object]
+      #   The default element type.
+      #
+      # @since 0.4.0
+      #
+      def self.element_type
+        Object
+      end
+
+      #
       # Coerces a value into an Array.
       #
       # @param [#to_a, ::Object] value
@@ -44,6 +56,22 @@ module Parameters
       #
       def to_ruby
         self.class.to_ruby[@element_type.to_ruby]
+      end
+
+      #
+      # Compares the instance type with another type.
+      #
+      # @param [Array, Type] other
+      #   The other type to compare against.
+      #
+      # @return [::Boolean]
+      #   Specificies whether the instance type has the same element type
+      #   as the other Array instance type.
+      #
+      # @since 0.4.0
+      #
+      def ==(other)
+        super(other) && (@element_type == other.element_type)
       end
 
       #

@@ -1,5 +1,6 @@
 require 'parameters/exceptions'
 require 'parameters/class_methods'
+require 'parameters/module_methods'
 require 'parameters/class_param'
 require 'parameters/instance_param'
 require 'parameters/exceptions'
@@ -8,6 +9,11 @@ require 'parameters/extensions/meta'
 module Parameters
   def self.included(base)
     base.extend ClassMethods
+
+    if base.kind_of?(Module)
+      # add Module specific methods
+      base.extend Parameters::ModuleMethods
+    end
   end
 
   #
@@ -17,9 +23,13 @@ module Parameters
   # @param [Hash] values
   #   The names and values to initialize the instance parameters to.
   #
+  # @api public
+  #
   def initialize_params(values={})
-    self.class.each_param do |param|
-      self.params[param.name] = param.to_instance(self)
+    if self.class.included_modules.include?(Parameters)
+      self.class.each_param do |param|
+        self.params[param.name] = param.to_instance(self)
+      end
     end
 
     self.params = values if values.kind_of?(Hash)
@@ -29,6 +39,8 @@ module Parameters
   # Initializes the parameters using initialize_params. If a `Hash`
   # is passed in as the first argument, it will be used to set the values
   # of parameters described within the `Hash`.
+  #
+  # @api public
   #
   def initialize(*args,&block)
     initialize_params(args.first)
@@ -61,6 +73,8 @@ module Parameters
   # @example
   #   obj.parameter('var',:default => 3, :description => 'my variable')
   #
+  # @api public
+  #
   def parameter(name,options={})
     name    = name.to_sym
 
@@ -73,6 +87,10 @@ module Parameters
       # define the writer method for the parameter
       def #{name}=(new_value)
         get_param(#{name.inspect}).value = new_value
+      end
+
+      def #{name}?
+        !!get_param(#{name.inspect}).value
       end
     }
 
@@ -94,6 +112,8 @@ module Parameters
   # @return [Hash]
   #   The parameteres of the class and it's ancestors.
   #
+  # @api semipublic
+  #
   def class_params
     self.class.params
   end
@@ -102,8 +122,10 @@ module Parameters
   # @return [Hash]
   #   The instance parameters of the object.
   #
+  # @api semipublic
+  #
   def params
-    @_params ||= {}
+    @parameters ||= {}
   end
 
   #
@@ -115,6 +137,8 @@ module Parameters
   # @example
   #   obj.params = {:x => 5, :y => 2}
   #   # => {:x=>5, :y=>2}
+  #
+  # @api semipublic
   #
   def params=(values)
     values.each do |name,value|
@@ -138,6 +162,8 @@ module Parameters
   # @yield [param]
   #   The block that will be passed each instance parameter.
   #
+  # @api semipublic
+  #
   def each_param(&block)
     self.params.each_value(&block)
   end
@@ -149,6 +175,8 @@ module Parameters
   #
   # @example
   #   obj.has_param?('rhost') # => true
+  #
+  # @api semipublic
   #
   def has_param?(name)
     self.params.has_key?(name.to_sym)
@@ -168,6 +196,8 @@ module Parameters
   #
   # @example
   #   obj.get_param('var') # => InstanceParam
+  #
+  # @api semipublic
   #
   def get_param(name)
     name = name.to_sym
@@ -200,6 +230,8 @@ module Parameters
   #
   # @since 0.3.0
   #
+  # @api semipublic
+  #
   def set_param(name,value)
     name = name.to_sym
 
@@ -225,6 +257,8 @@ module Parameters
   # @example
   #   obj.describe_param('rhost') # => "remote host"
   #
+  # @api semipublic
+  #
   def describe_param(name)
     get_param(name).description
   end
@@ -244,6 +278,8 @@ module Parameters
   # @example
   #   obj.param_value('rhost') # => 80
   #
+  # @api semipublic
+  #
   def param_value(name)
     get_param(name).value
   end
@@ -259,6 +295,8 @@ module Parameters
   #
   # @raise [MissingParam]
   #   One of the instance parameters was not set.
+  #
+  # @api public
   #
   def require_params(*names)
     names.each do |name|

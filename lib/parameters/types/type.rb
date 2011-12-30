@@ -47,6 +47,58 @@ module Parameters
       end
 
       #
+      # Compares the instance type to another instance type.
+      #
+      # @param [Type] other
+      #   The other instance type.
+      #
+      # @return [::Boolean]
+      #   Specifies that the type has the same class as the other instance
+      #   type.
+      #
+      # @since 0.4.0
+      #
+      def ==(other)
+        self.class == other.class
+      end
+
+      #
+      # Determines if the instance of the type is related to another Type.
+      #
+      # @param [Type] type
+      #   The other type class.
+      #
+      # @return [::Boolean]
+      #   Specifies whether the instance of the type inherites from another
+      #   type.
+      #
+      # @since 0.4.0
+      #
+      def <(other)
+        if other.kind_of?(Type)
+          self.class <= other.class
+        else
+          self.class <= other
+        end
+      end
+
+      #
+      # Compares the type to another instance or class type.
+      #
+      # @param [Type] type
+      #   The other instance or class type.
+      #
+      # @return [::Boolean]
+      #   Specifies whether the instance type inherits from the other
+      #   class type, or shares the same class as the other instance type.
+      #
+      # @since 0.4.0
+      #
+      def <=(other)
+        (self < other) || (self == other)
+      end
+
+      #
       # @see ===
       #
       def ===(value)
