@@ -1,17 +1,37 @@
 require 'parameters/exceptions'
 require 'parameters/class_param'
+require 'parameters/param_set'
 require 'parameters/extensions/meta'
 
 module Parameters
   module ClassMethods
+    #
+    # @return [ParamSet]
+    #   Parameters for the class.
+    #
+    # @api semipublic
+    #
+    # @since 0.5.0
+    #
+    def parameters
+      @parameters ||= ParamSet.new(
+        # check if the previous ancestor included Parameters
+        if ancestors[1] < Parameters
+          ancestors[1].parameters
+        end
+      )
+    end
+
     #
     # @return [Hash]
     #   Parameters for the class.
     #
     # @api semipublic
     #
+    # @deprecated Deprecated as of 0.5.0, please use {#parameters} instead.
+    #
     def params
-      @parameters ||= {}
+      parameters.to_hash
     end
 
     #
@@ -26,10 +46,12 @@ module Parameters
     #
     # @api semipublic
     #
-    def params=(values)
+    # @since 0.5.0
+    #
+    def parameters=(values)
       values.each do |name,value|
-        if has_param?(name)
-          get_param(name).value = case value
+        if parameters.has?(name)
+          self.parameters[name] = case value
                                   when Parameters::ClassParam,
                                        Parameters::InstanceParam
                                     value.value
@@ -38,6 +60,13 @@ module Parameters
                                   end
         end
       end
+    end
+
+    #
+    # @deprecated Deprecated as of 0.5.0, please use {#parameters=} instead.
+    #
+    def params=(values)
+      self.parameters = values
     end
 
     #
@@ -71,32 +100,32 @@ module Parameters
 
       # define the reader class method for the parameter
       meta_def(name) do
-        get_param(name).value
+        parameters[name]
       end
 
       # define the writer class method for the parameter
       meta_def("#{name}=") do |value|
-        get_param(name).value = value
+        parameters[name] = value
       end
 
       # define the ? method, to determine if the parameter is set
       meta_def("#{name}?") do
-        !!get_param(name).value
+        parameters.set?(name)
       end
 
       # define the reader instance methods for the parameter
       define_method(name) do
-        get_param(name).value
+        self.parameters[name]
       end
 
       # define the writter instance methods for the parameter
       define_method("#{name}=") do |value|
-        get_param(name).value = value
+        parameters[name] = value
       end
 
       # define the ? method, to determine if the parameter is set
       define_method("#{name}?") do
-        !!get_param(name).value
+        parameters.set?(name)
       end
 
       # create the new parameter
@@ -109,7 +138,7 @@ module Parameters
       )
 
       # add the parameter to the class params list
-      params[name] = new_param
+      self.parameters << new_param
       return new_param
     end
 
@@ -122,16 +151,12 @@ module Parameters
     #
     # @api semipublic
     #
+    # @deprecated
+    #   Deprecated as of 0.5.0, please use `parameters.has?(name)`
+    #   instead.
+    #
     def has_param?(name)
-      name = name.to_sym
-
-      ancestors.each do |ancestor|
-        if ancestor.included_modules.include?(Parameters)
-          return true if ancestor.params.has_key?(name)
-        end
-      end
-
-      return false
+      self.parameters.has?(name)
     end
 
     #
@@ -148,18 +173,12 @@ module Parameters
     #
     # @api semipublic
     #
+    # @deprecated
+    #   Deprecated as of 0.5.0, please use `parameters.get(name)`
+    #   instead.
+    #
     def get_param(name)
-      name = name.to_sym
-
-      ancestors.each do |ancestor|
-        if ancestor.included_modules.include?(Parameters)
-          if ancestor.params.has_key?(name)
-            return ancestor.params[name]
-          end
-        end
-      end
-
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self}")
+      self.parameters.get(name)
     end
 
     #
@@ -181,18 +200,12 @@ module Parameters
     #
     # @api semipublic
     #
+    # @deprecated
+    #   Deprecated as of 0.5.0, please use `parameters.set(name,value)`
+    #   instead.
+    #
     def set_param(name,value)
-      name = name.to_sym
-
-      ancestors.each do |ancestor|
-        if ancestor.included_modules.include?(Parameters)
-          if ancestor.params.has_key?(name)
-            return ancestor.params[name].set(value)
-          end
-        end
-      end
-
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found in class #{self}")
+      self.parameters.set(name)
     end
 
     #
@@ -203,14 +216,12 @@ module Parameters
     #
     # @api semipublic
     #
+    # @deprecated
+    #   Deprecated as of 0.5.0, please use `parameters.each { |param| ... }`
+    #   instead.
+    #
     def each_param(&block)
-      ancestors.reverse_each do |ancestor|
-        if ancestor.included_modules.include?(Parameters)
-          ancestor.params.each_value(&block)
-        end
-      end
-
-      return self
+      self.parameters.each(&block)
     end
 
     #
@@ -224,8 +235,11 @@ module Parameters
     #
     # @api semipublic
     #
+    # @deprecated
+    #   Deprecated as of 0.5.0, please use `parameters.describe(name)` instead.
+    #
     def describe_param(name)
-      get_param(name).description
+      self.parameters.describe(name)
     end
 
     #
@@ -239,8 +253,11 @@ module Parameters
     #
     # @api semipublic
     #
+    # @deprecated
+    #   Deprecated as of 0.5.0, please use `parameters[name]` instead.
+    #
     def param_value(name)
-      get_param(name).value
+      self.parameters[name]
     end
   end
 end

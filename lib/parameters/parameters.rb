@@ -3,7 +3,7 @@ require 'parameters/class_methods'
 require 'parameters/module_methods'
 require 'parameters/class_param'
 require 'parameters/instance_param'
-require 'parameters/exceptions'
+require 'parameters/param_set'
 require 'parameters/extensions/meta'
 
 module Parameters
@@ -27,12 +27,12 @@ module Parameters
   #
   def initialize_params(values={})
     if self.class.included_modules.include?(Parameters)
-      self.class.each_param do |param|
-        self.params[param.name] = param.to_instance(self)
+      self.class.parameters.each do |param|
+        self.parameters << param.to_instance(self)
       end
     end
 
-    self.params = values if values.kind_of?(Hash)
+    self.parameters = values if values.kind_of?(Hash)
   end
 
   #
@@ -81,16 +81,16 @@ module Parameters
     instance_eval %{
       # define the reader method for the parameter
       def #{name}
-        get_param(#{name.inspect}).value
+        parameters[#{name.inspect}]
       end
 
       # define the writer method for the parameter
       def #{name}=(new_value)
-        get_param(#{name.inspect}).value = new_value
+        parameters[#{name.inspect}] = new_value
       end
 
       def #{name}?
-        !!get_param(#{name.inspect}).value
+        parameters.set?(#{name.inspect})
       end
     }
 
@@ -104,7 +104,7 @@ module Parameters
     )
 
     # add the new parameter
-    self.params[name] = new_param
+    self.parameters << new_param
     return new_param
   end
 
@@ -114,8 +114,22 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `self.class.parameters`
+  #   instead.
+  #
   def class_params
     self.class.params
+  end
+
+  #
+  # @return [ParamSet]
+  #   The instance parameters of the object.
+  #
+  # @api semipublic
+  #
+  def parameters
+    @parameters ||= ParamSet.new
   end
 
   #
@@ -124,8 +138,10 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated Deprecated as of 0.5.0, please use {#parameters} instead.
+  #
   def params
-    @parameters ||= {}
+    parameters.to_hash
   end
 
   #
@@ -140,20 +156,26 @@ module Parameters
   #
   # @api semipublic
   #
-  def params=(values)
+  def parameters=(values)
     values.each do |name,value|
-      name = name.to_sym
-
-      if has_param?(name)
-        self.params[name].value = case value
-                                  when Parameters::ClassParam,
-                                       Parameters::InstanceParam
-                                    value.value
-                                  else
-                                    value
-                                  end
+      if parameters.has?(name)
+        self.parameters[name] = case value
+                                when Parameters::ClassParam,
+                                     Parameters::InstanceParam
+                                  value.value
+                                else
+                                  value
+                                end
       end
     end
+  end
+
+  #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use {#parameters=} instead.
+  #
+  def params=(values)
+    self.parameters = values
   end
 
   #
@@ -164,8 +186,12 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `parameters.each { |param| ... }`
+  #   instead.
+  #
   def each_param(&block)
-    self.params.each_value(&block)
+    self.parameters.each(&block)
   end
 
   #
@@ -178,8 +204,12 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `parameters.has?(name)`
+  #   instead.
+  #
   def has_param?(name)
-    self.params.has_key?(name.to_sym)
+    self.parameters.has?(name.to_sym)
   end
 
   #
@@ -199,14 +229,12 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `parameters.get(name)`
+  #   instead.
+  #
   def get_param(name)
-    name = name.to_sym
-
-    unless has_param?(name)
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.inspect}")
-    end
-
-    return self.params[name]
+    self.parameters.get(name)
   end
 
   #
@@ -232,14 +260,12 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `parameters.set(name,value)`
+  #   instead.
+  #
   def set_param(name,value)
-    name = name.to_sym
-
-    unless has_param?(name)
-      raise(Parameters::ParamNotFound,"parameter #{name.to_s.dump} was not found within #{self.to_s.dump}")
-    end
-
-    return self.params[name].value = value
+    self.parameters.set(name,value)
   end
 
   #
@@ -259,8 +285,11 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `parameters.describe(name)` instead.
+  #
   def describe_param(name)
-    get_param(name).description
+    self.parameters.describe(name)
   end
 
   #
@@ -280,8 +309,11 @@ module Parameters
   #
   # @api semipublic
   #
+  # @deprecated
+  #   Deprecated as of 0.5.0, please use `parameters[name]` instead.
+  #
   def param_value(name)
-    get_param(name).value
+    self.parameters[name]
   end
 
   protected
@@ -302,7 +334,7 @@ module Parameters
     names.each do |name|
       name = name.to_s
 
-      if instance_variable_get(:"@#{name}").nil?
+      unless self.parameters.set?(name)
         raise(Parameters::MissingParam,"parameter #{name.dump} has no value")
       end
     end

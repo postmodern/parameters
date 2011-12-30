@@ -196,7 +196,7 @@ module Parameters
     #
     def self.parser(object)
       OptionParser.new do |opts|
-        object.each_param do |param|
+        object.parameters.each do |param|
           define(opts,param)
         end
 
