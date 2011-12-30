@@ -24,6 +24,8 @@ module Parameters
     # @param [String, nil] description
     #   The description of the parameter.
     #
+    # @api semipublic
+    #
     def initialize(name,type=nil,description=nil)
       @name = name.to_sym
       @type = if (type.kind_of?(Types::Type)) ||
@@ -44,6 +46,8 @@ module Parameters
     #
     # @return [Object]
     #   The coerced value.
+    #
+    # @api semipublic
     #
     def coerce(value)
       if (value.nil? || (@type === value))

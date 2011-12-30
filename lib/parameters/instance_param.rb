@@ -25,6 +25,8 @@ module Parameters
     # @param [Object] value
     #   The initial value for the instance parameter.
     #
+    # @api semipublic
+    #
     def initialize(object,name,type=nil,description=nil,value=nil)
       super(name,type,description)
 
