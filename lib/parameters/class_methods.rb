@@ -101,6 +101,7 @@ module Parameters
 
       # create the new parameter
       new_param = Parameters::ClassParam.new(
+        self,
         name,
         options[:type],
         options[:description],

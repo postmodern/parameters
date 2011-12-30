@@ -3,11 +3,11 @@ require 'parameters/param'
 module Parameters
   class ClassParam < Param
 
-    # Default value of the class parameter
-    attr_reader :value
-
     #
     # Creates a new ClassParam object.
+    #
+    # @param [Class] base_class
+    #   The Class the ClassParam was defined in.
     #
     # @param [Symbol, String] name
     #   The name of the class parameter.
@@ -21,25 +21,30 @@ module Parameters
     # @param [Object, nil] value
     #   The default value of the class parameter.
     #
-    def initialize(name,type=nil,description=nil,value=nil)
-      super(name,type,description)
+    def initialize(base_class,name,type=nil,description=nil,value=nil)
+      super(base_class,name,type,description)
 
-      @value = value
+      self.value = value
     end
 
     #
     # Sets the value of the class param.
     #
-    # @param [Object] value
+    # @param [Proc, Object] value
     #   The new value of the class param.
     #
     # @return [Object]
     #   The new value of the class param.
     #
-    # @since 0.2.0
+    # @since 0.5.0
     #
-    def value=(new_value)
-      @value = coerce(new_value)
+    def value=(value)
+      case value
+      when Proc
+        super(value)
+      else
+        super(coerce(value))
+      end
     end
 
     #
@@ -61,31 +66,8 @@ module Parameters
         @name,
         @type,
         @description,
-        @value
+        self.value
       )
-    end
-
-    #
-    # @return [String]
-    #   The representation of the class param.
-    #
-    def to_s
-      text = @name.to_s
-
-      text << "\t[#{@value.inspect}]" if @value
-      text << "\t#{@description}"     if @description
-
-      return text
-    end
-
-    #
-    # Inspects the class parameter.
-    #
-    # @return [String]
-    #   Inspection of the class params value.
-    #
-    def inspect
-      "#<#{self.class}: #{@value.inspect}>"
     end
 
   end

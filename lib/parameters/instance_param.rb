@@ -4,7 +4,7 @@ module Parameters
   class InstanceParam < Param
 
     # Owning object
-    attr_reader :object
+    alias object context
 
     #
     # Creates a new InstanceParam object.
@@ -28,15 +28,13 @@ module Parameters
     # @api semipublic
     #
     def initialize(object,name,type=nil,description=nil,value=nil)
-      super(name,type,description)
-
-      @object = object
+      super(object,name,type,description)
 
       if (self.value.nil? && value)
         self.value = case value
                      when Proc
                        if value.arity > 0
-                         value.call(@object)
+                         value.call(object)
                        else
                          value.call()
                        end
@@ -51,14 +49,6 @@ module Parameters
     end
 
     #
-    # @return
-    #   The value of the instance param.
-    #
-    def value
-      @object.instance_variable_get(:"@#{@name}")
-    end
-
-    #
     # Sets the value of the instance param.
     #
     # @param [Object] value
@@ -67,31 +57,10 @@ module Parameters
     # @return [Object]
     #   The new value of the instance param.
     #
+    # @since 0.5.0
+    #
     def value=(value)
-      @object.instance_variable_set(:"@#{@name}",coerce(value))
-    end
-
-    #
-    # @return [String]
-    #   Representation of the instance param.
-    #
-    def to_s
-      text = @name.to_s
-
-      text << "\t[#{value.inspect}]" if value
-      text << "\t#{@description}"    if @description
-
-      return text
-    end
-
-    #
-    # Inspects the instance parameter.
-    #
-    # @return [String]
-    #   Inspection of the instance params value.
-    #
-    def inspect
-      "#<#{self.class}: #{value.inspect}>"
+      super(coerce(value))
     end
 
   end
