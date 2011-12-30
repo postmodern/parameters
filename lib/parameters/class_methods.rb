@@ -6,6 +6,20 @@ require 'parameters/extensions/meta'
 module Parameters
   module ClassMethods
     #
+    # Adds the classes parameters to the extending sub-class.
+    #
+    # @param [Class] subclass
+    #   The sub-class that is inheriting the base-class.
+    #
+    # @since 0.5.0
+    #
+    def inherited(subclass)
+      self.parameters.each do |param|
+        subclass.parameters << param
+      end
+    end
+
+    #
     # @return [ParamSet]
     #   Parameters for the class.
     #
@@ -14,12 +28,7 @@ module Parameters
     # @since 0.5.0
     #
     def parameters
-      @parameters ||= ParamSet.new(
-        # check if the previous ancestor included Parameters
-        if (ancestor = ancestors[1..-1].find { |m| m < Parameters })
-          ancestor.parameters
-        end
-      )
+      @parameters ||= ParamSet.new
     end
 
     #

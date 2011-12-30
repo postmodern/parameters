@@ -13,6 +13,11 @@ module Parameters
         # re-extend the ModuleMethods
         base.extend ModuleMethods
       end
+
+      # add all of the modules parameters
+      self.parameters.each do |param|
+        base.parameters << param
+      end
     end
 
     #
@@ -20,8 +25,8 @@ module Parameters
     # into an Object.
     #
     def extended(object)
-      each_param do |param|
-        object.params[param.name] = param.to_instance(object)
+      self.parameters.each do |param|
+        object.parameters << param.to_instance(object)
       end
     end
   end
