@@ -117,5 +117,17 @@ module Parameters
       return text
     end
 
+    #
+    # Inspects the parameter.
+    #
+    # @return [String]
+    #   Inspection of the params value.
+    #
+    # @since 0.5.0
+    #
+    def inspect
+      "#<#{self.class}(#{self.context.inspect}): #{self.value.inspect}>"
+    end
+
   end
 end

@@ -70,17 +70,5 @@ module Parameters
       )
     end
 
-    #
-    # Inspects the class parameter.
-    #
-    # @return [String]
-    #   Inspection of the class params value.
-    #
-    # @since 0.5.0
-    #
-    def inspect
-      "#<#{self.class}(#{self.context}): #{self.value.inspect}>"
-    end
-
   end
 end
