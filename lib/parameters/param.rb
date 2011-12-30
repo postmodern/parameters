@@ -105,17 +105,5 @@ module Parameters
       return text
     end
 
-    #
-    # Inspects the instance parameter.
-    #
-    # @return [String]
-    #   Inspection of the instance params value.
-    #
-    # @since 0.5.0
-    #
-    def inspect
-      "#<#{self.class}: #{value.inspect}>"
-    end
-
   end
 end

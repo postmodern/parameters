@@ -63,5 +63,17 @@ module Parameters
       super(coerce(value))
     end
 
+    #
+    # Inspects the instance parameter.
+    #
+    # @return [String]
+    #   Inspection of the instance params value.
+    #
+    # @since 0.5.0
+    #
+    def inspect
+      "#<#{self.class}: #{self.value.inspect}>"
+    end
+
   end
 end
