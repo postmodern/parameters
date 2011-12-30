@@ -46,6 +46,8 @@ module Parameters
     # @return [String]
     #   The option flag.
     #
+    # @api semipublic
+    #
     def self.flag(param)
       name = param.name.to_s.gsub('_','-')
 
@@ -64,6 +66,8 @@ module Parameters
     #
     # @return [String]
     #   The Usage String.
+    #
+    # @api semipublic
     #
     def self.usage(param)
       name = param.name.to_s
@@ -94,6 +98,8 @@ module Parameters
     # @return [Class]
     #   The acceptance class.
     #
+    # @api semipublic
+    #
     def self.accepts(param)
       type = param.type
 
@@ -123,7 +129,9 @@ module Parameters
     #
     # @option options [String] :usage
     #   The USAGE String for the option.
-    #   
+    #
+    # @api public
+    #
     def self.define(opts,param,options={})
       short_flag = options[:flag]
       long_flag  = flag(param)
@@ -183,6 +191,8 @@ module Parameters
     #
     # @return [OptionParser]
     #   The defined OptionParser.
+    #
+    # @api public
     #
     def self.parser(object)
       OptionParser.new do |opts|
