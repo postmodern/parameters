@@ -16,8 +16,8 @@ module Parameters
     def parameters
       @parameters ||= ParamSet.new(
         # check if the previous ancestor included Parameters
-        if ancestors[1] < Parameters
-          ancestors[1].parameters
+        if (ancestor = ancestors[1..-1].find { |m| m < Parameters })
+          ancestor.parameters
         end
       )
     end
