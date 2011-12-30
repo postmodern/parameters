@@ -139,6 +139,32 @@ module Parameters
     end
 
     #
+    # Updates the values of the parameter Set.
+    #
+    # @param [Hash{String,Symbol => Param,Object}] values
+    #   The new values for the parameters.
+    #
+    # @return [ParamSet]
+    #   The updated parameter Set.
+    #
+    # @api public
+    #
+    def update(values={})
+      values.each do |name,value|
+        if has?(name)
+          self[name] = case value
+                       when Param
+                         value.value
+                       else
+                         value
+                       end
+        end
+      end
+
+      return self
+    end
+
+    #
     # Determines if the parameter Set is empty.
     #
     # @return [Boolean]

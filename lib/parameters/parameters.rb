@@ -157,17 +157,7 @@ module Parameters
   # @api semipublic
   #
   def parameters=(values)
-    values.each do |name,value|
-      if parameters.has?(name)
-        self.parameters[name] = case value
-                                when Parameters::ClassParam,
-                                     Parameters::InstanceParam
-                                  value.value
-                                else
-                                  value
-                                end
-      end
-    end
+    self.parameters.update(values)
   end
 
   #
