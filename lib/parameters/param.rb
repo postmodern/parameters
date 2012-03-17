@@ -126,7 +126,26 @@ module Parameters
     # @since 0.5.0
     #
     def inspect
-      "#<#{self.class}(#{self.context.inspect}): #{self.value.inspect}>"
+      "#<#{self.class}(#{inspect_context}): #{self.value.inspect}>"
+    end
+
+    private
+
+    #
+    # Inspects the context that the parameter is defined in.
+    #
+    # @return [String]
+    #   The inspected context.
+    #
+    # @since 0.5.0
+    #
+    def inspect_context
+      case self.context
+      when Module, Class
+        self.context.inspect
+      else
+        "#<#{self.context.class}>"
+      end
     end
 
   end
