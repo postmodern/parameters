@@ -14,6 +14,8 @@ module Parameters
     # @since 0.5.0
     #
     def inherited(subclass)
+      super(subclass)
+
       self.parameters.each do |param|
         subclass.parameters << param
       end
