@@ -16,7 +16,7 @@ module Parameters
       Types::Time     => 'TIME',
       Types::DateTime => 'DATE|TIME',
       Types::Date     => 'DATE',
-      Types::Regexp   => 'REGEXP',
+      Types::Regexp   => '/REGEXP/',
       Types::URI      => 'URI',
       Types::Array    => 'VALUE [...]',
       Types::Set      => 'VALUE [...]',
