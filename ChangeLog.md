@@ -1,3 +1,8 @@
+### 0.4.2 / 2012-05-28
+
+* Fixed a typo in the gemspec, which incorrectly set
+  `required_rubygems_version` to the same value as `required_ruby_version`.
+
 ### 0.4.1 / 2012-05-27
 
 * Changed the default `USAGE` for Regexp parameters to `/REGEXP/`
