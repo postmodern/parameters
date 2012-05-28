@@ -1,1 +1,1 @@
---quiet --markup markdown --title 'Parameters Documentation' --protected --files ChangeLog.md,LICENSE.txt
+--quiet --markup markdown --title 'Parameters Documentation' --protected
