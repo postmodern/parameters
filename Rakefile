@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rubygems'
 require 'rake'
 
@@ -21,6 +23,7 @@ rescue LoadError => e
     abort "Please run `gem install rspec` to install RSpec."
   end
 end
+
 task :test    => :spec
 task :default => :spec
 
@@ -34,3 +37,4 @@ rescue LoadError => e
     abort "Please run `gem install yard` to install YARD."
   end
 end
+task :doc => :yard
