@@ -1,3 +1,10 @@
+### 0.4.1 / 2012-05-27
+
+* Changed the default `USAGE` for Regexp parameters to `/REGEXP/`
+  in {Parameters::Options::USAGES}.
+* Replaced ore-tasks with
+  [rubygems-tasks](https://github.com/postmodern/rubygems-tasks#readme).
+
 ### 0.4.0 / 2011-12-29
 
 * Added {Parameters::Options}.
