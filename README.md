@@ -88,4 +88,3 @@ have configurable default values.
 ## License
 
 See {file:LICENSE.txt} for license information.
-
