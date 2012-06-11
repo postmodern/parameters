@@ -32,7 +32,7 @@ module Parameters
 
       @object = object
 
-      if (self.value.nil? && value)
+      if (self.value.nil? && !value.nil?)
         self.value = case value
                      when Proc
                        if value.arity > 0
