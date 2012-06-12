@@ -155,7 +155,7 @@ module Parameters
         opts.on(*args) do |value|
           if param.value.nil?
             param.value = value
-          else
+          elsif value
             param.value.merge!(param.coerce(value))
           end
         end
@@ -163,7 +163,7 @@ module Parameters
         opts.on(*args) do |value|
           if param.value.nil?
             param.value = value
-          else
+          elsif value
             param.value += param.coerce(value)
           end
         end
