@@ -30,7 +30,7 @@ module Parameters
     #
     # Sets the value of the class param.
     #
-    # @param [Object] value
+    # @param [Object] new_value
     #   The new value of the class param.
     #
     # @return [Object]

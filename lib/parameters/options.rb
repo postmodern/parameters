@@ -180,9 +180,6 @@ module Parameters
     # @param [Parameter] object
     #   The Class or Object which included Parameters.
     #
-    # @param [OptionParser] opts
-    #   The option parser to define the parameter options within.
-    #
     # @yield [opts]
     #   If a block is given, it will be passed the newly created OptionParser.
     #

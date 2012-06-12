@@ -65,7 +65,7 @@ module Parameters
       #
       # Determines if the instance of the type is related to another Type.
       #
-      # @param [Type] type
+      # @param [Type] other
       #   The other type class.
       #
       # @return [::Boolean]
@@ -85,7 +85,7 @@ module Parameters
       #
       # Compares the type to another instance or class type.
       #
-      # @param [Type] type
+      # @param [Type] other
       #   The other instance or class type.
       #
       # @return [::Boolean]
