@@ -1,3 +1,9 @@
+### 0.4.3 / 2012-06-11
+
+* Allow defaulting Boolean parameters to `false`.
+* Guard against `nil` arguments in {Parameters::Options}, when merging
+  values into Hash or Array parameters.
+
 ### 0.4.2 / 2012-05-28
 
 * Fixed a typo in the gemspec, which incorrectly set
