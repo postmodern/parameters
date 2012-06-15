@@ -123,6 +123,14 @@ describe Parameters::Options do
 
         object.mapping.should == hash
       end
+
+      it "should accept 'foo\\:bar:baz pairs" do
+        hash = {:"foo:bar" => 1}
+
+        subject.parse(['--mapping', "foo\\:bar:1"])
+
+        object.mapping.should == hash
+      end
       
       it "should reject non 'key:value' pairs" do
         lambda {

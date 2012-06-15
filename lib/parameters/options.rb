@@ -209,9 +209,13 @@ module Parameters
     end
 
     # accept pattern for Hashes
-    OptionParser.accept(Hash, /[^\s:]*:[^\s:]*(\s+[^\s:]*:[^\s:])*/) do |s,|
+    OptionParser.accept(Hash, /((?:\\.|[^\\:])*):((?:\\.|[^\\:])*)/) do |s,k,v|
       if s
-        Hash[s.split.map { |key_value| key_value.split(':',2) }]
+        unescape = lambda { |string|
+          string.gsub(/\\./) { |match| match[1,1] }
+        }
+
+        {unescape[k] => unescape[v]}
       end
     end
 
