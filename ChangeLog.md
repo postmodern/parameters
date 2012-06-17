@@ -1,3 +1,8 @@
+### 0.4.4 / 2012-06-16
+
+* {Parameters::Options} now correctly parses escaped `\:` characters for Hash
+  parameters.
+
 ### 0.4.3 / 2012-06-11
 
 * Allow defaulting Boolean parameters to `false`.
