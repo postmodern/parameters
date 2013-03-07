@@ -76,23 +76,22 @@ module Parameters
   # @api public
   #
   def parameter(name,options={})
-    name    = name.to_sym
+    name = name.to_sym
 
-    instance_eval %{
-      # define the reader method for the parameter
-      def #{name}
-        get_param(#{name.inspect}).value
-      end
+    # define the reader method for the parameter
+    meta_def name do
+      get_param(name).value
+    end
 
-      # define the writer method for the parameter
-      def #{name}=(new_value)
-        get_param(#{name.inspect}).value = new_value
-      end
+    # define the writer method for the parameter
+    meta_def :"#{name}=" do |new_value|
+      get_param(name).value = new_value
+    end
 
-      def #{name}?
-        !!get_param(#{name.inspect}).value
-      end
-    }
+    # define a tester method for the parameter
+    meta_def :"#{name}?" do
+      !!get_param(name).value
+    end
 
     # create the new parameter
     new_param = InstanceParam.new(
